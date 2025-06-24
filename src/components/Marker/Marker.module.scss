@@ -1,0 +1,22 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  width: vw-1920(147);
+  height: vw-1920(147);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translate(-10%, -100%);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90px;
+    height: 90px;
+  }
+}

@@ -1,0 +1,16 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  margin-top: vw-1920(96);
+
+  .title {
+    margin-bottom: vw-1920(42);
+    color: var(--text);
+  }
+
+  .services {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: vw-1920(32) vw-1920(24);
+  }
+}

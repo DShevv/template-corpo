@@ -1,0 +1,41 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  display: flex;
+  gap: vw-1920(12);
+  align-items: center;
+  justify-content: center;
+
+  .prev {
+    transform: rotate(180deg);
+  }
+
+  .list {
+    display: flex;
+    gap: vw-1920(4);
+    align-items: center;
+
+    .page {
+      color: var(--accent-1);
+      text-decoration: none;
+      width: vw-1920(44);
+      height: vw-1920(44);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+
+      &.active {
+        background-color: var(--accent-2);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    gap: 24px;
+
+    .list {
+      gap: 16px;
+    }
+  }
+}

@@ -1,0 +1,160 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  padding: vw-1920(48) 0 vw-1920(40);
+  flex: 0 0 vw-1920(352);
+  width: vw-1920(352);
+  border-right: 1px solid var(--accent-2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: vw-1920(24);
+  height: 100dvh;
+  position: fixed;
+  background-color: var(--white);
+  top: 0;
+  left: 0;
+  z-index: 101;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .logo {
+    margin: 0 vw-1920(48);
+  }
+
+  .menu {
+    margin-top: vw-1920(48);
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    .link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: vw-1920(16);
+      padding: vw-1920(18) vw-1920(32) vw-1920(18) vw-1920(48);
+
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: var(--accent-2);
+        font-weight: 700;
+      }
+
+      svg {
+        color: var(--accent-1);
+      }
+    }
+  }
+
+  .bottom {
+    padding: 0 vw-1920(48);
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: vw-1920(16);
+    margin-bottom: vw-1920(32);
+
+    .infoItem {
+      display: flex;
+      align-items: center;
+      gap: vw-1920(8);
+      text-decoration: none;
+      color: var(--text);
+
+      .icon {
+        width: vw-1920(44);
+        height: vw-1920(44);
+        background-color: var(--accent-2);
+        color: var(--accent-1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .infoText {
+        font-weight: 500;
+      }
+    }
+
+    a.infoItem:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .button {
+    width: 100%;
+    min-width: initial;
+  }
+
+  .socials {
+    display: flex;
+    gap: vw-1920(12);
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: vw-1920(24);
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: vw-1920(32);
+      height: vw-1920(32);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+
+      svg {
+        width: vw-1920(32);
+        height: vw-1920(32);
+      }
+    }
+  }
+
+  &.transparent {
+    background-color: transparent;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 100;
+
+    .menu {
+      .link {
+        color: var(--white);
+
+        svg {
+          color: var(--white);
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+
+    .info {
+      .infoItem {
+        color: var(--white);
+        .icon {
+          background-color: rgba(255, 255, 255, 0.1);
+          color: var(--white);
+        }
+      }
+    }
+
+    .button {
+      max-width: 100%;
+    }
+  }
+}

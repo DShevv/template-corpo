@@ -1,0 +1,41 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid transparent;
+  justify-content: space-between;
+  height: vw-1920(260);
+
+  &:hover {
+    border: 1px solid var(--accent-1);
+  }
+
+  .title {
+    color: var(--text);
+    padding: vw-1920(20);
+  }
+
+  .image {
+    width: 100%;
+    height: vw-1920(106);
+    object-fit: cover;
+    position: relative;
+
+    .button {
+      position: absolute;
+      top: vw-1920(-26);
+      right: vw-1920(24);
+      z-index: 1;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

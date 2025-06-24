@@ -1,0 +1,241 @@
+@use "../assets/sass/functions" as *;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --text: #111434;
+  --white: #ffffff;
+  --gray: #f8f8f8;
+  --bg-overlay: rgba(11, 12, 25, 0.3);
+
+  --accent-1: #25338c;
+  --accent-2: #eaf3ff;
+  --red: #de0c2f;
+  --green: rgba(19, 185, 38, 0.8);
+  --orange: #ef8a24;
+}
+
+html,
+body {
+  max-width: 100vw;
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  color: var(--text);
+  background-color: var(--white);
+  position: relative;
+}
+
+body {
+  display: flex;
+  height: 200dvh;
+}
+
+main {
+  width: 100%;
+}
+
+.wrapper {
+  flex: 1 1;
+  width: 100%;
+}
+
+.h1 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: vw-1920(100);
+  line-height: 120%;
+}
+
+.h1-news {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: vw-1920(80);
+  line-height: 120%;
+}
+
+.h2 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: vw-1920(60);
+  line-height: 120%;
+}
+
+.h3 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: vw-1920(46);
+  line-height: 120%;
+}
+
+.h4 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: vw-1920(36);
+  line-height: 140%;
+}
+
+.h5 {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: vw-1920(26);
+  line-height: 140%;
+}
+
+.h6 {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: vw-1920(24);
+  line-height: 140%;
+}
+
+.h7 {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: vw-1920(18);
+  line-height: 140%;
+}
+
+.body-1 {
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: vw-1920(28);
+  line-height: 140%;
+}
+
+.body-2 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: vw-1920(20);
+  line-height: 140%;
+}
+
+.body-3 {
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: vw-1920(19);
+  line-height: 140%;
+}
+
+.body-4 {
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: vw-1920(17);
+  line-height: 140%;
+}
+
+.body-5 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: vw-1920(16);
+  line-height: 140%;
+}
+
+.body-6 {
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: vw-1920(15);
+  line-height: 140%;
+}
+
+.t-button {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: vw-1920(20);
+  line-height: 140%;
+}
+
+.t-button-2 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: vw-1920(18);
+  line-height: 150%;
+}
+
+.t-placeholder {
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: vw-1920(17);
+  line-height: 140%;
+}
+
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .h1 {
+    font-size: 32px;
+  }
+
+  .h1-discount {
+    font-size: 28px;
+  }
+
+  .h2 {
+    font-size: 26px;
+  }
+
+  .h3 {
+    font-size: 20px;
+  }
+
+  .h4 {
+    font-size: 18px;
+  }
+
+  .h5 {
+    font-size: 16px;
+  }
+
+  .h6 {
+    font-size: 14px;
+  }
+
+  .body-1 {
+    font-size: 20px;
+  }
+
+  .body-2 {
+    font-size: 18px;
+  }
+
+  .body-3 {
+    font-size: 15px;
+  }
+
+  .body-4 {
+    font-size: 14px;
+  }
+
+  .body-5 {
+    font-size: 13px;
+  }
+
+  .body-6 {
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  .body-7 {
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  .t-button {
+    font-size: 20px;
+  }
+
+  .t-placeholder {
+    font-size: 15px;
+  }
+
+  .t-price {
+    font-size: 13px;
+  }
+}

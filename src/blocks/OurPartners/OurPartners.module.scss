@@ -1,0 +1,50 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  margin-top: vw-1920(96);
+  position: relative;
+
+  .title {
+    margin-bottom: vw-1920(42);
+    color: var(--text);
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+
+    .slide {
+      position: relative;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .logo {
+        position: absolute;
+        bottom: vw-1920(20);
+        left: vw-1920(20);
+        width: vw-1920(164);
+        height: vw-1920(82);
+        object-fit: cover;
+      }
+    }
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% + vw-1920(160));
+    position: absolute;
+    bottom: vw-1920(125);
+    left: 50%;
+    transform: translateX(-50%);
+
+    .prev {
+      transform: rotate(180deg);
+    }
+  }
+}

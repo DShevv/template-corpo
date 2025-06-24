@@ -1,0 +1,42 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  margin-top: vw-1920(140);
+  display: flex;
+  gap: vw-1920(54);
+
+  .image {
+    width: vw-1920(632);
+    height: vw-1920(586);
+    object-fit: cover;
+  }
+
+  .caption {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      margin-bottom: vw-1920(16);
+      color: var(--text);
+    }
+
+    p {
+      font-family: var(--font-family);
+      font-size: vw-1920(19);
+      line-height: 140%;
+      color: var(--text);
+      font-weight: 300;
+      margin-bottom: vw-1920(8);
+
+      &:first-of-type {
+        font-weight: 500;
+        margin-bottom: vw-1920(16);
+      }
+    }
+
+    .button {
+      margin-top: vw-1920(32);
+      max-width: vw-1920(304);
+    }
+  }
+}
