@@ -34,6 +34,13 @@
   justify-content: center;
   transition: all 0.3s ease;
   background-color: transparent;
+  flex: 0 0 vw-1920(32);
+
+  @media (max-width: 768px) {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+  }
 }
 
 .input:focus + .checkbox {
@@ -47,6 +54,12 @@
 .icon {
   width: vw-1920(16);
   height: vw-1920(11);
+  position: relative;
+
+  @media (max-width: 768px) {
+    width: 16px;
+    height: 11px;
+  }
 }
 
 .input:disabled + .checkbox {

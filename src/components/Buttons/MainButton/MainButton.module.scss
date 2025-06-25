@@ -15,6 +15,11 @@
   outline: none;
   text-decoration: none;
 
+  @media (max-width: 768px) {
+    padding: 16px 12px;
+    min-width: 210px;
+  }
+
   &:hover {
     background: var(--accent-2);
     color: var(--accent-1);
@@ -41,6 +46,10 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     background: transparent;
     max-width: vw-1920(232);
+
+    @media (max-width: 768px) {
+      min-width: 180px;
+    }
 
     &:hover {
       background: var(--accent-2);

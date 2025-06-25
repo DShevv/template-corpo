@@ -21,27 +21,30 @@
   }
 
   .field {
-    border: 1px solid rgba(37, 51, 140, 0.2);
+    width: 100%;
+    min-height: vw-1920(120);
     padding: vw-1920(14) vw-1920(16);
-    background: var(--white);
+    border: 1px solid transparent;
     color: var(--text);
+    background: var(--white);
+    border: 1px solid rgba(37, 51, 140, 0.2);
+
+    transition: all 0.2s ease;
+    resize: none;
     outline: none;
 
     @media (max-width: 768px) {
       padding: 14px 16px;
+      min-height: 120px;
     }
 
     &::placeholder {
       opacity: 0.4;
-    }
-
-    &:focus {
-      border-color: var(--accent-1);
+      color: var(--text);
     }
 
     &.error {
-      border-color: var(--red);
-      color: var(--red);
+      border-color: var(--error);
     }
   }
 

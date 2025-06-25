@@ -1,0 +1,114 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  margin-top: vw-1920(140);
+  display: flex;
+  gap: vw-1920(32);
+
+  @media (max-width: 768px) {
+    margin-top: 72px;
+    flex-direction: column-reverse;
+    gap: 0px;
+  }
+
+  .image {
+    object-fit: cover;
+    width: vw-1920(592);
+    flex: 0;
+    height: 100%;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 200px;
+    }
+  }
+
+  .form {
+    padding: vw-1920(34) vw-1920(32);
+
+    @media (max-width: 768px) {
+      padding: 24px 16px;
+    }
+
+    .title {
+      margin-bottom: vw-1920(12);
+
+      @media (max-width: 768px) {
+        margin-bottom: 16px;
+      }
+    }
+
+    .description {
+      margin-bottom: vw-1920(28);
+
+      @media (max-width: 768px) {
+        margin-bottom: 24px;
+      }
+    }
+
+    .line {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: vw-1920(24);
+      margin-bottom: vw-1920(16);
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+    }
+
+    .comment {
+      margin-top: vw-1920(16);
+      margin-bottom: vw-1920(24);
+
+      @media (max-width: 768px) {
+        margin-top: 20px;
+        margin-bottom: 24px;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      gap: vw-1920(30);
+      align-items: center;
+
+      @media (max-width: 768px) {
+        flex-direction: column-reverse;
+        gap: 20px;
+      }
+
+      .button {
+        min-width: vw-1920(244);
+
+        @media (max-width: 768px) {
+          min-width: 100%;
+        }
+      }
+
+      .link {
+        max-width: vw-1920(180);
+        width: 100%;
+        text-decoration: none;
+        color: var(--text);
+
+        @media (max-width: 768px) {
+          max-width: 100%;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .checkbox {
+        flex: 0 0 vw-1920(220);
+
+        @media (max-width: 768px) {
+          flex: 0 0 100%;
+        }
+      }
+    }
+  }
+}
