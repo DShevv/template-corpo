@@ -1,0 +1,236 @@
+@use "../../assets/sass/functions" as *;
+
+.footer {
+  margin-top: vw-1920(140);
+  padding: vw-1920(48) vw-1920(140) vw-1920(32) vw-1920(492);
+  background: var(--text);
+
+  @media (max-width: 768px) {
+    margin-top: 72px;
+    padding: 32px 20px 32px;
+  }
+
+  .top {
+    display: flex;
+    gap: vw-1920(70);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .logo {
+      @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .description {
+        color: var(--white);
+        max-width: vw-1920(210);
+        margin-top: vw-1920(14);
+
+        @media (max-width: 768px) {
+          max-width: 248px;
+          text-align: center;
+          margin-top: 12px;
+        }
+      }
+    }
+
+    .wrapper {
+      flex: 1;
+      display: flex;
+      gap: vw-1920(70);
+      justify-content: space-between;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 32px;
+      }
+    }
+
+    .links {
+      display: flex;
+      gap: vw-1920(114);
+
+      @media (max-width: 768px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .col {
+        display: flex;
+        flex-direction: column;
+        gap: vw-1920(16);
+
+        @media (max-width: 768px) {
+          gap: 16px;
+        }
+
+        .title {
+          color: var(--white);
+          opacity: 0.6;
+        }
+
+        .list {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: vw-1920(12);
+
+          @media (max-width: 768px) {
+            gap: 12px;
+          }
+
+          .item {
+            .link {
+              color: var(--white);
+              text-decoration: none;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: vw-1920(20);
+      flex: 0 0 vw-1920(532);
+
+      @media (max-width: 768px) {
+        flex: 0 0 100%;
+        gap: 16px;
+      }
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        gap: vw-1920(24);
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.1);
+        padding: vw-1920(16);
+        flex: 1 1 100%;
+        width: 100%;
+
+        @media (max-width: 768px) {
+          gap: 28px;
+          padding: 12px;
+        }
+
+        &:nth-child(1),
+        &:nth-child(2) {
+          flex: 0 1 vw-1920(256);
+          height: vw-1920(142);
+
+          @media (max-width: 768px) {
+            flex: 0 1 100%;
+            height: 100%;
+          }
+        }
+
+        .itemTitle {
+          color: var(--white);
+          opacity: 0.6;
+        }
+
+        .itemDescription {
+          color: var(--white);
+          text-decoration: none;
+          display: flex;
+          flex-direction: column;
+          gap: vw-1920(2);
+
+          @media (max-width: 768px) {
+            gap: 2px;
+          }
+
+          span {
+            opacity: 0.6;
+          }
+        }
+
+        .social {
+          display: flex;
+          gap: vw-1920(12);
+
+          @media (max-width: 768px) {
+            gap: 12px;
+          }
+
+          .socialItem {
+            width: vw-1920(32);
+            height: vw-1920(32);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @media (max-width: 768px) {
+              width: 32px;
+              height: 32px;
+            }
+
+            svg {
+              width: vw-1920(32);
+              height: vw-1920(32);
+
+              @media (max-width: 768px) {
+                width: 32px;
+                height: 32px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: vw-1920(58);
+
+    @media (max-width: 768px) {
+      margin-top: 32px;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .copyright {
+      color: var(--white);
+      opacity: 0.6;
+    }
+
+    .policy {
+      color: var(--white);
+      opacity: 0.6;
+
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+        opacity: 1;
+      }
+    }
+
+    .dev {
+      color: var(--white);
+
+      span {
+        opacity: 0.6;
+      }
+
+      a {
+        text-decoration: underline;
+        text-decoration-skip-ink: none;
+        color: var(--white);
+      }
+    }
+  }
+}
