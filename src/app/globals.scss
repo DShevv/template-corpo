@@ -32,7 +32,7 @@ body {
 
 body {
   display: flex;
-  height: 200dvh;
+  min-height: 100dvh;
 }
 
 main {
@@ -110,7 +110,7 @@ main {
 .body-2 {
   font-family: var(--font-family);
   font-weight: 500;
-  font-size: vw-1920(20);
+  font-size: vw-1920(19);
   line-height: 140%;
 }
 
@@ -169,11 +169,15 @@ main {
     overflow-x: hidden;
   }
 
-  .h1 {
-    font-size: 32px;
+  main {
+    height: fit-content;
   }
 
-  .h1-discount {
+  .h1 {
+    font-size: 36px;
+  }
+
+  .h1-news {
     font-size: 28px;
   }
 
@@ -182,60 +186,59 @@ main {
   }
 
   .h3 {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .h4 {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .h5 {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .h6 {
-    font-size: 14px;
+    font-size: 16px;
   }
 
-  .body-1 {
-    font-size: 20px;
-  }
-
-  .body-2 {
-    font-size: 18px;
-  }
-
-  .body-3 {
+  .h7 {
     font-size: 15px;
   }
 
+  .body-1 {
+    font-size: 19px;
+  }
+
+  .body-2 {
+    font-size: 17px;
+  }
+
+  .body-3 {
+    font-size: 17px;
+  }
+
   .body-4 {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .body-5 {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .body-6 {
-    font-size: 13px;
-    font-weight: 300;
-  }
-
-  .body-7 {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 300;
   }
 
   .t-button {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .t-button-2 {
+    font-size: 16px;
   }
 
   .t-placeholder {
-    font-size: 15px;
-  }
-
-  .t-price {
-    font-size: 13px;
+    font-size: 16px;
   }
 }

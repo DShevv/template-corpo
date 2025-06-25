@@ -1,0 +1,49 @@
+@use "../../../assets/sass/functions" as *;
+
+.button {
+  width: vw-1920(52);
+  height: vw-1920(52);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  text-decoration: none;
+
+  @media (max-width: 768px) {
+    width: 42px;
+    height: 42px;
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  &:hover {
+    background: var(--accent-1);
+    color: var(--white);
+  }
+
+  &:active {
+    background: var(--accent-1);
+    color: var(--white);
+    box-shadow: 0 0 6px 0 var(--accent-1);
+  }
+
+  &:disabled,
+  &.disabled {
+    background: var(--gray);
+    color: var(--text);
+    cursor: default;
+
+    svg {
+      opacity: 0.5;
+    }
+  }
+}

@@ -1,20 +1,40 @@
 @use "../../assets/sass/functions" as *;
 
 .container {
-  margin-top: vw-1920(96);
+  margin-top: vw-1920(140);
   position: relative;
+
+  @media (max-width: 768px) {
+    margin-top: 72px;
+  }
 
   .title {
     margin-bottom: vw-1920(42);
     color: var(--text);
+
+    @media (max-width: 768px) {
+      margin-bottom: 24px;
+    }
   }
 
   .swiper {
     width: 100%;
     height: 100%;
 
+    @media (max-width: 768px) {
+      height: 200px;
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      padding: 0 20px;
+    }
+
     .slide {
       position: relative;
+
+      @media (max-width: 768px) {
+        width: 335px !important;
+        height: 200px;
+      }
 
       .image {
         width: 100%;
@@ -29,6 +49,14 @@
         width: vw-1920(164);
         height: vw-1920(82);
         object-fit: cover;
+
+        @media (max-width: 768px) {
+          bottom: 20px;
+          left: 20px;
+          width: 164px;
+          height: 82px;
+          object-fit: contain;
+        }
       }
     }
   }
@@ -42,6 +70,14 @@
     bottom: vw-1920(125);
     left: 50%;
     transform: translateX(-50%);
+
+    @media (max-width: 768px) {
+      position: static;
+      transform: none;
+      width: fit-content;
+      margin-top: 24px;
+      gap: 16px;
+    }
 
     .prev {
       transform: rotate(180deg);

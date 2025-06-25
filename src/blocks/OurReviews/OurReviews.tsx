@@ -35,8 +35,14 @@ const OurReviews = () => {
 
       <Swiper
         className={styles.swiper}
-        slidesPerView={4}
+        slidesPerView={"auto"}
         spaceBetween={24}
+        breakpoints={{
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 24,
+          },
+        }}
         onSwiper={setSwiperInstance}
         loop={true}
       >
@@ -46,6 +52,16 @@ const OurReviews = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className={styles.navigation}>
+        <ArrowButton
+          className={styles.prev}
+          onClick={() => swiperInstance?.slidePrev()}
+        />
+        <ArrowButton
+          className={styles.next}
+          onClick={() => swiperInstance?.slideNext()}
+        />
+      </div>
     </section>
   );
 };

@@ -17,6 +17,13 @@
   display: flex;
   flex-direction: column;
 
+  @media (max-width: 768px) {
+    padding: 0 20px;
+    padding-top: 128px;
+    height: auto;
+    min-height: 100dvh;
+  }
+
   .image {
     position: absolute;
     top: 0;
@@ -48,15 +55,29 @@
     max-width: vw-1920(1124);
     margin-bottom: vw-1920(20);
     color: var(--white);
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+      margin-bottom: 12px;
+    }
   }
 
   .description {
     max-width: vw-1920(1124);
     margin-bottom: vw-1920(32);
     color: var(--white);
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
   }
 
   .button {
     max-width: vw-1920(304);
+
+    @media (max-width: 768px) {
+      max-width: 210px;
+    }
   }
 }

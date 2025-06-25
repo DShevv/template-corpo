@@ -3,14 +3,28 @@
 .container {
   margin-top: vw-1920(96);
 
+  @media (max-width: 768px) {
+    margin-top: 72px;
+    width: 100%;
+  }
+
   .title {
     margin-bottom: vw-1920(42);
     color: var(--text);
+
+    @media (max-width: 768px) {
+      margin-bottom: 24px;
+    }
   }
 
   .services {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: vw-1920(32) vw-1920(24);
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
   }
 }

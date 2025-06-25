@@ -17,8 +17,14 @@ const OurPartners = () => {
 
       <Swiper
         className={styles.swiper}
-        slidesPerView={2}
-        spaceBetween={24}
+        slidesPerView={"auto"}
+        spaceBetween={16}
+        breakpoints={{
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 24,
+          },
+        }}
         onSwiper={setSwiperInstance}
         loop={true}
       >

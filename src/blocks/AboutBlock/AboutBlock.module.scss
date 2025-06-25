@@ -5,10 +5,21 @@
   display: flex;
   gap: vw-1920(54);
 
+  @media (max-width: 768px) {
+    margin-top: 72px;
+    flex-direction: column;
+    gap: 32px;
+  }
+
   .image {
     width: vw-1920(632);
     height: vw-1920(586);
     object-fit: cover;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 200px;
+    }
   }
 
   .caption {
@@ -18,6 +29,10 @@
     .title {
       margin-bottom: vw-1920(16);
       color: var(--text);
+
+      @media (max-width: 768px) {
+        margin-bottom: 20px;
+      }
     }
 
     p {
@@ -28,15 +43,29 @@
       font-weight: 300;
       margin-bottom: vw-1920(8);
 
+      @media (max-width: 768px) {
+        font-size: 17px;
+        margin-bottom: 8px;
+      }
+
       &:first-of-type {
         font-weight: 500;
         margin-bottom: vw-1920(16);
+
+        @media (max-width: 768px) {
+          margin-bottom: 12px;
+        }
       }
     }
 
     .button {
       margin-top: vw-1920(32);
       max-width: vw-1920(304);
+
+      @media (max-width: 768px) {
+        margin-top: 16px;
+        max-width: 210px;
+      }
     }
   }
 }

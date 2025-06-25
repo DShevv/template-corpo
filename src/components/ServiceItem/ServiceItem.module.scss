@@ -6,9 +6,14 @@
   background-color: var(--white);
   text-decoration: none;
   transition: all 0.3s ease-in-out;
-  border: 1px solid transparent;
+  border: 1px solid var(--accent-2);
   justify-content: space-between;
   height: vw-1920(260);
+
+  @media (max-width: 768px) {
+    height: 200px;
+    width: 100%;
+  }
 
   &:hover {
     border: 1px solid var(--accent-1);
@@ -17,6 +22,10 @@
   .title {
     color: var(--text);
     padding: vw-1920(20);
+
+    @media (max-width: 768px) {
+      padding: 16px;
+    }
   }
 
   .image {
@@ -25,11 +34,21 @@
     object-fit: cover;
     position: relative;
 
+    @media (max-width: 768px) {
+      height: 106px;
+      width: 100%;
+    }
+
     .button {
       position: absolute;
       top: vw-1920(-26);
       right: vw-1920(24);
       z-index: 1;
+
+      @media (max-width: 768px) {
+        top: -26px;
+        right: 24px;
+      }
     }
 
     img {

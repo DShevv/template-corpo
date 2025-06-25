@@ -281,3 +281,53 @@ export const SvgArrowRight = (props: React.SVGProps<SVGSVGElement>) => {
     </svg>
   );
 };
+
+export const SvgAddress = (props: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      width="26"
+      height="26"
+      viewBox="0 0 26 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M23.0793 5.08462C23.733 3.70471 22.295 2.26676 20.9152 2.9204L3.07031 11.3732C1.69135 12.0263 1.89154 14.0482 3.37182 14.4182L9.93954 16.0602L11.5815 22.628C11.9515 24.1082 13.9734 24.3084 14.6265 22.9294L23.0793 5.08462Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
+
+export const SvgMenu = (props: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      width="26"
+      height="26"
+      viewBox="0 0 26 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M22.9334 7.5835H3.06641"
+        stroke="currentColor"
+        strokeWidth="1.71926"
+        strokeLinecap="round"
+      />
+      <path
+        d="M22.9334 13.792H3.06641"
+        stroke="currentColor"
+        strokeWidth="1.71926"
+        strokeLinecap="round"
+      />
+      <path
+        d="M22.9334 20H3.06641"
+        stroke="currentColor"
+        strokeWidth="1.71926"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+};
