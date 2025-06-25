@@ -1,0 +1,113 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  margin-top: vw-1920(140);
+
+  @media (max-width: 768px) {
+    margin-top: 72px;
+  }
+
+  .title {
+    margin-bottom: vw-1920(42);
+    color: var(--text);
+
+    @media (max-width: 768px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  .advantages {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: vw-1920(24);
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .advantage {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--accent-2);
+      height: vw-1920(304);
+      background-color: var(--white);
+      transition: background-color 0.3s ease-in-out;
+      position: relative;
+      overflow: hidden;
+      padding: vw-1920(24);
+
+      @media (max-width: 768px) {
+        height: 260px;
+        padding: 24px;
+
+        &.active {
+          background: var(--accent-2);
+
+          .number {
+            background-color: var(--accent-1);
+            color: var(--white);
+          }
+        }
+      }
+
+      &:hover {
+        background: var(--accent-2);
+
+        .number {
+          background-color: var(--accent-1);
+          color: var(--white);
+        }
+      }
+
+      .image {
+        position: absolute;
+        top: vw-1920(-64);
+        right: vw-1920(-64);
+        width: vw-1920(190);
+        height: vw-1920(190);
+        border-radius: 50%;
+        object-fit: cover;
+
+        @media (max-width: 768px) {
+          top: -64px;
+          right: -33px;
+          width: 190px;
+          height: 190px;
+        }
+      }
+
+      .number {
+        margin-bottom: vw-1920(36);
+        border-radius: 50%;
+        background-color: var(--accent-2);
+        color: var(--text);
+        flex-shrink: 0;
+        width: vw-1920(56);
+        height: vw-1920(56);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background-color 0.3s ease-in-out,
+          color 0.3s ease-in-out;
+
+        @media (max-width: 768px) {
+          margin-bottom: 36px;
+          width: 56px;
+          height: 56px;
+        }
+      }
+
+      .title {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: vw-1920(8);
+
+        @media (max-width: 768px) {
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+}
