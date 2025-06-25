@@ -2,9 +2,6 @@
 
 import styles from "./HeaderMobile.module.scss";
 import Logo from "@/components/Logo/Logo";
-
-import clsx from "clsx";
-
 import { observer } from "mobx-react-lite";
 import globalStore from "@/stores/global-store";
 import { SvgMail, SvgMenu, SvgPhone } from "@/assets/icons/svgs";
