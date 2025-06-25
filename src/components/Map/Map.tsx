@@ -5,6 +5,7 @@ import styles from "./Map.module.scss";
 import Marker from "@/components/Marker/Marker";
 import mapStyles from "@/assets/maps.json";
 import { VectorCustomizationItem } from "@yandex/ymaps3-types";
+import logo from "@/assets/images/Logo.png";
 
 declare global {
   interface Window {
@@ -52,7 +53,7 @@ function Map({ className, address }: { className?: string; address?: string }) {
               draggable: false,
               mapFollowsOnDrag: true,
             },
-            Marker()
+            Marker(logo.src)
           )
         );
       }

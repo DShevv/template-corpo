@@ -1,14 +1,10 @@
 @use "../../assets/sass/functions" as *;
 
 .container {
-  min-height: vw-1920(520);
-  border-radius: vw-1920(30);
+  height: vw-1920(420);
   overflow: hidden;
-}
 
-@media (max-width: 768px) {
-  .container {
-    height: 332px;
-    border-radius: 20px;
+  @media (max-width: 768px) {
+    height: 360px;
   }
 }
