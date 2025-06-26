@@ -24,6 +24,19 @@
         display: none;
       }
     }
+
+    .navigation {
+      display: flex;
+      gap: vw-1920(16);
+
+      .prev {
+        transform: rotate(180deg);
+      }
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
   }
 
   .title {
@@ -40,6 +53,12 @@
   }
 
   .swiper {
+    width: 100%;
+
+    .slide {
+      width: auto;
+    }
+
     @media (max-width: 768px) {
       width: calc(100% + 40px);
       margin-left: -20px;
@@ -47,6 +66,20 @@
 
       .slide {
         width: auto;
+      }
+    }
+  }
+
+  .navigation {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: flex;
+      margin-top: 24px;
+      gap: 16px;
+
+      .prev {
+        transform: rotate(180deg);
       }
     }
   }

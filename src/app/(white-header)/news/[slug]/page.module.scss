@@ -1,0 +1,98 @@
+@use "../../../../assets/sass/functions" as *;
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin: 0 auto;
+  max-width: vw-1920(1288);
+
+  @media (max-width: 768px) {
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width: calc(100% - 40px);
+    height: fit-content;
+    overflow: visible;
+  }
+
+  .container {
+    margin-top: vw-1920(72);
+
+    @media (max-width: 768px) {
+      margin-top: 48px;
+    }
+
+    p {
+      font-family: var(--font-family);
+      font-weight: 500;
+      font-size: vw-1920(19);
+      line-height: 140%;
+      color: var(--text);
+      margin-bottom: vw-1920(16);
+
+      @media (max-width: 768px) {
+        font-size: 17px;
+        margin-bottom: 12px;
+      }
+
+      &:first-of-type {
+        font-weight: 700;
+        font-size: vw-1920(28);
+        margin-bottom: vw-1920(24);
+
+        @media (max-width: 768px) {
+          font-size: 19px;
+          margin-bottom: 16px;
+        }
+      }
+    }
+
+    ol {
+      margin-bottom: vw-1920(32);
+      margin-left: vw-1920(24);
+
+      @media (max-width: 768px) {
+        margin-left: 24px;
+        margin-bottom: 24px;
+      }
+
+      li {
+        font-family: var(--font-family);
+        font-weight: 500;
+        font-size: vw-1920(19);
+        line-height: 140%;
+        margin-bottom: vw-1920(8);
+
+        @media (max-width: 768px) {
+          font-size: 17px;
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    .images {
+      display: flex;
+      gap: vw-1920(24);
+      margin-bottom: vw-1920(32);
+
+      @media (max-width: 768px) {
+        margin-bottom: 24px;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      img {
+        height: vw-1920(380);
+        width: 0;
+        flex: 1 1 100%;
+        object-fit: cover;
+
+        @media (max-width: 768px) {
+          height: 200px;
+          width: 100%;
+          flex: initial;
+        }
+      }
+    }
+  }
+}
