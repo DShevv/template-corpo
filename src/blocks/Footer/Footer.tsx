@@ -5,9 +5,15 @@ import Link from "next/link";
 import { SvgInstagram, SvgTelegram, SvgWhatsApp } from "@/assets/icons/svgs";
 import { headers } from "next/headers";
 
-const FooterClient = ({ host }: { host: string }) => {
+const FooterClient = ({
+  host,
+  className,
+}: {
+  host: string;
+  className?: string;
+}) => {
   return (
-    <footer className={styles.footer}>
+    <footer className={clsx(styles.footer, className)}>
       <div className={styles.top}>
         <div className={styles.logo}>
           <Logo />
@@ -115,7 +121,7 @@ const FooterClient = ({ host }: { host: string }) => {
           © {new Date().getFullYear()} {host}
         </div>
 
-        <Link href="/" className={clsx("body-6", styles.policy)}>
+        <Link href="/policy" className={clsx("body-6", styles.policy)}>
           Политика обработки персональных данных
         </Link>
 
@@ -130,13 +136,13 @@ const FooterClient = ({ host }: { host: string }) => {
   );
 };
 
-async function Footer() {
+async function Footer({ className }: { className?: string }) {
   const headersList = await headers();
   const host = headersList.get("host") || "site.com";
 
   const domain = host.split(":")[0];
 
-  return <FooterClient host={domain} />;
+  return <FooterClient host={domain} className={className} />;
 }
 
 export default Footer;

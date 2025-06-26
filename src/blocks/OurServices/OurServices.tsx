@@ -10,7 +10,7 @@ const OurServices = () => {
 
       <div className={styles.services}>
         {services.map((service, index) => (
-          <ServiceItem key={index} service={service} />
+          <ServiceItem key={index} item={service} />
         ))}
       </div>
     </section>

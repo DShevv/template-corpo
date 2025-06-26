@@ -7,25 +7,20 @@ import ArrowButton from "../Buttons/ArrowButton/ArrowButton";
 
 interface ServiceItemProps {
   className?: string;
-  service: ServiceItemT;
+  item: ServiceItemT;
 }
 
-const ServiceItem = ({ className, service }: ServiceItemProps) => {
+const ServiceItem = ({ className, item }: ServiceItemProps) => {
   return (
     <Link
-      href={`/services/${service.slug}`}
+      href={`/services/${item.slug}`}
       className={clsx(styles.container, className)}
     >
-      <div className={clsx("h6", styles.title)}>{service.title}</div>
+      <div className={clsx("h6", styles.title)}>{item.title}</div>
       <div className={styles.image}>
         <ArrowButton className={styles.button} />
 
-        <Image
-          src={service.image}
-          alt={service.title}
-          width={304}
-          height={106}
-        />
+        <Image src={item.image} alt={item.title} width={304} height={106} />
       </div>
     </Link>
   );

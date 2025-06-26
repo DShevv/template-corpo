@@ -97,7 +97,7 @@ const Header = observer(
           <MainButton
             className={styles.button}
             variant={isTransparent ? "secondary" : "primary"}
-            onClick={() => openPopup("callback")}
+            onClick={() => openPopup("feedback")}
           >
             Обратный звонок
           </MainButton>

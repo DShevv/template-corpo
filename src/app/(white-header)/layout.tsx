@@ -1,15 +1,8 @@
-import { Onest } from "next/font/google";
-import "@/app/globals.scss";
-import Script from "next/script";
 import Header from "@/blocks/Header/Header";
 import ImageViewer from "@/components/ImageViewer/ImageViewer";
 import Footer from "@/blocks/Footer/Footer";
 import HeaderMobile from "@/blocks/HeaderMobile/HeaderMobile";
-
-const onest = Onest({
-  variable: "--font-family",
-  subsets: ["latin", "cyrillic"],
-});
+import FeedbackPopup from "@/blocks/FeedbackPopup/FeedbackPopup";
 
 export default async function RootLayout({
   children,
@@ -17,20 +10,16 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
-      <body className={`${onest.variable}`}>
-        <Script
-          src="https://api-maps.yandex.ru/v3/?apikey=e1f9579b-8502-438f-8273-6dff1fc98656&lang=ru_RU"
-          strategy="beforeInteractive"
-        />
-        <Header />
-        <HeaderMobile />
-        <div className="wrapper">
-          <main className={"white"}>{children}</main>
-          <Footer />
-        </div>
-        <ImageViewer />
-      </body>
-    </html>
+    <>
+      <Header />
+      <HeaderMobile />
+      <div className="wrapper">
+        <main className={"white"}>{children}</main>
+        <Footer />
+      </div>
+      <ImageViewer />
+
+      <FeedbackPopup />
+    </>
   );
 }

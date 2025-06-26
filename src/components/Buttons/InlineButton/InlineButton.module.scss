@@ -18,6 +18,10 @@
   font-weight: 500;
   position: relative;
 
+  @media (max-width: 768px) {
+    gap: 4px;
+  }
+
   .textContainer {
     position: relative;
     display: inline-block;
@@ -48,6 +52,11 @@
     width: vw-1920(24);
     height: vw-1920(24);
     transform: rotate(180deg);
+
+    @media (max-width: 768px) {
+      width: 24px;
+      height: 24px;
+    }
   }
 
   &:hover {

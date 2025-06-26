@@ -1,0 +1,24 @@
+@use "../assets/sass/functions" as *;
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background-color: var(--accent-1);
+
+  :global(.wrapper) {
+    margin-left: vw-1920(491);
+    max-width: vw-1920(1288);
+
+    @media (max-width: 768px) {
+      margin-left: 20px;
+      margin-right: 20px;
+      max-width: calc(100% - 40px);
+      height: fit-content;
+    }
+  }
+}
+
+.footer {
+  margin-top: 0;
+}

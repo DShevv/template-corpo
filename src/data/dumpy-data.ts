@@ -135,5 +135,12 @@ export const news: NewsItemT[] = [
     image: newsImage1,
     slug: "news-4",
   },
+  {
+    title: "Прошла Международная конференция в г. Минске",
+    tag: "Тематика 1",
+    date: "23.06.2025",
+    image: newsImage1,
+    slug: "news-5",
+  },
 
 ];
