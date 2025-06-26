@@ -1,0 +1,54 @@
+@use "../../../assets/sass/functions" as *;
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin: 0 auto;
+  max-width: vw-1920(1288);
+
+  @media (max-width: 768px) {
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width: calc(100% - 40px);
+    height: fit-content;
+  }
+
+  .content {
+    margin-top: vw-1920(72);
+
+    h2 {
+      font-family: var(--font-family);
+      font-weight: 500;
+      font-size: vw-1920(36);
+      line-height: 120%;
+      color: var(--text);
+      margin-bottom: vw-1920(12);
+      margin-top: vw-1920(32);
+
+      @media (max-width: 768px) {
+        font-size: 19px;
+        margin-bottom: 10px;
+        margin-top: 24px;
+      }
+    }
+
+    p {
+      font-family: var(--font-family);
+      font-weight: 500;
+      font-size: vw-1920(19);
+      line-height: 140%;
+      color: var(--text);
+      margin-bottom: vw-1920(12);
+
+      @media (max-width: 768px) {
+        font-size: 17px;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 48px;
+    }
+  }
+}
