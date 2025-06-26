@@ -1,0 +1,41 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1920(42);
+
+  margin-top: vw-1920(140);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & > a {
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  .servicesList {
+    display: flex;
+    gap: vw-1920(24);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  & > a {
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
+}

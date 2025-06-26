@@ -1,0 +1,110 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: vw-1920(36);
+
+  margin-top: vw-1920(72);
+
+  @media (max-width: 768px) {
+    gap: 32px;
+    margin-top: 48px;
+  }
+}
+
+.header {
+  display: flex;
+  gap: vw-1920(38);
+
+  & > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: vw-1920(12);
+    flex-shrink: 0;
+
+    width: vw-1920(618);
+
+    @media (max-width: 768px) {
+      width: 100%;
+      gap: 12px;
+    }
+  }
+
+  & > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: vw-1920(24);
+    align-items: start;
+
+    @media (max-width: 768px) {
+      gap: 24px;
+
+      & > button {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.imagesContainer {
+  display: flex;
+  gap: vw-1920(24);
+
+  & > div:nth-child(1) {
+    position: relative;
+    width: vw-1920(304);
+    height: vw-1920(366);
+    & > img {
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      height: 200px;
+      width: 100%;
+    }
+  }
+
+  & > div:nth-child(2) {
+    position: relative;
+    width: vw-1920(468);
+    height: vw-1920(366);
+    & > img {
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      height: 200px;
+      width: 100%;
+    }
+  }
+
+  & > div:nth-child(3) {
+    position: relative;
+    width: vw-1920(468);
+    height: vw-1920(366);
+    & > img {
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      height: 200px;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+
+    & > div:nth-child(3) {
+      grid-column: 1 / span 2;
+    }
+  }
+}
