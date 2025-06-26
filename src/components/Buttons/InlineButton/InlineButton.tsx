@@ -42,7 +42,10 @@ const InlineButton = ({
         onClick={onClick}
       >
         {backIcon && <SvgArrowRight />}
-        <span>{children}</span>
+        <span className={styles.textContainer}>
+          <span className={styles.hiddenText}>{children}</span>
+          <span className={styles.visibleText}>{children}</span>
+        </span>
       </Link>
     );
   }
@@ -55,7 +58,10 @@ const InlineButton = ({
       disabled={disabled}
     >
       {backIcon && <SvgArrowRight />}
-      <span>{children}</span>
+      <span className={styles.textContainer}>
+        <span className={styles.hiddenText}>{children}</span>
+        <span className={styles.visibleText}>{children}</span>
+      </span>
     </button>
   );
 };

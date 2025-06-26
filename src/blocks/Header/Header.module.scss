@@ -90,6 +90,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        svg {
+          width: vw-1920(26);
+          height: vw-1920(26);
+        }
       }
 
       .infoText {

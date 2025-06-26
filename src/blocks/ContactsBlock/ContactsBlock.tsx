@@ -10,21 +10,34 @@ import {
   SvgWhatsApp,
 } from "@/assets/icons/svgs";
 import Link from "next/link";
+import MainButton from "@/components/Buttons/MainButton/MainButton";
 
-const ContactsBlock = () => {
+const ContactsBlock = ({
+  isStandalone,
+  className,
+}: {
+  isStandalone?: boolean;
+  className?: string;
+}) => {
   return (
-    <section className={styles.container}>
-      <h2 className={clsx("h2", styles.title)}>Адрес компании</h2>
+    <section className={clsx(styles.container, className)}>
+      <h2 className={clsx("h2", styles.title)}>
+        {isStandalone
+          ? "г. Минск, пр-т Независимости, 1, оф. 111"
+          : "Адрес компании"}
+      </h2>
 
       <div className={styles.info}>
-        <div className={styles.item}>
-          <div className={styles.icon}>
-            <SvgAddress />
+        {!isStandalone && (
+          <div className={styles.item}>
+            <div className={styles.icon}>
+              <SvgAddress />
+            </div>
+            <div className={clsx("body-2", styles.text)}>
+              г. Минск, пр-т Независимости, 1, оф. 111
+            </div>
           </div>
-          <div className={clsx("body-2", styles.text)}>
-            г. Минск, пр-т Независимости, 1, оф. 111
-          </div>
-        </div>
+        )}
         <Link href="tel:+375291234567" className={styles.item}>
           <div className={styles.icon}>
             <SvgPhone />
@@ -64,6 +77,10 @@ const ContactsBlock = () => {
             <SvgInstagram />
           </Link>
         </div>
+
+        {isStandalone && (
+          <MainButton variant="white">Обратный звонок</MainButton>
+        )}
       </div>
       <Map address="г. Минск, пр-т Независимости, 1" />
     </section>

@@ -39,7 +39,7 @@ const Pagination = ({
             return (
               <Link
                 key={pageNumber}
-                className={clsx("h4", styles.page, {
+                className={clsx("h5", styles.page, {
                   [styles.active]: elem === current,
                 })}
                 href={`?page=${pageNumber}`}

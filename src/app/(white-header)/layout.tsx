@@ -3,6 +3,8 @@ import "@/app/globals.scss";
 import Script from "next/script";
 import Header from "@/blocks/Header/Header";
 import ImageViewer from "@/components/ImageViewer/ImageViewer";
+import Footer from "@/blocks/Footer/Footer";
+import HeaderMobile from "@/blocks/HeaderMobile/HeaderMobile";
 
 const onest = Onest({
   variable: "--font-family",
@@ -22,9 +24,10 @@ export default async function RootLayout({
           strategy="beforeInteractive"
         />
         <Header />
-
+        <HeaderMobile />
         <div className="wrapper">
-          <main>{children}</main>
+          <main className={"white"}>{children}</main>
+          <Footer />
         </div>
         <ImageViewer />
       </body>

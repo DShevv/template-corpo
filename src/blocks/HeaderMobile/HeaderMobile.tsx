@@ -7,7 +7,7 @@ import globalStore from "@/stores/global-store";
 import { SvgMail, SvgMenu, SvgPhone } from "@/assets/icons/svgs";
 import IconButton from "@/components/Buttons/IconButton/IconButton";
 
-const Header = observer(() => {
+const HeaderMobile = observer(() => {
   const { popupStore } = globalStore;
   const { openPopup } = popupStore;
 
@@ -28,4 +28,4 @@ const Header = observer(() => {
   );
 });
 
-export default Header;
+export default HeaderMobile;

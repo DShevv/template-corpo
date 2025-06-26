@@ -37,6 +37,14 @@ body {
 
 main {
   width: 100%;
+
+  &.white {
+    padding-left: vw-1920(352);
+
+    @media (max-width: 768px) {
+      padding-left: 0;
+    }
+  }
 }
 
 .wrapper {
