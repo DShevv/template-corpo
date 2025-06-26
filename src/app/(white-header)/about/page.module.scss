@@ -1,0 +1,15 @@
+@use "../../../assets/sass/functions" as *;
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  max-width: vw-1920(1288);
+
+  @media (max-width: 768px) {
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width: calc(100% - 40px);
+    height: fit-content;
+  }
+}
