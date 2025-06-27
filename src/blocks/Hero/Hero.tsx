@@ -2,12 +2,12 @@
 
 import clsx from "clsx";
 import styles from "./Hero.module.scss";
-import heroImage from "@/assets/images/hero.png";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
 import Image, { StaticImageData } from "next/image";
 import Header from "../Header/Header";
 import { useEffect, useRef, useState } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import heroImage from "@/assets/images/hero.png";
 
 const Hero = ({
   items,
