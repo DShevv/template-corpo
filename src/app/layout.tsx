@@ -1,6 +1,7 @@
 import { Onest } from "next/font/google";
 import "./globals.scss";
 import Script from "next/script";
+import SmoothScroll from "@/components/SmoothScroll/SmoothScroll";
 
 const onest = Onest({
   variable: "--font-family",
@@ -20,7 +21,7 @@ export default async function RootLayout({
           strategy="beforeInteractive"
         />
 
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

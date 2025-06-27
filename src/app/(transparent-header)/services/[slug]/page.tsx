@@ -1,4 +1,3 @@
-import FirstBlock from "@/blocks/FirstBlock/FirstBlock";
 import firstBlockImage from "@/assets/images/services.jpg";
 import styles from "./page.module.scss";
 import Feedback from "@/blocks/Feedback/Feedback";
@@ -8,11 +7,15 @@ import OurPartners from "@/blocks/OurPartners/OurPartners";
 import OurReviews from "@/blocks/OurReviews/OurReviews";
 import ServiceInfoBlock from "@/blocks/ServiceInfoBlock/ServiceInfoBlock";
 import OtherServices from "@/blocks/OtherServices/OtherServices";
+import Footer from "@/blocks/Footer/Footer";
+import Hero from "@/blocks/Hero/Hero";
+import Header from "@/blocks/Header/Header";
+import GalleryBlock from "@/blocks/GalleryBlock/GalleryBlock";
 
-export default function Home() {
+export default function ServicePage() {
   return (
     <>
-      <FirstBlock
+      <Hero
         image={firstBlockImage}
         items={[
           { title: "Главная", href: "/" },
@@ -25,14 +28,20 @@ export default function Home() {
         title="Строительство коттеджей и таунхаусов"
         description="Строим стильные дома и коммерческие объекты в Минске и области. Предлагаем популярные проекты дуплексов на 2 семьи и таунхаусов под ключ по конкурентоспособным ценам."
       />
+
       <div className={styles.wrapper}>
-        <ServiceInfoBlock />
-        <OurAdvantages />
-        <OurEmployees />
-        <OurPartners />
-        <OurReviews />
-        <OtherServices />
-        <Feedback />
+        <Header />
+        <div className="wrapper">
+          <ServiceInfoBlock />
+          <OurAdvantages />
+          <OurEmployees />
+          <OurPartners />
+          <GalleryBlock />
+          <OurReviews />
+          <OtherServices />
+          <Feedback />
+        </div>
+        <Footer />
       </div>
     </>
   );

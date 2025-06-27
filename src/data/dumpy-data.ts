@@ -10,43 +10,43 @@ import newsImage1 from "@/assets/images/news.png";
 
 export const services: ServiceItemT[] = [
   {
-    title: "Строительство коттеджей и таунхаусов",
+    title: "Строительство коттеджей и таунхаусов",
     description: "Описание услуги 1",
     image: serviceItemImage,
     slug: "construction-of-cottages-and-townhouses",
   },
   {
-    title: "Строительство коттеджей и таунхаусов 2",
+    title: "Строительство коттеджей и таунхаусов 2",
     description: "Описание услуги 1",
     image: serviceItemImage,
     slug: "construction-of-cottages-and-townhouses",
   },
   {
-    title: "Строительство коттеджей и таунхаусов",
+    title: "Строительство коттеджей и таунхаусов",
     description: "Описание услуги 1",
     image: serviceItemImage,
     slug: "construction-of-cottages-and-townhouses",
   },
   {
-    title: "Строительство коттеджей и таунхаусов",
+    title: "Строительство коттеджей и таунхаусов",
     description: "Описание услуги 1",
     image: serviceItemImage,
     slug: "construction-of-cottages-and-townhouses",
   },
   {
-    title: "Строительство коттеджей и таунхаусов",
+    title: "Строительство коттеджей и таунхаусов",
     description: "Описание услуги 1",
     image: serviceItemImage,
     slug: "construction-of-cottages-and-townhouses",
   },
   {
-    title: "Строительство коттеджей и таунхаусов",
+    title: "Строительство коттеджей и таунхаусов",
     description: "Описание услуги 1",
     image: serviceItemImage,
     slug: "construction-of-cottages-and-townhouses",
   },
   {
-    title: "Строительство коттеджей и таунхаусов",
+    title: "Строительство коттеджей и таунхаусов",
     description: "Описание услуги 1",
     image: serviceItemImage,
     slug: "construction-of-cottages-and-townhouses",
@@ -88,7 +88,7 @@ export const advantages: AdvantageT[] = [
   },
   {
     title: "Ценовая политика",
-    description: "Мы предлагаем низкие цены в Минске, сохраняя качество.",
+    description: "Мы предлагаем низкие цены в Минске, сохраняя качество.",
     image: advantageImage2,
   },
   {
@@ -108,35 +108,35 @@ export const advantages: AdvantageT[] = [
 
 export const news: NewsItemT[] = [
   {
-    title: "Прошла Международная конференция в г. Минске",
+    title: "Прошла Международная конференция в г. Минске",
     tag: "Тематика 1",
     date: "23.06.2025",
     image: newsImage1,
     slug: "news-1",
   },
   {
-    title: "Прошла Международная конференция в г. Минске",
+    title: "Прошла Международная конференция в г. Минске",
     tag: "Тематика 1",
     date: "23.06.2025",
     image: newsImage1,
     slug: "news-2",
   },
   {
-    title: "Прошла Международная конференция в г. Минске",
+    title: "Прошла Международная конференция в г. Минске",
     tag: "Тематика 1",
     date: "23.06.2025",
     image: newsImage1,
     slug: "news-3",
   },
   {
-    title: "Прошла Международная конференция в г. Минске",
+    title: "Прошла Международная конференция в г. Минске",
     tag: "Тематика 1",
     date: "23.06.2025",
     image: newsImage1,
     slug: "news-4",
   },
   {
-    title: "Прошла Международная конференция в г. Минске",
+    title: "Прошла Международная конференция в г. Минске",
     tag: "Тематика 1",
     date: "23.06.2025",
     image: newsImage1,

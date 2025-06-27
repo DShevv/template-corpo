@@ -5,7 +5,7 @@ import Feedback from "@/blocks/Feedback/Feedback";
 import AboutBlock from "@/blocks/AboutBlock/AboutBlock";
 import OurReviews from "@/blocks/OurReviews/OurReviews";
 import OurEmployees from "@/blocks/OurEmployees/OurEmployees";
-import OurServices from "@/blocks/OurServices/OurServices";
+import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
 
 export default function Home() {
   return (
@@ -22,8 +22,9 @@ export default function Home() {
       <div className={styles.wrapper}>
         <AboutBlock />
         <OurEmployees />
+        <OurServicesSlider />
         <OurReviews />
-        <OurServices />
+
         <Feedback />
       </div>
     </>

@@ -16,6 +16,7 @@ import clsx from "clsx";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
 import { observer } from "mobx-react-lite";
 import globalStore from "@/stores/global-store";
+import { services } from "@/data/dumpy-data";
 
 const Header = observer(
   ({
@@ -44,10 +45,22 @@ const Header = observer(
                 Главная
               </Link>
             </li>
-            <li>
+            <li className={styles.menuItem}>
               <Link className={clsx(styles.link, "body-2")} href="/services">
                 Услуги <SvgArrowRight />
               </Link>
+              <ul className={styles.subMenu}>
+                {services.map((service, index) => (
+                  <li key={index}>
+                    <Link
+                      className={clsx(styles.link, "body-2")}
+                      href={`/services/${service.slug}`}
+                    >
+                      {service.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </li>
             <li>
               <Link className={clsx(styles.link, "body-2")} href="/about">

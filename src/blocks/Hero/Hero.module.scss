@@ -6,6 +6,18 @@
   overflow: hidden;
   z-index: 2;
   clip-path: inset(0);
+
+  &.service {
+    .title {
+      margin-top: vw-1920(16);
+    }
+
+    .title,
+    .description {
+      max-width: 100%;
+      margin-right: vw-1920(140);
+    }
+  }
 }
 
 .container {

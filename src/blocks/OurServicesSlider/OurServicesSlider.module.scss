@@ -1,0 +1,91 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  margin-top: vw-1920(140);
+  position: relative;
+
+  @media (max-width: 768px) {
+    margin-top: 72px;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .title {
+      color: var(--text);
+      max-width: vw-1920(800);
+    }
+
+    .navigation {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      .title {
+        max-width: 100%;
+      }
+
+      .description {
+        margin-bottom: 24px;
+        max-width: 100%;
+      }
+
+      .navigation {
+        display: none;
+      }
+    }
+  }
+
+  .swiper {
+    margin-top: vw-1920(42);
+    width: 100%;
+    height: vw-1920(260);
+
+    @media (max-width: 768px) {
+      margin-top: 24px;
+      height: auto;
+    }
+
+    .slide {
+      position: relative;
+      width: vw-1920(335);
+      overflow: hidden;
+
+      @media (max-width: 768px) {
+        width: 335px;
+      }
+
+      .item {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .navigation {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    position: absolute;
+    bottom: 50%;
+    gap: vw-1920(16);
+    right: 0;
+    transform: translateY(50%);
+
+    .prev {
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+      position: static;
+      transform: none;
+      width: fit-content;
+      margin-top: 24px;
+      gap: 16px;
+    }
+  }
+}
