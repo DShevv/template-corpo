@@ -64,7 +64,11 @@ const MobileMenu = observer(() => {
 
         <m.ul layout className={styles.menu}>
           <li>
-            <Link href="/" className={clsx(styles.link, "h5")}>
+            <Link
+              href="/"
+              className={clsx(styles.link, "h5")}
+              onClick={() => closePopup("menu")}
+            >
               Главная
             </Link>
           </li>
@@ -73,7 +77,9 @@ const MobileMenu = observer(() => {
               className={clsx(styles.link, "h5")}
               onClick={() => setIsOpen(!isOpen)}
             >
-              <Link href="/services">Услуги</Link>{" "}
+              <Link href="/services" onClick={() => closePopup("menu")}>
+                Услуги
+              </Link>{" "}
               <SvgArrowRight
                 style={{ transform: isOpen ? "rotate(90deg)" : "rotate(0deg)" }}
               />
@@ -93,6 +99,7 @@ const MobileMenu = observer(() => {
                       <Link
                         className={clsx(styles.subLink, "body-5")}
                         href={`/services/${service.slug}`}
+                        onClick={() => closePopup("menu")}
                       >
                         {service.title}
                       </Link>
@@ -103,17 +110,29 @@ const MobileMenu = observer(() => {
             </AnimatePresence>
           </m.li>
           <li>
-            <Link href="/about" className={clsx(styles.link, "h5")}>
+            <Link
+              href="/about"
+              className={clsx(styles.link, "h5")}
+              onClick={() => closePopup("menu")}
+            >
               О компании
             </Link>
           </li>
           <li>
-            <Link href="/news" className={clsx(styles.link, "h5")}>
+            <Link
+              href="/news"
+              className={clsx(styles.link, "h5")}
+              onClick={() => closePopup("menu")}
+            >
               Статьи
             </Link>
           </li>
           <li>
-            <Link href="/contacts" className={clsx(styles.link, "h5")}>
+            <Link
+              href="/contacts"
+              className={clsx(styles.link, "h5")}
+              onClick={() => closePopup("menu")}
+            >
               Контакты
             </Link>
           </li>
@@ -150,7 +169,10 @@ const MobileMenu = observer(() => {
           </div>
           <MainButton
             className={styles.button}
-            onClick={() => openPopup("feedback")}
+            onClick={() => {
+              openPopup("feedback");
+              closePopup("menu");
+            }}
           >
             Обратный звонок
           </MainButton>
