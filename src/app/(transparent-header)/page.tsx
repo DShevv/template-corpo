@@ -10,11 +10,18 @@ import ContactsBlock from "@/blocks/ContactsBlock/ContactsBlock";
 import NewsBlock from "@/blocks/NewsBlock/NewsBlock";
 import Feedback from "@/blocks/Feedback/Feedback";
 import Footer from "@/blocks/Footer/Footer";
+import heroImage from "@/assets/images/hero.png";
 
 export default async function Home() {
   return (
     <>
-      <Hero />
+      <Hero
+        image={heroImage}
+        title={"Создаем счастливое будущее для вас"}
+        description={
+          " Мы специализируемся в 11 отраслях в более чем 55 странах и регионах, предлагая инновационные решения для самых сложных задач наших клиентов."
+        }
+      />
 
       <div className={styles.wrapper}>
         <Header />
