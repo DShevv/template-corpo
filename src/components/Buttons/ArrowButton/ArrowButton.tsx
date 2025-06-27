@@ -10,6 +10,7 @@ type ArrowButtonProps =
       className?: string;
       type?: "button" | "submit";
       href?: never;
+      otherProps?: React.HTMLAttributes<HTMLButtonElement>;
     }
   | {
       onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -17,35 +18,37 @@ type ArrowButtonProps =
       className?: string;
       type?: "link";
       href: string;
+      otherProps?: React.HTMLAttributes<HTMLAnchorElement>;
     };
 
-const ArrowButton = ({
-  onClick,
-  disabled,
-  className,
-  type = "button",
-  href,
-}: ArrowButtonProps) => {
-  if (type === "link" && href) {
+const ArrowButton = (props: ArrowButtonProps) => {
+  if (props.type === "link" && props.href) {
     return (
       <Link
-        className={clsx("t-button", styles.button, className, {
-          [styles.disabled]: disabled,
+        className={clsx("t-button", styles.button, props.className, {
+          [styles.disabled]: props.disabled,
         })}
-        href={href}
-        onClick={onClick}
+        href={props.href}
+        onClick={props.onClick}
+        {...props.otherProps}
       >
         <SvgArrowRight />
       </Link>
     );
   }
 
+  const buttonProps = props.otherProps as Extract<
+    ArrowButtonProps,
+    { type?: "button" | "submit" }
+  >;
+
   return (
     <button
-      className={clsx("t-button", styles.button, className)}
-      onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
-      type={type !== "link" ? type : undefined}
-      disabled={disabled}
+      className={clsx("t-button", styles.button, props.className)}
+      onClick={props.onClick as React.MouseEventHandler<HTMLButtonElement>}
+      type={props.type !== "link" ? props.type || "button" : "button"}
+      disabled={props.disabled}
+      {...buttonProps}
     >
       <SvgArrowRight />
     </button>

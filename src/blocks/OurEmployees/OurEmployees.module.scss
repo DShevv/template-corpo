@@ -19,7 +19,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   & > p {
     width: vw-1920(632);
   }
@@ -58,7 +58,7 @@
 
   @media (max-width: 768px) {
     position: static;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 16px;
     width: 100%;
     transform: translateX(0);

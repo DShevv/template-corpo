@@ -101,10 +101,12 @@ const GalleryBlock = () => {
         <ArrowButton
           className={styles.prev}
           onClick={() => swiperInstance?.slidePrev()}
+          aria-label="Назад"
         />
         <ArrowButton
           className={styles.next}
           onClick={() => swiperInstance?.slideNext()}
+          aria-label="Вперёд"
         />
       </div>
     </section>

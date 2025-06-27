@@ -33,10 +33,12 @@ const NewsBlock = ({
             <ArrowButton
               className={styles.prev}
               onClick={() => swiperRef.current?.swiper.slidePrev()}
+              aria-label="Назад"
             />
             <ArrowButton
               className={styles.next}
               onClick={() => swiperRef.current?.swiper.slideNext()}
+              aria-label="Вперёд"
             />
           </div>
         ) : (
@@ -71,10 +73,12 @@ const NewsBlock = ({
           <ArrowButton
             className={styles.prev}
             onClick={() => swiperRef.current?.swiper.slidePrev()}
+            aria-label="Назад"
           />
           <ArrowButton
             className={styles.next}
             onClick={() => swiperRef.current?.swiper.slideNext()}
+            aria-label="Вперёд"
           />
         </div>
       ) : (

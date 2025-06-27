@@ -24,6 +24,7 @@ const Pagination = ({
           type="link"
           href={`?page=${current - 1}`}
           className={styles.prev}
+          aria-label="Назад"
         />
       )}
       <div className={clsx(styles.list)}>
@@ -56,6 +57,7 @@ const Pagination = ({
           type="link"
           href={`?page=${current + 1}`}
           className={styles.next}
+          aria-label="Вперёд"
         />
       )}
     </div>

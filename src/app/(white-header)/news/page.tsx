@@ -12,12 +12,14 @@ import clsx from "clsx";
 import { news } from "@/data/dumpy-data";
 import NewsItem from "@/components/NewsItem/NewsItem";
 import Pagination from "@/components/Pagination/Pagination";
+import { CanonicalLink } from "@/components/CanonicalLink/CanonicalLink";
 
 export default function Home() {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   return (
     <>
+      <CanonicalLink href="/news" />
       <FirstBlock
         image={firstBlockImage}
         items={[

@@ -5,10 +5,12 @@ import Feedback from "@/blocks/Feedback/Feedback";
 import { services } from "@/data/dumpy-data";
 import Pagination from "@/components/Pagination/Pagination";
 import ServiceItem from "@/components/ServiceItem/ServiceItem";
+import { CanonicalLink } from "@/components/CanonicalLink/CanonicalLink";
 
 export default function Home() {
   return (
     <>
+      <CanonicalLink href="/services" />
       <FirstBlock
         image={firstBlockImage}
         items={[

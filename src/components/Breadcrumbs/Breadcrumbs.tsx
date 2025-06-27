@@ -10,19 +10,32 @@ interface BreadcrumbsProps {
 
 const Breadcrumbs = ({ items, className }: BreadcrumbsProps) => {
   return (
-    <div className={clsx(styles.container, className)}>
+    <div
+      className={clsx(styles.container, className)}
+      itemScope
+      itemType="https://schema.org/BreadcrumbList"
+    >
       {items.map((item, index) => (
-        <div key={`${index}${item.title}`} className="body-4">
+        <div
+          key={`${index}${item.title}`}
+          className="body-4"
+          itemProp="itemListElement"
+          itemScope
+          itemType="https://schema.org/ListItem"
+        >
           {items.length > index + 1 ? (
             <Link
               key={`${index}${item.title}`}
               href={item.href}
               className={clsx("body-4", styles.link)}
+              itemProp="item"
             >
               {item.title}
             </Link>
           ) : (
-            <div className={clsx("body-4", styles.link)}>{item.title}</div>
+            <div className={clsx("body-4", styles.link)} itemProp="item">
+              {item.title}
+            </div>
           )}
           {index < items.length - 1 && <SvgArrowRight />}
         </div>

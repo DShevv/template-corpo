@@ -12,7 +12,7 @@
   & > .content {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     gap: vw-1920(16);
 
     height: 100%;

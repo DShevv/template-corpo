@@ -29,7 +29,7 @@ const AboutBlock = () => {
           Подробнее
         </MainButton>
       </div>
-      <Image src={aboutImage} alt="about" className={styles.image} />
+      <Image src={aboutImage} alt="о компании" className={styles.image} />
     </section>
   );
 };

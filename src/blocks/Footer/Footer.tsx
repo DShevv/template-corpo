@@ -95,13 +95,25 @@ const FooterClient = ({
                 Мессенджеры
               </div>
               <div className={styles.social}>
-                <Link href="https://t.me/example" className={styles.socialItem}>
+                <Link
+                  href="https://t.me/example"
+                  className={styles.socialItem}
+                  aria-label="Telegram"
+                >
                   <SvgTelegram />
                 </Link>
-                <Link href="https://t.me/example" className={styles.socialItem}>
+                <Link
+                  href="https://t.me/example"
+                  className={styles.socialItem}
+                  aria-label="Instagram"
+                >
                   <SvgInstagram />
                 </Link>
-                <Link href="https://t.me/example" className={styles.socialItem}>
+                <Link
+                  href="https://wa.me/example"
+                  className={styles.socialItem}
+                  aria-label="WhatsApp"
+                >
                   <SvgWhatsApp />
                 </Link>
               </div>

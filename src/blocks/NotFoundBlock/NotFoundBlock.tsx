@@ -35,7 +35,7 @@ const NotFoundBlock = () => {
       <div className="wrapper">
         <section className={styles.container}>
           <div className={styles.image}>
-            <Image src={heroImage} alt="hero" />
+            <Image src={heroImage} alt="background" />
           </div>
           <h1 className={clsx(styles.title, "h1")}>Страница не найдена</h1>
           <p className={clsx("body-1", styles.description)}>

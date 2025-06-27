@@ -20,9 +20,19 @@ const HeaderMobile = observer(() => {
           icon={<SvgMail />}
           type="link"
           href="mailto:info@global-group.ru"
+          aria-label="Написать на почту"
         />
-        <IconButton icon={<SvgPhone />} type="link" href="tel:+375999999999" />
-        <IconButton icon={<SvgMenu />} onClick={() => openPopup("menu")} />
+        <IconButton
+          icon={<SvgPhone />}
+          type="link"
+          href="tel:+375999999999"
+          aria-label="Позвонить"
+        />
+        <IconButton
+          icon={<SvgMenu />}
+          onClick={() => openPopup("menu")}
+          aria-label="Открыть меню"
+        />
       </div>
     </header>
   );

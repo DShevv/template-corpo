@@ -92,10 +92,12 @@ const OurEmployees = () => {
         <ArrowButton
           className={s.prev}
           onClick={() => swiperInstance?.slidePrev()}
+          aria-label="Назад"
         />
         <ArrowButton
           className={s.next}
           onClick={() => swiperInstance?.slideNext()}
+          aria-label="Вперёд"
         />
       </div>
     </div>

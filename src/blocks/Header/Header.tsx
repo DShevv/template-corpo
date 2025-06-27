@@ -116,13 +116,25 @@ const Header = observer(
           </MainButton>
 
           <div className={styles.socials}>
-            <Link href="https://t.me/example" target="_blank">
+            <Link
+              href="https://t.me/example"
+              target="_blank"
+              aria-label="Telegram"
+            >
               <SvgTelegram />
             </Link>
-            <Link href="https://www.instagram.com/example" target="_blank">
+            <Link
+              href="https://www.instagram.com/example"
+              target="_blank"
+              aria-label="Instagram"
+            >
               <SvgInstagram />
             </Link>
-            <Link href="https://wa.me/example" target="_blank">
+            <Link
+              href="https://wa.me/example"
+              target="_blank"
+              aria-label="WhatsApp"
+            >
               <SvgWhatsApp />
             </Link>
           </div>

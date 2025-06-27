@@ -18,7 +18,7 @@ const ServiceItem = ({ className, item }: ServiceItemProps) => {
     >
       <div className={clsx("h6", styles.title)}>{item.title}</div>
       <div className={styles.image}>
-        <ArrowButton className={styles.button} />
+        <ArrowButton className={styles.button} aria-label="Подробнее" />
 
         <Image src={item.image} alt={item.title} width={304} height={106} />
       </div>
