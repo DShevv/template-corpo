@@ -1,4 +1,4 @@
-import firstBlockImage from "@/assets/images/services.jpg";
+import firstBlockImage from "@/assets/images/service-item.png";
 import styles from "./page.module.scss";
 import Feedback from "@/blocks/Feedback/Feedback";
 import OurAdvantages from "@/blocks/OurAdvantages/OurAdvantages";

@@ -21,7 +21,8 @@ export default async function RootLayout({
           strategy="beforeInteractive"
         />
 
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll />
+        {children}
       </body>
     </html>
   );
