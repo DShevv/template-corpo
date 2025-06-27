@@ -2,6 +2,7 @@ import React from "react";
 import s from "./EmployeeItem.module.scss";
 import Image, { StaticImageData } from "next/image";
 import { SvgMail, SvgPhone } from "@/assets/icons/svgs";
+import clsx from "clsx";
 
 export type Employee = {
   id: number;
@@ -12,11 +13,17 @@ export type Employee = {
   position: string;
 };
 
-const EmployeeItem = ({ employee }: { employee: Employee }) => {
+const EmployeeItem = ({
+  employee,
+  active,
+}: {
+  employee: Employee;
+  active: boolean;
+}) => {
   return (
-    <div className={s.container}>
+    <div className={clsx(s.container)}>
       <Image src={employee.image} fill alt="Employee" />
-      <div className={s.content}>
+      <div className={clsx(s.content, active && s.active)}>
         <div className={s.info}>
           <p className="body-6">{employee.position}</p>
           <p className="h5">{employee.name}</p>

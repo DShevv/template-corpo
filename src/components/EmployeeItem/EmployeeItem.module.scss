@@ -42,7 +42,10 @@
       max-height: 0;
       transform: translateY(vw-1920(20));
       overflow: hidden;
-      transition: opacity 0.3s ease, max-height 0.6s ease, transform 0.3s ease;
+      transition:
+        opacity 0.3s ease,
+        max-height 0.6s ease,
+        transform 0.3s ease;
 
       & > p {
         display: flex;
@@ -77,6 +80,17 @@
     @media (max-width: 768px) {
       gap: 16px;
       padding: 24px;
+
+      &.active {
+        cursor: pointer;
+        background-color: #0b0c1980;
+
+        & > .contacts {
+          opacity: 1;
+          max-height: 174px;
+          transform: translateY(0);
+        }
+      }
     }
   }
 

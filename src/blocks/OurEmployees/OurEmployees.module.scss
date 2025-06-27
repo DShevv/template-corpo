@@ -35,7 +35,11 @@
 
 .swiper {
   width: 100%;
-  height: 100%;
+  height: vw-1920(400);
+
+  @media (max-width: 768px) {
+    height: 400px;
+  }
 }
 
 .slide {

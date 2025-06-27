@@ -53,6 +53,7 @@ const employees = [
 
 const OurEmployees = () => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <div className={s.container}>
@@ -78,10 +79,11 @@ const OurEmployees = () => {
         }}
         onSwiper={setSwiperInstance}
         loop={true}
+        onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
       >
-        {employees.map((employee) => (
+        {employees.map((employee, index) => (
           <SwiperSlide key={employee.id} className={s.slide}>
-            <EmployeeItem employee={employee} />
+            <EmployeeItem employee={employee} active={index === activeIndex} />
           </SwiperSlide>
         ))}
       </Swiper>
