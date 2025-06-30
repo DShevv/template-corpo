@@ -1,12 +1,12 @@
 @use "../../assets/sass/functions" as *;
 
 .container {
-  margin-top: vw-1920(72);
+  margin-top: vw-1920(140);
   display: flex;
   gap: vw-1920(54);
 
   @media (max-width: 768px) {
-    margin-top: 48px;
+    margin-top: 72px;
     flex-direction: column;
     gap: 32px;
   }

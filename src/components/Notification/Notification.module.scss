@@ -1,0 +1,76 @@
+@use "../../assets/sass/functions" as *;
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: vw-1920(160);
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.wrapper.active {
+  opacity: 1;
+  z-index: 2000;
+  pointer-events: auto;
+}
+
+.item {
+  position: relative;
+  padding: vw-1920(16) vw-1920(24);
+  background: var(--green-2);
+  max-width: vw-1920(326);
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--white);
+
+  svg {
+    width: vw-1920(32);
+    height: vw-1920(32);
+  }
+}
+
+.title {
+  margin-top: vw-1920(8);
+  margin-bottom: vw-1920(8);
+  color: var(--white);
+}
+
+.text {
+  color: var(--white);
+  text-align: center;
+}
+
+.item.error {
+  background: var(--red);
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding-top: 128px;
+  }
+
+  .item {
+    padding: 16px 24px;
+    max-width: 280px;
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .title {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}

@@ -19,8 +19,9 @@ import Link from "next/link";
 import { AnimatePresence, motion as m } from "motion/react";
 import { services } from "@/data/dumpy-data";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
+import { ContactsT } from "@/types/types";
 
-const MobileMenu = observer(() => {
+const MobileMenu = observer(({ contacts }: { contacts?: ContactsT }) => {
   const { popupStore } = globalStore;
   const { menu, closePopup, openPopup } = popupStore;
   const [isOpen, setIsOpen] = useState(false);
@@ -82,7 +83,9 @@ const MobileMenu = observer(() => {
                 Услуги
               </Link>{" "}
               <SvgArrowRight
-                style={{ transform: isOpen ? "rotate(90deg)" : "rotate(0deg)" }}
+                style={{
+                  transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
+                }}
               />
             </div>
             <AnimatePresence>
@@ -141,32 +144,36 @@ const MobileMenu = observer(() => {
 
         <div className={styles.bottom}>
           <div className={styles.info}>
-            <div className={clsx(styles.infoItem, "body-6")}>
-              <div className={styles.icon}>
-                <SvgTime />
+            {contacts?.working_hours && (
+              <div className={clsx(styles.infoItem, "body-6")}>
+                <div className={styles.icon}>
+                  <SvgTime />
+                </div>
+                <div className={styles.infoText}>{contacts?.working_hours}</div>
               </div>
-              <div className={styles.infoText}>
-                Пн-пт <br /> с 09:00 по 18:00
-              </div>
-            </div>
-            <Link
-              className={clsx(styles.infoItem, "body-6")}
-              href="mailto:info@example.com"
-            >
-              <div className={styles.icon}>
-                <SvgMail />
-              </div>
-              <div className={styles.infoText}>info@example.com</div>
-            </Link>
-            <Link
-              className={clsx(styles.infoItem, "body-6")}
-              href="tel:+79999999999"
-            >
-              <div className={styles.icon}>
-                <SvgPhone />
-              </div>
-              <div className={styles.infoText}>+375 (99) 999-99-99</div>
-            </Link>
+            )}
+            {contacts?.email && (
+              <Link
+                className={clsx(styles.infoItem, "body-6")}
+                href={`mailto:${contacts?.email}`}
+              >
+                <div className={styles.icon}>
+                  <SvgMail />
+                </div>
+                <div className={styles.infoText}>{contacts?.email}</div>
+              </Link>
+            )}
+            {contacts?.phones && contacts.phones.length > 0 && (
+              <Link
+                className={clsx(styles.infoItem, "body-6")}
+                href={`tel:${contacts?.phones[0]}`}
+              >
+                <div className={styles.icon}>
+                  <SvgPhone />
+                </div>
+                <div className={styles.infoText}>{contacts?.phones[0]}</div>
+              </Link>
+            )}
           </div>
           <MainButton
             className={styles.button}
@@ -179,27 +186,33 @@ const MobileMenu = observer(() => {
           </MainButton>
 
           <div className={styles.socials}>
-            <Link
-              href="https://t.me/example"
-              target="_blank"
-              aria-label="Telegram"
-            >
-              <SvgTelegram />
-            </Link>
-            <Link
-              href="https://www.instagram.com/example"
-              target="_blank"
-              aria-label="Instagram"
-            >
-              <SvgInstagram />
-            </Link>
-            <Link
-              href="https://wa.me/example"
-              target="_blank"
-              aria-label="WhatsApp"
-            >
-              <SvgWhatsApp />
-            </Link>
+            {contacts?.social_links.telegram && (
+              <Link
+                href={`https://t.me/${contacts?.social_links.telegram}`}
+                target="_blank"
+                aria-label="Telegram"
+              >
+                <SvgTelegram />
+              </Link>
+            )}
+            {contacts?.social_links.instagram && (
+              <Link
+                href={`https://www.instagram.com/${contacts?.social_links.instagram}`}
+                target="_blank"
+                aria-label="Instagram"
+              >
+                <SvgInstagram />
+              </Link>
+            )}
+            {contacts?.social_links.whatsapp && (
+              <Link
+                href={`https://wa.me/${contacts?.social_links.whatsapp}`}
+                target="_blank"
+                aria-label="WhatsApp"
+              >
+                <SvgWhatsApp />
+              </Link>
+            )}
           </div>
         </div>
       </div>

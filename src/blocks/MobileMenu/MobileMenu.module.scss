@@ -130,6 +130,7 @@
     color: var(--text);
 
     .icon {
+      flex-shrink: 0;
       width: 36px;
       height: 36px;
       background-color: var(--accent-2);

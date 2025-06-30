@@ -7,10 +7,15 @@ import { Swiper as SwiperType } from "swiper";
 import Image from "next/image";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
 import { useState } from "react";
-import galleryImage from "@/assets/images/gallery.png";
+import { GalleryT } from "@/types/types";
 
-const GalleryBlock = () => {
+const GalleryBlock = ({ gallery }: { gallery: GalleryT[] }) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+
+  if (gallery.length === 0) {
+    return null;
+  }
+
   return (
     <section className={styles.container}>
       <h2 className={clsx("h2", styles.title)}>Фотогалерея проектов</h2>
@@ -30,71 +35,41 @@ const GalleryBlock = () => {
         }}
         onSwiper={setSwiperInstance}
       >
-        <SwiperSlide className={styles.slide}>
-          <Image src={galleryImage} alt="gallery" className={styles.image} />
-          <div className={styles.caption}>
-            <div className={clsx(styles.itemTitle, "h5")}>
-              Строительство коттеджа под г. Минском
+        {gallery.map((item) => (
+          <SwiperSlide key={item.id} className={styles.slide}>
+            <Image
+              src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.image_path}`}
+              alt={item.title}
+              className={styles.image}
+              width={960}
+              height={520}
+            />
+            <div className={styles.caption}>
+              <div className={clsx(styles.itemTitle, "h5")}>{item.title}</div>
+              <p className={clsx("body-3", styles.description)}>
+                {item.description}
+              </p>
             </div>
-            <p className={clsx("body-3", styles.description)}>
-              Мы выполнили проектирование и строительство индивидуального жилого
-              дома площадью 160 м² по утвержденным чертежам. Объект был сдан за
-              6 месяцев, получив высокую оценку заказчика.
-            </p>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <Image src={galleryImage} alt="gallery" className={styles.image} />
-          <div className={styles.caption}>
-            <div className={clsx(styles.itemTitle, "h5")}>
-              Строительство коттеджа под г. Минском
-            </div>
-            <p className={clsx("body-3", styles.description)}>
-              Мы выполнили проектирование и строительство индивидуального жилого
-              дома площадью 160 м² по утвержденным чертежам. Объект был сдан за
-              6 месяцев, получив высокую оценку заказчика.
-            </p>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <Image src={galleryImage} alt="gallery" className={styles.image} />
-          <div className={styles.caption}>
-            <div className={clsx(styles.itemTitle, "h5")}>
-              Строительство коттеджа под г. Минском
-            </div>
-            <p className={clsx("body-3", styles.description)}>
-              Мы выполнили проектирование и строительство индивидуального жилого
-              дома площадью 160 м² по утвержденным чертежам. Объект был сдан за
-              6 месяцев, получив высокую оценку заказчика.
-            </p>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <Image src={galleryImage} alt="gallery" className={styles.image} />
-          <div className={styles.caption}>
-            <div className={clsx(styles.itemTitle, "h5")}>
-              Строительство коттеджа под г. Минском
-            </div>
-            <p className={clsx("body-3", styles.description)}>
-              Мы выполнили проектирование и строительство индивидуального жилого
-              дома площадью 160 м² по утвержденным чертежам. Объект был сдан за
-              6 месяцев, получив высокую оценку заказчика.
-            </p>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <Image src={galleryImage} alt="gallery" className={styles.image} />
-          <div className={styles.caption}>
-            <div className={clsx(styles.itemTitle, "h5")}>
-              Строительство коттеджа под г. Минском
-            </div>
-            <p className={clsx("body-3", styles.description)}>
-              Мы выполнили проектирование и строительство индивидуального жилого
-              дома площадью 160 м² по утвержденным чертежам. Объект был сдан за
-              6 месяцев, получив высокую оценку заказчика.
-            </p>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        ))}
+        {gallery.length < 6 &&
+          gallery.map((item) => (
+            <SwiperSlide key={item.id} className={styles.slide}>
+              <Image
+                src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.image_path}`}
+                alt={item.title}
+                className={styles.image}
+                width={960}
+                height={520}
+              />
+              <div className={styles.caption}>
+                <div className={clsx(styles.itemTitle, "h5")}>{item.title}</div>
+                <p className={clsx("body-3", styles.description)}>
+                  {item.description}
+                </p>
+              </div>
+            </SwiperSlide>
+          ))}
       </Swiper>
 
       <div className={styles.navigation}>

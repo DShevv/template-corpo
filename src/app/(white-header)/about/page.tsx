@@ -6,8 +6,25 @@ import AboutBlock from "@/blocks/AboutBlock/AboutBlock";
 import OurReviews from "@/blocks/OurReviews/OurReviews";
 import OurEmployees from "@/blocks/OurEmployees/OurEmployees";
 import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
+import { getReviews } from "@/services/ReviewsService";
+import { getSeoTag, getSettings } from "@/services/SettingsService";
 
-export default function Home() {
+export async function generateMetadata() {
+  const seoTag = await getSeoTag("about");
+  return {
+    title: seoTag?.title,
+    description: seoTag?.description,
+    keywords: seoTag?.keywords,
+    openGraph: {
+      title: seoTag?.title,
+      description: seoTag?.description,
+    },
+  };
+}
+
+export default async function About() {
+  const reviews = await getReviews();
+  const settings = await getSettings();
   return (
     <>
       <FirstBlock
@@ -23,9 +40,9 @@ export default function Home() {
         <AboutBlock />
         <OurEmployees />
         <OurServicesSlider />
-        <OurReviews />
+        <OurReviews reviews={reviews || []} />
 
-        <Feedback />
+        <Feedback settings={settings || undefined} />
       </div>
     </>
   );

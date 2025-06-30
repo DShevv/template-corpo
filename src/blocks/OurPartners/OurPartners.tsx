@@ -1,16 +1,23 @@
 "use client";
 import clsx from "clsx";
 import styles from "./OurPartners.module.scss";
-import { partners } from "@/data/dumpy-data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import Image from "next/image";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
 import { useState } from "react";
+import { PartnerT } from "@/types/types";
 
-const OurPartners = () => {
+type OurPartnersProps = {
+  partners: PartnerT[];
+};
+
+const OurPartners = ({ partners }: OurPartnersProps) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+
+  if (!partners || partners.length === 0) return null;
+
   return (
     <section className={styles.container}>
       <h2 className={clsx("h2", styles.title)}>Наши партнеры</h2>
@@ -31,14 +38,18 @@ const OurPartners = () => {
         {partners.map((partner, index) => (
           <SwiperSlide key={index} className={styles.slide}>
             <Image
-              src={partner.image}
+              src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${partner.image_path}`}
               alt={partner.name}
               className={styles.image}
+              width={632}
+              height={302}
             />
             <Image
-              src={partner.logo}
+              src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${partner.image_path}`}
               alt={partner.name}
               className={styles.logo}
+              width={164}
+              height={82}
             />
           </SwiperSlide>
         ))}

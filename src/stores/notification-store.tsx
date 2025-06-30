@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { NotificationStoreT } from "@/types/stores";
 
 class NotificationStore implements NotificationStoreT {
-  type: string | undefined;
+  type: "success" | "error" = "success";
   isVisible: boolean = false;
   timer: NodeJS.Timeout | undefined;
 
@@ -10,7 +10,7 @@ class NotificationStore implements NotificationStoreT {
     makeAutoObservable(this);
   }
 
-  setNotification = (type: string) => {
+  setNotification = (type: "success" | "error") => {
     this.type = type;
     this.isVisible = true;
 

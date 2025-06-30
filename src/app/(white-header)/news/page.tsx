@@ -7,15 +7,70 @@ import Feedback from "@/blocks/Feedback/Feedback";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import clsx from "clsx";
-import { news } from "@/data/dumpy-data";
 import NewsItem from "@/components/NewsItem/NewsItem";
 import Pagination from "@/components/Pagination/Pagination";
 import { CanonicalLink } from "@/components/CanonicalLink/CanonicalLink";
+import { getNews, getNewsTags } from "@/services/NewsService";
+import { NewsResponse } from "@/types/api";
+import { getSettings } from "@/services/SettingsService";
+import { SettingsT } from "@/types/types";
 
-export default function Home() {
+export default function News() {
+  const searchParams = useSearchParams();
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [news, setNews] = useState<NewsResponse | null>(null);
+  const [uniqueTags, setUniqueTags] = useState<string[]>(["Все"]);
+  const [feedbackSettings, setFeedbackSettings] = useState<SettingsT | null>(
+    null
+  );
+
+  const currentPage = parseInt(searchParams.get("page") || "1", 10);
+  const tagFromUrl = searchParams.get("tag");
+
+  useEffect(() => {
+    setSelectedTag(tagFromUrl);
+  }, [tagFromUrl]);
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      const tags = await getNewsTags();
+      setUniqueTags(["Все", ...(tags || [])]);
+    };
+    const fetchFeedbackSettings = async () => {
+      const settings = await getSettings();
+      setFeedbackSettings(settings);
+    };
+    fetchTags();
+    fetchFeedbackSettings();
+  }, []);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      const news = await getNews(selectedTag || undefined, currentPage);
+      setNews(news);
+    };
+    fetchNews();
+  }, [selectedTag, currentPage]);
+
+  const handleTagChange = (tag: string | null) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (tag) {
+      params.set("tag", tag);
+    } else {
+      params.delete("tag");
+    }
+
+    params.delete("page");
+
+    const newUrl = params.toString()
+      ? `?${params.toString()}`
+      : window.location.pathname;
+    window.history.pushState({}, "", newUrl);
+  };
 
   return (
     <>
@@ -36,52 +91,41 @@ export default function Home() {
           slidesPerView={"auto"}
           freeMode={true}
         >
-          <SwiperSlide
-            className={clsx(
-              styles.tag,
-              selectedTag === null && styles.selected
-            )}
-            onClick={() => {
-              setSelectedTag(null);
-            }}
-          >
-            <div>Все</div>
-          </SwiperSlide>
-          <SwiperSlide
-            className={clsx(
-              styles.tag,
-              selectedTag === "Тематика 1" && styles.selected
-            )}
-            onClick={() => {
-              setSelectedTag("Тематика 1");
-            }}
-          >
-            <div>Тематика 1</div>
-          </SwiperSlide>
-          <SwiperSlide
-            className={clsx(
-              styles.tag,
-              selectedTag === "Тематика 2" && styles.selected
-            )}
-            onClick={() => {
-              setSelectedTag("Тематика 2");
-            }}
-          >
-            <div>Тематика 2</div>
-          </SwiperSlide>
+          {uniqueTags.map((tag) => (
+            <SwiperSlide
+              key={tag}
+              className={clsx(
+                styles.tag,
+                selectedTag === "Все"
+                  ? tag === "" && styles.selected
+                  : selectedTag === tag && styles.selected
+              )}
+              onClick={() => {
+                handleTagChange(tag === "Все" ? "" : tag);
+              }}
+            >
+              <div>{tag}</div>
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         <div className={styles.news}>
-          {news.map((item) => (
+          {news?.data.map((item) => (
             <NewsItem item={item} key={item.slug} />
           ))}
         </div>
 
         <div className={styles.pagination}>
-          <Pagination current={1} max={10} maxPerView={6} />
+          {news?.last_page && news?.last_page > 1 && (
+            <Pagination
+              current={news?.current_page || 1}
+              max={news?.last_page || 1}
+              maxPerView={6}
+            />
+          )}
         </div>
 
-        <Feedback />
+        {feedbackSettings && <Feedback settings={feedbackSettings} />}
       </div>
     </>
   );

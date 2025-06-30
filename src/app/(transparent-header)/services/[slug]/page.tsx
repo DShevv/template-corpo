@@ -11,11 +11,51 @@ import Footer from "@/blocks/Footer/Footer";
 import Hero from "@/blocks/Hero/Hero";
 import Header from "@/blocks/Header/Header";
 import GalleryBlock from "@/blocks/GalleryBlock/GalleryBlock";
+import { getAdvantages } from "@/services/AdvantagesService";
+import { getPartners } from "@/services/PartnersService";
+import { getReviews } from "@/services/ReviewsService";
+import {
+  getContacts,
+  getSeoTag,
+  getSettings,
+} from "@/services/SettingsService";
+import { getGallery } from "@/services/GalleryService";
 
-export default function ServicePage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const seoTag = await getSeoTag(slug);
+
+  if (!seoTag) {
+    return {};
+  }
+
+  return {
+    title: seoTag?.title,
+    description: seoTag?.description,
+    keywords: seoTag?.keywords,
+    openGraph: {
+      title: seoTag?.title,
+      description: seoTag?.description,
+    },
+  };
+}
+
+export default async function ServicePage() {
+  const advantages = await getAdvantages();
+  const partners = await getPartners();
+  const reviews = await getReviews();
+  const settings = await getSettings();
+  const contacts = await getContacts();
+  const gallery = await getGallery();
   return (
     <>
       <Hero
+        settings={settings || undefined}
+        contacts={contacts || undefined}
         image={firstBlockImage}
         items={[
           { title: "Главная", href: "/" },
@@ -30,18 +70,24 @@ export default function ServicePage() {
       />
 
       <div className={styles.wrapper}>
-        <Header />
+        <Header
+          contacts={contacts || undefined}
+          settings={settings || undefined}
+        />
         <div className="wrapper">
           <ServiceInfoBlock />
-          <OurAdvantages />
+          <OurAdvantages advantages={advantages} />
           <OurEmployees />
-          <OurPartners />
-          <GalleryBlock />
-          <OurReviews />
+          <OurPartners partners={partners} />
+          <GalleryBlock gallery={gallery || []} />
+          <OurReviews reviews={reviews} />
           <OtherServices />
-          <Feedback />
+          {settings && <Feedback settings={settings} />}
         </div>
-        <Footer />
+        <Footer
+          contacts={contacts || undefined}
+          settings={settings || undefined}
+        />
       </div>
     </>
   );

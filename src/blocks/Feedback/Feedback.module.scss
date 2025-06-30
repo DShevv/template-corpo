@@ -15,7 +15,7 @@
     object-fit: cover;
     width: vw-1920(592);
     flex: 0;
-    height: 100%;
+    height: vw-1920(646);
 
     @media (max-width: 768px) {
       width: 100%;
@@ -50,7 +50,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: vw-1920(24);
-      margin-bottom: vw-1920(16);
+      margin-bottom: vw-1920(24);
 
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
@@ -60,7 +60,7 @@
     }
 
     .comment {
-      margin-top: vw-1920(16);
+      margin-top: vw-1920(24);
       margin-bottom: vw-1920(24);
 
       @media (max-width: 768px) {

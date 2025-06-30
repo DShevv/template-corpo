@@ -7,10 +7,17 @@ import "swiper/css";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
 import { useState } from "react";
 import ReviewItem from "@/components/ReviewItem/ReviewItem";
-import image from "@/assets/images/review.png";
+import { ReviewT } from "@/types/types";
 
-const OurReviews = () => {
+type OurReviewsProps = {
+  reviews: ReviewT[];
+};
+
+const OurReviews = ({ reviews }: OurReviewsProps) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+
+  if (!reviews || reviews.length === 0) return null;
+
   return (
     <section className={styles.container}>
       <div className={styles.header}>
@@ -48,9 +55,13 @@ const OurReviews = () => {
         onSwiper={setSwiperInstance}
         loop={true}
       >
-        {Array.from({ length: 5 }).map((_, index) => (
+        {reviews.map((review, index) => (
           <SwiperSlide key={index} className={styles.slide}>
-            <ReviewItem image={image} title={"title"} className={styles.item} />
+            <ReviewItem
+              image={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${review.author_photo}`}
+              title={"title"}
+              className={styles.item}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

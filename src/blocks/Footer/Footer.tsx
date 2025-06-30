@@ -4,21 +4,28 @@ import Logo from "@/components/Logo/Logo";
 import Link from "next/link";
 import { SvgInstagram, SvgTelegram, SvgWhatsApp } from "@/assets/icons/svgs";
 import { headers } from "next/headers";
+import { ContactsT, SettingsT } from "@/types/types";
 
 const FooterClient = ({
   host,
   className,
+  settings,
+  contacts,
 }: {
   host: string;
   className?: string;
+  settings?: SettingsT;
+  contacts?: ContactsT;
 }) => {
   return (
     <footer className={clsx(styles.footer, className)}>
       <div className={styles.top}>
         <div className={styles.logo}>
-          <Logo />
+          <Logo
+            image={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.logo}`}
+          />
           <p className={clsx("body-2", styles.description)}>
-            Корпоративный сайт для компании
+            {contacts?.company_description}
           </p>
         </div>
 
@@ -80,50 +87,60 @@ const FooterClient = ({
           </div>
 
           <div className={styles.info}>
-            <div className={styles.item}>
-              <div className={clsx("body-5", styles.itemTitle)}>Телефон</div>
-              <Link
-                href="tel:+375291234567"
-                className={clsx("body-2", styles.itemDescription)}
-              >
-                +375 (29) 123-45-67
-                <span className="body-6">10:00-20:00 без выходных</span>
-              </Link>
-            </div>
+            {contacts?.phones && contacts.phones.length > 0 && (
+              <div className={styles.item}>
+                <div className={clsx("body-5", styles.itemTitle)}>Телефон</div>
+                <Link
+                  href={`tel:${contacts?.phones[0]}`}
+                  className={clsx("body-2", styles.itemDescription)}
+                >
+                  {contacts?.phones[0]}
+                  <span className="body-6">{contacts?.working_hours}</span>
+                </Link>
+              </div>
+            )}
             <div className={styles.item}>
               <div className={clsx("body-5", styles.itemTitle)}>
                 Мессенджеры
               </div>
               <div className={styles.social}>
-                <Link
-                  href="https://t.me/example"
-                  className={styles.socialItem}
-                  aria-label="Telegram"
-                >
-                  <SvgTelegram />
-                </Link>
-                <Link
-                  href="https://t.me/example"
-                  className={styles.socialItem}
-                  aria-label="Instagram"
-                >
-                  <SvgInstagram />
-                </Link>
-                <Link
-                  href="https://wa.me/example"
-                  className={styles.socialItem}
-                  aria-label="WhatsApp"
-                >
-                  <SvgWhatsApp />
-                </Link>
+                {contacts?.social_links.telegram && (
+                  <Link
+                    href={`https://t.me/${contacts?.social_links.telegram}`}
+                    className={styles.socialItem}
+                    aria-label="Telegram"
+                  >
+                    <SvgTelegram />
+                  </Link>
+                )}
+                {contacts?.social_links.whatsapp && (
+                  <Link
+                    href={`https://wa.me/${contacts?.social_links.whatsapp}`}
+                    className={styles.socialItem}
+                    aria-label="WhatsApp"
+                  >
+                    <SvgWhatsApp />
+                  </Link>
+                )}
+                {contacts?.social_links.instagram && (
+                  <Link
+                    href={`https://www.instagram.com/${contacts?.social_links.instagram}`}
+                    className={styles.socialItem}
+                    aria-label="Instagram"
+                  >
+                    <SvgInstagram />
+                  </Link>
+                )}
               </div>
             </div>
-            <div className={styles.item}>
-              <div className={clsx("body-5", styles.itemTitle)}>Адрес</div>
-              <div className={clsx("body-2", styles.itemDescription)}>
-                г. Минск, пр-т Независимости, 1, оф. 111
+            {contacts?.address && (
+              <div className={styles.item}>
+                <div className={clsx("body-5", styles.itemTitle)}>Адрес</div>
+                <div className={clsx("body-2", styles.itemDescription)}>
+                  {contacts?.address}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -148,13 +165,28 @@ const FooterClient = ({
   );
 };
 
-async function Footer({ className }: { className?: string }) {
+async function Footer({
+  className,
+  contacts,
+  settings,
+}: {
+  className?: string;
+  contacts?: ContactsT;
+  settings?: SettingsT;
+}) {
   const headersList = await headers();
   const host = headersList.get("host") || "site.com";
 
   const domain = host.split(":")[0];
 
-  return <FooterClient host={domain} className={className} />;
+  return (
+    <FooterClient
+      host={domain}
+      className={className}
+      contacts={contacts}
+      settings={settings}
+    />
+  );
 }
 
 export default Footer;

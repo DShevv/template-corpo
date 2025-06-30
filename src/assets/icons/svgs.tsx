@@ -331,3 +331,55 @@ export const SvgMenu = (props: React.SVGProps<SVGSVGElement>) => {
     </svg>
   );
 };
+
+export const SvgCircleCheck = (props: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      width="33"
+      height="32"
+      viewBox="0 0 33 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M16.4974 29.3332C23.8612 29.3332 29.8307 23.3636 29.8307 15.9998C29.8307 8.63604 23.8612 2.6665 16.4974 2.6665C9.1336 2.6665 3.16406 8.63604 3.16406 15.9998C3.16406 23.3636 9.1336 29.3332 16.4974 29.3332Z"
+        stroke="white"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M11.8359 16.6665L14.5026 19.3332L21.1693 12.6665"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const SvgCircleClose = (props: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      width="33"
+      height="32"
+      viewBox="0 0 33 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M16.4974 29.3332C23.8612 29.3332 29.8307 23.3636 29.8307 15.9998C29.8307 8.63604 23.8612 2.6665 16.4974 2.6665C9.1336 2.6665 3.16406 8.63604 3.16406 15.9998C3.16406 23.3636 9.1336 29.3332 16.4974 29.3332Z"
+        stroke="white"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M19.8308 12.6665L13.1641 19.3332M13.1641 12.6665L19.8308 19.3332"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};

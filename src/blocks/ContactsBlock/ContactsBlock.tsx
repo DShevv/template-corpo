@@ -11,20 +11,25 @@ import {
 } from "@/assets/icons/svgs";
 import Link from "next/link";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
+import { ContactsT } from "@/types/types";
 
 const ContactsBlock = ({
   isStandalone,
   className,
+  contacts,
+  logo,
 }: {
   isStandalone?: boolean;
   className?: string;
+  contacts?: ContactsT;
+  logo: string;
 }) => {
+  if (!contacts) return null;
+
   return (
     <section className={clsx(styles.container, className)}>
       <h2 className={clsx("h2", styles.title)}>
-        {isStandalone
-          ? "г. Минск, пр-т Независимости, 1, оф. 111"
-          : "Адрес компании"}
+        {isStandalone ? contacts?.address : "Адрес компании"}
       </h2>
 
       <div className={styles.info}>
@@ -34,55 +39,65 @@ const ContactsBlock = ({
               <SvgAddress />
             </div>
             <div className={clsx("body-2", styles.text)}>
-              г. Минск, пр-т Независимости, 1, оф. 111
+              {contacts?.address}
             </div>
           </div>
         )}
-        <Link href="tel:+375291234567" className={styles.item}>
-          <div className={styles.icon}>
-            <SvgPhone />
-          </div>
-          <div className={clsx("body-2", styles.text)}>
-            +375 (29) 123-45-67
-            <span className="body-4">10:00-20:00 без выходных</span>
-          </div>
-        </Link>
-        <Link href="mailto:info@example.com" className={styles.item}>
-          <div className={styles.icon}>
-            <SvgMail />
-          </div>
-          <div className={clsx("body-2", styles.text)}>info@example.com</div>
-        </Link>
+        {contacts?.phones && contacts.phones.length > 0 && (
+          <Link href={`tel:${contacts?.phones[0]}`} className={styles.item}>
+            <div className={styles.icon}>
+              <SvgPhone />
+            </div>
+            <div className={clsx("body-2", styles.text)}>
+              {contacts?.phones[0]}
+              <span className="body-4">{contacts?.working_hours}</span>
+            </div>
+          </Link>
+        )}
+        {contacts?.email && (
+          <Link href={`mailto:${contacts?.email}`} className={styles.item}>
+            <div className={styles.icon}>
+              <SvgMail />
+            </div>
+            <div className={clsx("body-2", styles.text)}>{contacts?.email}</div>
+          </Link>
+        )}
 
         <div className={styles.socials}>
-          <Link
-            href="https://t.me/example"
-            target="_blank"
-            className={styles.social}
-          >
-            <SvgTelegram />
-          </Link>
-          <Link
-            href="https://t.me/example"
-            target="_blank"
-            className={styles.social}
-          >
-            <SvgWhatsApp />
-          </Link>
-          <Link
-            href="https://t.me/example"
-            target="_blank"
-            className={styles.social}
-          >
-            <SvgInstagram />
-          </Link>
+          {contacts?.social_links.telegram && (
+            <Link
+              href={`https://t.me/${contacts?.social_links.telegram}`}
+              target="_blank"
+              className={styles.social}
+            >
+              <SvgTelegram />
+            </Link>
+          )}
+          {contacts?.social_links.whatsapp && (
+            <Link
+              href={`https://wa.me/${contacts?.social_links.whatsapp}`}
+              target="_blank"
+              className={styles.social}
+            >
+              <SvgWhatsApp />
+            </Link>
+          )}
+          {contacts?.social_links.instagram && (
+            <Link
+              href={`https://www.instagram.com/${contacts?.social_links.instagram}`}
+              target="_blank"
+              className={styles.social}
+            >
+              <SvgInstagram />
+            </Link>
+          )}
         </div>
 
         {isStandalone && (
           <MainButton variant="white">Обратный звонок</MainButton>
         )}
       </div>
-      <Map address="г. Минск, пр-т Независимости, 1" />
+      <Map address={contacts?.address || ""} logo={logo} />
     </section>
   );
 };

@@ -3,10 +3,10 @@ import clsx from "clsx";
 import styles from "./NewsBlock.module.scss";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
-import { news } from "@/data/dumpy-data";
 import NewsItem from "@/components/NewsItem/NewsItem";
 import { useRef, useState } from "react";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
+import { NewsResponse } from "@/types/api";
 
 import "swiper/css";
 
@@ -14,13 +14,17 @@ const NewsBlock = ({
   className,
   title,
   isArrows = false,
+  news,
 }: {
   className?: string;
   title?: string;
   isArrows?: boolean;
+  news: NewsResponse | null;
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperRef>(null);
+
+  if (!news || news.data.length === 0) return null;
 
   return (
     <section className={clsx(styles.container, className)}>
@@ -61,8 +65,8 @@ const NewsBlock = ({
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         ref={swiperRef}
       >
-        {(isArrows ? news : news.slice(0, 4)).map((item, index) => (
-          <SwiperSlide key={item.slug} className={styles.slide}>
+        {(isArrows ? news.data : news.data.slice(0, 4)).map((item, index) => (
+          <SwiperSlide key={item.id} className={styles.slide}>
             <NewsItem item={item} active={activeIndex === index} />
           </SwiperSlide>
         ))}

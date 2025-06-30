@@ -14,10 +14,13 @@ import globalStore from "@/stores/global-store";
 import { useEffect } from "react";
 import IconButton from "@/components/Buttons/IconButton/IconButton";
 import { SvgClose } from "@/assets/icons/svgs";
+import { feedbackValidationSchema } from "@/utils/validationSchemas";
+import { sendFeedback } from "@/services/FeedbackService";
 
 const FeedbackPopup = observer(() => {
-  const { popupStore } = globalStore;
+  const { popupStore, notificationStore } = globalStore;
   const { feedback, closePopup } = popupStore;
+  const { setNotification } = notificationStore;
 
   useEffect(() => {
     if (feedback) {
@@ -60,8 +63,17 @@ const FeedbackPopup = observer(() => {
             comment: "",
             isAgree: false,
           }}
-          onSubmit={(values) => {
-            console.log(values);
+          validateOnChange={false}
+          validateOnBlur={false}
+          validationSchema={feedbackValidationSchema}
+          onSubmit={async (values, { resetForm }) => {
+            const isSuccess = await sendFeedback(values);
+            if (isSuccess) {
+              setNotification("success");
+              resetForm();
+            } else {
+              setNotification("error");
+            }
           }}
         >
           {({ values, setFieldValue }) => (

@@ -6,8 +6,24 @@ import { services } from "@/data/dumpy-data";
 import Pagination from "@/components/Pagination/Pagination";
 import ServiceItem from "@/components/ServiceItem/ServiceItem";
 import { CanonicalLink } from "@/components/CanonicalLink/CanonicalLink";
+import { getSeoTag, getSettings } from "@/services/SettingsService";
+import { Suspense } from "react";
 
-export default function Home() {
+export async function generateMetadata() {
+  const seoTag = await getSeoTag("services");
+  return {
+    title: seoTag?.title,
+    description: seoTag?.description,
+    keywords: seoTag?.keywords,
+    openGraph: {
+      title: seoTag?.title,
+      description: seoTag?.description,
+    },
+  };
+}
+
+export default async function Services() {
+  const settings = await getSettings();
   return (
     <>
       <CanonicalLink href="/services" />
@@ -28,10 +44,12 @@ export default function Home() {
         </div>
 
         <div className={styles.pagination}>
-          <Pagination current={1} max={10} maxPerView={6} />
+          <Suspense>
+            <Pagination current={1} max={10} maxPerView={6} />
+          </Suspense>
         </div>
 
-        <Feedback />
+        {settings && <Feedback settings={settings} />}
       </div>
     </>
   );

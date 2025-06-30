@@ -5,7 +5,6 @@ import styles from "./Map.module.scss";
 import Marker from "@/components/Marker/Marker";
 import mapStyles from "@/assets/maps.json";
 import { VectorCustomizationItem } from "@yandex/ymaps3-types";
-import logo from "@/assets/images/Logo.png";
 
 declare global {
   interface Window {
@@ -13,7 +12,15 @@ declare global {
   }
 }
 
-function Map({ className, address }: { className?: string; address?: string }) {
+function Map({
+  className,
+  address,
+  logo,
+}: {
+  className?: string;
+  address?: string;
+  logo: string;
+}) {
   const mapRef = useRef(null);
 
   useEffect(() => {
@@ -53,7 +60,7 @@ function Map({ className, address }: { className?: string; address?: string }) {
               draggable: false,
               mapFollowsOnDrag: true,
             },
-            Marker(logo.src)
+            Marker(logo)
           )
         );
       }

@@ -19,8 +19,8 @@ export type PopupStoreT = {
 };
 
 export type NotificationStoreT = {
-  type: string | undefined;
+  type: "success" | "error";
   isVisible: boolean;
-  setNotification: (type: string) => void;
+  setNotification: (type: "success" | "error") => void;
   removeNotification: () => void;
 };

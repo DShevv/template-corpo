@@ -17,14 +17,19 @@ import MainButton from "@/components/Buttons/MainButton/MainButton";
 import { observer } from "mobx-react-lite";
 import globalStore from "@/stores/global-store";
 import { services } from "@/data/dumpy-data";
+import { ContactsT, SettingsT } from "@/types/types";
 
 const Header = observer(
   ({
     isTransparent = false,
     isHidden = false,
+    contacts,
+    settings,
   }: {
     isTransparent?: boolean;
     isHidden?: boolean;
+    contacts?: ContactsT;
+    settings?: SettingsT;
   }) => {
     const { popupStore } = globalStore;
     const { openPopup } = popupStore;
@@ -37,7 +42,10 @@ const Header = observer(
         })}
       >
         <div className={styles.top}>
-          <Logo className={styles.logo} />
+          <Logo
+            className={styles.logo}
+            image={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.logo}`}
+          />
 
           <ul className={styles.menu}>
             <li>
@@ -82,30 +90,36 @@ const Header = observer(
 
         <div className={styles.bottom}>
           <div className={styles.info}>
-            <div className={clsx(styles.infoItem, "t-button-2")}>
-              <div className={styles.icon}>
-                <SvgTime />
+            {contacts?.working_hours && (
+              <div className={clsx(styles.infoItem, "t-button-2")}>
+                <div className={styles.icon}>
+                  <SvgTime />
+                </div>
+                <div className={styles.infoText}>{contacts?.working_hours}</div>
               </div>
-              <div className={styles.infoText}>Пн-пт с 09:00 по 18:00</div>
-            </div>
-            <Link
-              className={clsx(styles.infoItem, "t-button-2")}
-              href="mailto:info@example.com"
-            >
-              <div className={styles.icon}>
-                <SvgMail />
-              </div>
-              <div className={styles.infoText}>info@example.com</div>
-            </Link>
-            <Link
-              className={clsx(styles.infoItem, "t-button-2")}
-              href="tel:+79999999999"
-            >
-              <div className={styles.icon}>
-                <SvgPhone />
-              </div>
-              <div className={styles.infoText}>+375 (99) 999-99-99</div>
-            </Link>
+            )}
+            {contacts?.email && (
+              <Link
+                className={clsx(styles.infoItem, "t-button-2")}
+                href={`mailto:${contacts?.email}`}
+              >
+                <div className={styles.icon}>
+                  <SvgMail />
+                </div>
+                <div className={styles.infoText}>{contacts?.email}</div>
+              </Link>
+            )}
+            {contacts?.phones && contacts.phones.length > 0 && (
+              <Link
+                className={clsx(styles.infoItem, "t-button-2")}
+                href={`tel:${contacts?.phones[0]}`}
+              >
+                <div className={styles.icon}>
+                  <SvgPhone />
+                </div>
+                <div className={styles.infoText}>{contacts?.phones[0]}</div>
+              </Link>
+            )}
           </div>
           <MainButton
             className={styles.button}
@@ -116,27 +130,33 @@ const Header = observer(
           </MainButton>
 
           <div className={styles.socials}>
-            <Link
-              href="https://t.me/example"
-              target="_blank"
-              aria-label="Telegram"
-            >
-              <SvgTelegram />
-            </Link>
-            <Link
-              href="https://www.instagram.com/example"
-              target="_blank"
-              aria-label="Instagram"
-            >
-              <SvgInstagram />
-            </Link>
-            <Link
-              href="https://wa.me/example"
-              target="_blank"
-              aria-label="WhatsApp"
-            >
-              <SvgWhatsApp />
-            </Link>
+            {contacts?.social_links.telegram && (
+              <Link
+                href={`https://t.me/${contacts?.social_links.telegram}`}
+                target="_blank"
+                aria-label="Telegram"
+              >
+                <SvgTelegram />
+              </Link>
+            )}
+            {contacts?.social_links.instagram && (
+              <Link
+                href={`https://www.instagram.com/${contacts?.social_links.instagram}`}
+                target="_blank"
+                aria-label="Instagram"
+              >
+                <SvgInstagram />
+              </Link>
+            )}
+            {contacts?.social_links.whatsapp && (
+              <Link
+                href={`https://wa.me/${contacts?.social_links.whatsapp}`}
+                target="_blank"
+                aria-label="WhatsApp"
+              >
+                <SvgWhatsApp />
+              </Link>
+            )}
           </div>
         </div>
       </header>

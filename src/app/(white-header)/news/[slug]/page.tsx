@@ -6,8 +6,57 @@ import newsItemImage from "@/assets/images/news-item.jpg";
 import Image from "next/image";
 import InlineButton from "@/components/Buttons/InlineButton/InlineButton";
 import NewsBlock from "@/blocks/NewsBlock/NewsBlock";
+import { getSeoTag, getSettings } from "@/services/SettingsService";
+import { getNews, getNewsBySlug } from "@/services/NewsService";
+import { redirect } from "next/navigation";
 
-export default function NewsPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const seoTag = await getSeoTag(slug);
+
+  if (!seoTag) {
+    const news = await getNewsBySlug(slug);
+
+    return {
+      title: news?.title,
+      description: news?.subtitle,
+      keywords: news?.tags.join(", "),
+      openGraph: {
+        title: news?.title,
+        description: news?.subtitle,
+      },
+    };
+  }
+
+  return {
+    title: seoTag?.title,
+    description: seoTag?.description,
+    keywords: seoTag?.keywords,
+    openGraph: {
+      title: seoTag?.title,
+      description: seoTag?.description,
+    },
+  };
+}
+
+export default async function NewsPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const news = await getNewsBySlug(slug);
+  const settings = await getSettings();
+  const otherNews = await getNews(undefined, 1, 4);
+
+  if (!news) {
+    redirect("/404");
+  }
+
   return (
     <>
       <FirstBlock
@@ -86,8 +135,10 @@ export default function NewsPage() {
           </InlineButton>
         </div>
 
-        <NewsBlock isArrows title="Другие новости" />
-        <Feedback />
+        {otherNews && (
+          <NewsBlock isArrows title="Другие новости" news={otherNews} />
+        )}
+        {settings && <Feedback settings={settings} />}
       </div>
     </>
   );

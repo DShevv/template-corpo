@@ -1,0 +1,43 @@
+@use "../../assets/sass/functions" as *;
+
+.floatingButton {
+  z-index: 1000;
+  position: fixed;
+  right: vw-1920(72);
+  bottom: vw-1920(72);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: vw-1920(90);
+  height: vw-1920(90);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 300;
+  background: transparent;
+  outline: none;
+  border: none;
+
+  @media (max-width: 768px) {
+    right: 25px;
+    bottom: 25px;
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.phone {
+  flex-shrink: 0;
+  width: vw-1920(260);
+  height: vw-1920(260);
+  pointer-events: none;
+
+  & > svg > g > g:first-child > g > path {
+    fill: var(--accent-1);
+  }
+
+  @media (max-width: 768px) {
+    width: 160px;
+    height: 160px;
+  }
+}

@@ -8,17 +8,22 @@ import Header from "../Header/Header";
 import { useEffect, useRef, useState } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import heroImage from "@/assets/images/hero.png";
+import { ContactsT, SettingsT } from "@/types/types";
 
 const Hero = ({
   items,
   image,
   title,
   description,
+  contacts,
+  settings,
 }: {
   items?: { title: string; href: string }[];
   image?: StaticImageData | string;
   title?: string;
   description?: string;
+  contacts?: ContactsT;
+  settings?: SettingsT;
 }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
@@ -45,7 +50,12 @@ const Hero = ({
       ref={heroRef}
       className={clsx(styles.wrapper, { [styles.service]: items })}
     >
-      <Header isTransparent isHidden={isHeaderHidden} />
+      <Header
+        isTransparent
+        isHidden={isHeaderHidden}
+        contacts={contacts}
+        settings={settings}
+      />
       <div className="wrapper">
         <section className={styles.container}>
           <div className={styles.image}>
