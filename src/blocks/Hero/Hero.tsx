@@ -48,6 +48,7 @@ const Hero = ({
   return (
     <div
       ref={heroRef}
+      data-first-block
       className={clsx(styles.wrapper, { [styles.service]: items })}
     >
       <Header

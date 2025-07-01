@@ -12,6 +12,7 @@ type InlineButtonProps =
       type?: "button" | "submit";
       href?: never;
       backIcon?: boolean;
+      target?: never;
     }
   | {
       onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -21,6 +22,7 @@ type InlineButtonProps =
       type?: "link";
       href: string;
       backIcon?: boolean;
+      target?: "_blank" | "_self" | "_parent" | "_top";
     };
 
 const InlineButton = ({
@@ -31,6 +33,7 @@ const InlineButton = ({
   type = "button",
   href,
   backIcon = false,
+  target,
 }: InlineButtonProps) => {
   if (type === "link" && href) {
     return (
@@ -40,6 +43,7 @@ const InlineButton = ({
         })}
         href={href}
         onClick={onClick}
+        target={target}
       >
         {backIcon && <SvgArrowRight />}
         <span className={styles.textContainer}>

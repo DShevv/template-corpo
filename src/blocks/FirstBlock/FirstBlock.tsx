@@ -17,7 +17,7 @@ const FirstBlock = ({
   date?: string;
 }) => {
   return (
-    <section className={styles.container}>
+    <section data-first-block className={styles.container}>
       <div className={styles.image}>
         <Image src={image} alt={`${title} фото`} />
       </div>

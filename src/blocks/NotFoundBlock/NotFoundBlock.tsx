@@ -37,7 +37,7 @@ const NotFoundBlock = ({
   }, []);
 
   return (
-    <div ref={heroRef} className={styles.wrapper}>
+    <div ref={heroRef} data-first-block className={styles.wrapper}>
       <Header
         isTransparent
         isHidden={isHeaderHidden}

@@ -130,7 +130,12 @@ export default async function NewsPage({
               между РФ, США, КНР и ЕС до минимального уровня с 1991 года.
             </li>
           </ol>
-          <InlineButton backIcon href="/news" className={styles.button}>
+          <InlineButton
+            type="link"
+            backIcon
+            href="/news"
+            className={styles.button}
+          >
             Вернуться ко всем новостям
           </InlineButton>
         </div>

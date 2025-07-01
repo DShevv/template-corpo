@@ -67,7 +67,7 @@ function Map({
     }
 
     initMap();
-  }, [mapRef, address]);
+  }, [mapRef, address, logo]);
 
   return (
     <>

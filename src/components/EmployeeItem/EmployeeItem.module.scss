@@ -4,9 +4,7 @@
   position: relative;
   width: vw-1920(304);
   height: vw-1920(400);
-
   flex-shrink: 0;
-
   z-index: 1;
 
   & > .content {
@@ -14,14 +12,10 @@
     flex-direction: column;
     justify-content: flex-end;
     gap: vw-1920(16);
-
     height: 100%;
     padding: vw-1920(24);
-
     color: var(--white);
-
     background-color: transparent;
-
     transition: background-color 0.3s ease;
 
     & > .info {

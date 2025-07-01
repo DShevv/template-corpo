@@ -37,7 +37,7 @@ export default async function About() {
         description="Наша компания относительно недавно вышла на рынок услуг, но уже успела зарекомендовать себя как надежный партнер."
       />
       <div className={styles.wrapper}>
-        <AboutBlock />
+        <AboutBlock isHeader={false} />
         <OurEmployees />
         <OurServicesSlider />
         <OurReviews reviews={reviews || []} />

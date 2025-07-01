@@ -20,13 +20,14 @@ const Feedback = observer(({ settings }: { settings?: SettingsT }) => {
 
   return (
     <section className={styles.container}>
-      <Image
-        src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.feedback_image}`}
-        alt="feedback"
-        className={styles.image}
-        width={592}
-        height={646}
-      />
+      <div className={styles.image}>
+        <Image
+          src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.feedback_image}`}
+          alt="feedback"
+          width={592}
+          height={646}
+        />
+      </div>
 
       <Formik
         initialValues={{

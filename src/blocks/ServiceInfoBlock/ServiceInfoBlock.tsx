@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import s from "./ServiceInfoBlock.module.scss";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
@@ -5,8 +6,13 @@ import Image from "next/image";
 import FirstServiceImage from "@/assets/images/service-image-1.jpg";
 import SecondServiceImage from "@/assets/images/service-image-2.jpg";
 import ThirdServiceImage from "@/assets/images/service-image-3.jpg";
+import { observer } from "mobx-react-lite";
+import globalStore from "@/stores/global-store";
 
-const ServiceInfoBlock = () => {
+const ServiceInfoBlock = observer(() => {
+  const { popupStore } = globalStore;
+  const { openPopup } = popupStore;
+
   return (
     <div className={s.container}>
       <div className={s.header}>
@@ -28,7 +34,9 @@ const ServiceInfoBlock = () => {
             нам — сосредоточьтесь на своих планах, зная, что ваш дом строится
             надёжно и в согласованные сроки.
           </p>
-          <MainButton>Оставить заявку</MainButton>
+          <MainButton onClick={() => openPopup("feedback")}>
+            Оставить заявку
+          </MainButton>
         </div>
       </div>
       <div className={s.imagesContainer}>
@@ -44,6 +52,6 @@ const ServiceInfoBlock = () => {
       </div>
     </div>
   );
-};
+});
 
 export default ServiceInfoBlock;

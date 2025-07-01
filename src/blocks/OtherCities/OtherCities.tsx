@@ -49,7 +49,12 @@ const OtherCities = () => {
                 </div>
               </div>
 
-              <InlineButton className={styles.button}>
+              <InlineButton
+                className={styles.button}
+                type="link"
+                href="https://yandex.by/maps/-/CHg~A8nX"
+                target="_blank"
+              >
                 Показать на карте
               </InlineButton>
             </div>

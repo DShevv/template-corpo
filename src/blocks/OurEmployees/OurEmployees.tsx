@@ -79,7 +79,7 @@ const OurEmployees = () => {
         }}
         onSwiper={setSwiperInstance}
         loop={true}
-        onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
         {employees.map((employee, index) => (
           <SwiperSlide key={employee.id} className={s.slide}>

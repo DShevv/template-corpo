@@ -50,6 +50,7 @@ const MobileMenu = observer(({ contacts }: { contacts?: ContactsT }) => {
       className={clsx(styles.wrapper, { [styles.active]: menu })}
       onClick={() => closePopup("menu")}
     >
+      <div className={styles.blur}></div>
       <div
         className={styles.container}
         onClick={(e) => {
@@ -64,7 +65,7 @@ const MobileMenu = observer(({ contacts }: { contacts?: ContactsT }) => {
           aria-label="Закрыть меню"
         />
 
-        <m.ul layout className={styles.menu}>
+        <m.ul className={styles.menu}>
           <li>
             <Link
               href="/"
@@ -74,7 +75,7 @@ const MobileMenu = observer(({ contacts }: { contacts?: ContactsT }) => {
               Главная
             </Link>
           </li>
-          <m.li layout>
+          <li>
             <div
               className={clsx(styles.link, "h5")}
               onClick={() => setIsOpen(!isOpen)}
@@ -112,7 +113,7 @@ const MobileMenu = observer(({ contacts }: { contacts?: ContactsT }) => {
                 </m.ul>
               )}
             </AnimatePresence>
-          </m.li>
+          </li>
           <li>
             <Link
               href="/about"

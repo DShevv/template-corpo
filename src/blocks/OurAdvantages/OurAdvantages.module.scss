@@ -30,15 +30,16 @@
       display: flex;
       flex-direction: column;
       border: 1px solid var(--accent-2);
-      height: vw-1920(304);
+
       background-color: var(--white);
       transition: background-color 0.3s ease-in-out;
       position: relative;
       overflow: hidden;
       padding: vw-1920(24);
+      min-height: vw-1920(304);
 
       @media (max-width: 768px) {
-        height: 260px;
+        min-height: 260px;
         padding: 24px;
 
         &.active {
