@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SvgInstagram, SvgTelegram, SvgWhatsApp } from "@/assets/icons/svgs";
 import { headers } from "next/headers";
 import { ContactsT, SettingsT } from "@/types/types";
+import { services } from "@/data/dumpy-data";
 
 const FooterClient = ({
   host,
@@ -62,26 +63,16 @@ const FooterClient = ({
             <div className={styles.col}>
               <div className={clsx("body-2", styles.title)}>Услуги</div>
               <ul className={styles.list}>
-                <li className={styles.item}>
-                  <Link href="/" className={clsx("body-3", styles.link)}>
-                    Услуга 1
-                  </Link>
-                </li>
-                <li className={styles.item}>
-                  <Link href="/" className={clsx("body-3", styles.link)}>
-                    Услуга 2
-                  </Link>
-                </li>
-                <li className={styles.item}>
-                  <Link href="/" className={clsx("body-3", styles.link)}>
-                    Услуга 3
-                  </Link>
-                </li>
-                <li className={styles.item}>
-                  <Link href="/" className={clsx("body-3", styles.link)}>
-                    Услуга 4
-                  </Link>
-                </li>
+                {services.map((service, index) => (
+                  <li className={styles.item} key={index}>
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className={clsx("body-3", styles.link)}
+                    >
+                      {service.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

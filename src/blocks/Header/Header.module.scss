@@ -60,6 +60,8 @@
 
       svg {
         color: var(--accent-1);
+        width: vw-1920(24);
+        height: vw-1920(24);
       }
     }
   }
@@ -129,6 +131,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
 
         svg {
           width: vw-1920(26);

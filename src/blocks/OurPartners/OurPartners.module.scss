@@ -76,12 +76,20 @@
     left: 50%;
     transform: translateX(-50%);
 
+    &.isHiddenOnDesktop {
+      display: none;
+    }
+
     @media (max-width: 768px) {
       position: static;
       transform: none;
       width: fit-content;
       margin-top: 24px;
       gap: 16px;
+
+      &.isHiddenOnDesktop {
+        display: flex;
+      }
     }
 
     .prev {

@@ -38,7 +38,7 @@ const OurPartners = ({ partners }: OurPartnersProps) => {
         {partners.map((partner, index) => (
           <SwiperSlide key={index} className={styles.slide}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${partner.image_path}`}
+              src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${partner.photo_path}`}
               alt={partner.name}
               className={styles.image}
               width={632}
@@ -55,7 +55,11 @@ const OurPartners = ({ partners }: OurPartnersProps) => {
         ))}
       </Swiper>
 
-      <div className={styles.navigation}>
+      <div
+        className={clsx(styles.navigation, {
+          [styles.isHiddenOnDesktop]: partners.length <= 2,
+        })}
+      >
         <ArrowButton
           className={styles.prev}
           onClick={() => swiperInstance?.slidePrev()}

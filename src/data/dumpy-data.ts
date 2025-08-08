@@ -1,5 +1,6 @@
 import { AdvantageT, ServiceItemT } from "@/types/types";
-import serviceItemImage from "@/assets/images/service-item.png";
+import serviceItemImage from "@/assets/images/service-item.jpg";
+import serviceItemImage2 from "@/assets/images/service-item2.jpg";
 import advantageImage1 from "@/assets/images/adv-1.jpg";
 import advantageImage2 from "@/assets/images/adv-2.jpg";
 import advantageImage3 from "@/assets/images/adv-3.jpg";
@@ -7,47 +8,18 @@ import advantageImage4 from "@/assets/images/adv-4.jpg";
 
 export const services: ServiceItemT[] = [
   {
-    title: "Строительство коттеджей и таунхаусов",
+    title: "Строительство коттеджей",
     description: "Описание услуги 1",
     image: serviceItemImage,
-    slug: "construction-of-cottages-and-townhouses",
+    slug: "construction-of-cottages",
   },
   {
-    title: "Строительство коттеджей и таунхаусов 2",
+    title: "Строительство таунхаусов",
     description: "Описание услуги 1",
-    image: serviceItemImage,
-    slug: "construction-of-cottages-and-townhouses",
+    image: serviceItemImage2,
+    slug: "construction-of-townhouses",
   },
-  {
-    title: "Строительство коттеджей и таунхаусов",
-    description: "Описание услуги 1",
-    image: serviceItemImage,
-    slug: "construction-of-cottages-and-townhouses",
-  },
-  {
-    title: "Строительство коттеджей и таунхаусов",
-    description: "Описание услуги 1",
-    image: serviceItemImage,
-    slug: "construction-of-cottages-and-townhouses",
-  },
-  {
-    title: "Строительство коттеджей и таунхаусов",
-    description: "Описание услуги 1",
-    image: serviceItemImage,
-    slug: "construction-of-cottages-and-townhouses",
-  },
-  {
-    title: "Строительство коттеджей и таунхаусов",
-    description: "Описание услуги 1",
-    image: serviceItemImage,
-    slug: "construction-of-cottages-and-townhouses",
-  },
-  {
-    title: "Строительство коттеджей и таунхаусов",
-    description: "Описание услуги 1",
-    image: serviceItemImage,
-    slug: "construction-of-cottages-and-townhouses",
-  },
+
 
 
 

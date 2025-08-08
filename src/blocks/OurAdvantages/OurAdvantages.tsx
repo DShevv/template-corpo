@@ -51,7 +51,7 @@ const OurAdvantages = ({ advantages }: OurAdvantagesProps) => {
       <h2 className={clsx("h2", styles.title)}>Наши преимущества</h2>
 
       <div className={styles.advantages}>
-        {advantages.map((advantage, index) => (
+        {advantages.slice(0, 4).map((advantage, index) => (
           <div
             key={index}
             ref={(el) => setRef(el, index)}

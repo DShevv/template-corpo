@@ -23,6 +23,7 @@ const EmployeeItem = ({
   return (
     <div className={clsx(s.container)}>
       <Image src={employee.image} fill alt="Employee" />
+      <div className={s.overlay}></div>
       <div className={clsx(s.content, active && s.active)}>
         <div className={s.info}>
           <p className="body-6">{employee.position}</p>

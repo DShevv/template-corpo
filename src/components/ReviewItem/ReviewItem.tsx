@@ -3,6 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import styles from "./ReviewItem.module.scss";
 import clsx from "clsx";
 import globalStore from "@/stores/global-store";
+import { observer } from "mobx-react-lite";
 
 interface ReviewItemProps {
   className?: string;
@@ -10,9 +11,12 @@ interface ReviewItemProps {
   title: string;
 }
 
-const ReviewItem = ({ className, image, title }: ReviewItemProps) => {
+const ReviewItem = observer(({ className, image, title }: ReviewItemProps) => {
+  const { popupStore } = globalStore;
+  const { openPopup } = popupStore;
+
   const handleImageClick = () => {
-    globalStore.popupStore.openPopup("imageViewer", { src: image, alt: title });
+    openPopup("imageViewer", { src: image, alt: title });
   };
 
   return (
@@ -27,6 +31,6 @@ const ReviewItem = ({ className, image, title }: ReviewItemProps) => {
       />
     </div>
   );
-};
+});
 
 export default ReviewItem;

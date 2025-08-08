@@ -28,7 +28,11 @@ const OurReviews = ({ reviews }: OurReviewsProps) => {
           реализует проекты повышенной сложности, гарантируя безупречный
           результат.
         </p>
-        <div className={styles.navigation}>
+        <div
+          className={clsx(styles.navigation, {
+            [styles.isHiddenOnDesktop]: reviews.length <= 4,
+          })}
+        >
           <ArrowButton
             className={styles.prev}
             onClick={() => swiperInstance?.slidePrev()}
@@ -65,7 +69,11 @@ const OurReviews = ({ reviews }: OurReviewsProps) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className={styles.navigation}>
+      <div
+        className={clsx(styles.navigation, {
+          [styles.isHiddenOnDesktop]: reviews.length <= 4,
+        })}
+      >
         <ArrowButton
           className={styles.prev}
           onClick={() => swiperInstance?.slidePrev()}

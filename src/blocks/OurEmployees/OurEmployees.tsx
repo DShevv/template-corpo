@@ -1,12 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import s from "./OurEmployees.module.scss";
 import EmployeeItem from "@/components/EmployeeItem/EmployeeItem";
 import EmployeeImage from "@/assets/images/employee.jpg";
+import EmployeeImage2 from "@/assets/images/emp1.jpg";
+import EmployeeImage3 from "@/assets/images/emp2.jpg";
+import EmployeeImage4 from "@/assets/images/emp3.jpg";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
+import clsx from "clsx";
 
 const employees = [
   {
@@ -19,40 +23,32 @@ const employees = [
   },
   {
     id: 2,
-    image: EmployeeImage,
-    name: "Анна Иванова",
+    image: EmployeeImage3,
+    name: "Елена Николаева",
     phone: "+375 (99) 999-99-99",
     email: "info@website.by",
-    position: "Директор",
+    position: "Заместитель директора",
   },
   {
     id: 3,
-    image: EmployeeImage,
-    name: "Анна Иванова",
+    image: EmployeeImage2,
+    name: "Иван Алексеев",
     phone: "+375 (99) 999-99-99",
     email: "info@website.by",
-    position: "Директор",
+    position: "Менеджер по продаже",
   },
   {
     id: 4,
-    image: EmployeeImage,
-    name: "Анна Иванова",
+    image: EmployeeImage4,
+    name: "Михаил Новиков",
     phone: "+375 (99) 999-99-99",
     email: "info@website.by",
-    position: "Директор",
-  },
-  {
-    id: 5,
-    image: EmployeeImage,
-    name: "Анна Иванова",
-    phone: "+375 (99) 999-99-99",
-    email: "info@website.by",
-    position: "Директор",
+    position: "Специалист по продаже",
   },
 ];
 
 const OurEmployees = () => {
-  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -77,7 +73,9 @@ const OurEmployees = () => {
             spaceBetween: 24,
           },
         }}
-        onSwiper={setSwiperInstance}
+        onSwiper={(instance) => {
+          swiperRef.current = instance;
+        }}
         loop={true}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
@@ -88,15 +86,19 @@ const OurEmployees = () => {
         ))}
       </Swiper>
 
-      <div className={s.navigation}>
+      <div
+        className={clsx(s.navigation, {
+          [s.isHiddenOnDesktop]: employees.length <= 4,
+        })}
+      >
         <ArrowButton
           className={s.prev}
-          onClick={() => swiperInstance?.slidePrev()}
+          onClick={() => swiperRef.current?.slidePrev()}
           aria-label="Назад"
         />
         <ArrowButton
           className={s.next}
-          onClick={() => swiperInstance?.slideNext()}
+          onClick={() => swiperRef.current?.slideNext()}
           aria-label="Вперёд"
         />
       </div>

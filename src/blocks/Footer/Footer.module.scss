@@ -53,7 +53,8 @@
 
     .links {
       display: flex;
-      gap: vw-1920(114);
+      gap: vw-1920(32);
+      justify-content: space-between;
 
       @media (max-width: 768px) {
         display: grid;
@@ -65,6 +66,7 @@
         display: flex;
         flex-direction: column;
         gap: vw-1920(16);
+        flex: 1 1 100%;
 
         @media (max-width: 768px) {
           gap: 16px;

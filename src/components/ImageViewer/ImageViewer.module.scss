@@ -9,14 +9,13 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  visibility: hidden;
+  z-index: -1;
   transition: all 0.3s ease-in-out;
-  z-index: 9999;
   cursor: pointer;
 
   &.open {
     opacity: 1;
-    visibility: visible;
+    z-index: 9999;
   }
 
   .content {

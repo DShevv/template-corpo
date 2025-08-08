@@ -9,7 +9,7 @@ export type ServiceItemT = {
 
 export type PartnerT = {
   name: string;
-  logo: string | StaticImageData;
+  photo_path: string | StaticImageData;
   image_path: string | StaticImageData;
   link: string;
 };

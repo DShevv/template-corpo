@@ -40,7 +40,9 @@ class PopupStore implements PopupStoreT {
         break;
       case "imageViewer":
         this.imageViewer = false;
-        this.imageViewerData = null;
+        setTimeout(() => {
+          this.imageViewerData = null;
+        }, 350);
         break;
     }
   };

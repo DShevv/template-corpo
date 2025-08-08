@@ -8,9 +8,10 @@ import { useEffect } from "react";
 
 const ImageViewer = observer(() => {
   const { popupStore } = globalStore;
+  const { imageViewer, imageViewerData, closePopup } = popupStore;
 
   const handleClose = () => {
-    popupStore.closePopup("imageViewer");
+    closePopup("imageViewer");
   };
 
   useEffect(() => {
@@ -20,32 +21,42 @@ const ImageViewer = observer(() => {
       }
     };
 
-    if (popupStore.imageViewer) {
-      document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
+    if (imageViewer) {
     }
 
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset";
-    };
-  }, [popupStore.imageViewer, popupStore]);
+    if (imageViewer) {
+      const scrollPosition = window.scrollY;
 
-  if (!popupStore.imageViewer || !popupStore.imageViewerData) {
-    return null;
-  }
+      document.body.style.position = "fixed";
+      document.body.style.overflowY = "scroll";
+      document.body.style.top = `-${scrollPosition}px`;
+      document.body.style.width = "100%";
+      document.addEventListener("keydown", handleEscape);
+
+      return () => {
+        document.body.style.position = "";
+        document.body.style.overflowY = "auto";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        window.scrollTo(0, scrollPosition);
+        document.removeEventListener("keydown", handleEscape);
+      };
+    }
+  }, [imageViewer]);
 
   return (
     <div
-      className={clsx(styles.overlay, popupStore.imageViewer && styles.open)}
+      className={clsx(styles.overlay, { [styles.open]: imageViewer })}
       onClick={handleClose}
     >
       <div className={styles.content}>
-        <Image
-          src={popupStore.imageViewerData.src}
-          alt={popupStore.imageViewerData.alt}
-          fill
-        />
+        {imageViewerData && (
+          <Image
+            src={imageViewerData?.src || ""}
+            alt={imageViewerData?.alt || ""}
+            fill
+          />
+        )}
       </div>
     </div>
   );

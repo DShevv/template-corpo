@@ -1,4 +1,3 @@
-import firstBlockImage from "@/assets/images/service-item.png";
 import styles from "./page.module.scss";
 import Feedback from "@/blocks/Feedback/Feedback";
 import OurAdvantages from "@/blocks/OurAdvantages/OurAdvantages";
@@ -20,6 +19,7 @@ import {
   getSettings,
 } from "@/services/SettingsService";
 import { getGallery } from "@/services/GalleryService";
+import { services } from "@/data/dumpy-data";
 
 export async function generateMetadata({
   params,
@@ -44,7 +44,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function ServicePage() {
+export default async function ServicePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
   const advantages = await getAdvantages();
   const partners = await getPartners();
   const reviews = await getReviews();
@@ -56,7 +61,7 @@ export default async function ServicePage() {
       <Hero
         settings={settings || undefined}
         contacts={contacts || undefined}
-        image={firstBlockImage}
+        image={services.find((service) => service.slug === slug)?.image}
         items={[
           { title: "Главная", href: "/" },
           { title: "Услуги", href: "/services" },

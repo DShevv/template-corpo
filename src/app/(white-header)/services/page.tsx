@@ -43,11 +43,13 @@ export default async function Services() {
           ))}
         </div>
 
-        <div className={styles.pagination}>
-          <Suspense>
-            <Pagination current={1} max={10} maxPerView={6} />
-          </Suspense>
-        </div>
+        {services.length > 6 && (
+          <div className={styles.pagination}>
+            <Suspense>
+              <Pagination current={1} max={10} maxPerView={6} />
+            </Suspense>
+          </div>
+        )}
 
         {settings && <Feedback settings={settings} />}
       </div>
