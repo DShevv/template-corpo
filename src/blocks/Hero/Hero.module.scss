@@ -21,7 +21,7 @@
 }
 
 .container {
-  height: 100vh;
+  height: 100svh;
   position: relative;
   z-index: 1;
   padding-top: vw-1920(156);
@@ -32,7 +32,6 @@
   @media (max-width: 768px) {
     padding: 0 20px;
     padding-top: 128px;
-    height: 100vh;
     height: 100svh;
   }
 

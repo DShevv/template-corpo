@@ -3,7 +3,7 @@
 .container {
   margin-top: vw-1920(140);
   display: flex;
-  gap: vw-1920(54);
+  gap: vw-1920(24);
 
   @media (max-width: 768px) {
     margin-top: 72px;
@@ -18,7 +18,7 @@
 
     @media (max-width: 768px) {
       width: 100%;
-      height: 200px;
+      height: 300px;
     }
   }
 
@@ -56,6 +56,10 @@
           margin-bottom: 12px;
         }
       }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
     }
 
     .button {
@@ -65,6 +69,94 @@
       @media (max-width: 768px) {
         margin-top: 16px;
         max-width: 210px;
+      }
+    }
+  }
+
+  .blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: vw-1920(16);
+    margin-top: vw-1920(67);
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+  }
+
+  .advantage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid var(--accent-2);
+
+    background-color: var(--white);
+    transition: background-color 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    padding: vw-1920(20);
+    min-height: vw-1920(200);
+
+    @media (max-width: 768px) {
+      min-height: 158px;
+      padding: 16px;
+
+      &.active {
+        background: var(--accent-2);
+      }
+    }
+
+    &:hover {
+      background: var(--accent-2);
+    }
+
+    .image {
+      position: absolute;
+      top: vw-1920(-64);
+      left: vw-1920(-64);
+      width: vw-1920(160);
+      height: vw-1920(160);
+      border-radius: 50%;
+      object-fit: cover;
+
+      @media (max-width: 768px) {
+        top: -74px;
+        left: -74px;
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: vw-1920(8);
+
+      @media (max-width: 768px) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .text {
+    &:not(:has(.title)) {
+      max-height: vw-1920(320);
+      overflow-y: auto;
+
+      @media (max-width: 768px) {
+        max-height: initial;
+      }
+
+      &::-webkit-scrollbar {
+        width: vw-1920(6);
+        background: rgba(17, 20, 52, 0.05);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--accent-1);
+        border-radius: vw-1920(6);
       }
     }
   }

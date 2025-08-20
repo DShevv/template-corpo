@@ -1,7 +1,6 @@
 import Hero from "@/blocks/Hero/Hero";
 import styles from "./page.module.scss";
 import Header from "@/blocks/Header/Header";
-import OurServices from "@/blocks/OurServices/OurServices";
 import AboutBlock from "@/blocks/AboutBlock/AboutBlock";
 import OurPartners from "@/blocks/OurPartners/OurPartners";
 import OurReviews from "@/blocks/OurReviews/OurReviews";
@@ -20,6 +19,7 @@ import {
   getSettings,
 } from "@/services/SettingsService";
 import { getNews } from "@/services/NewsService";
+import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("main");
@@ -60,10 +60,10 @@ export default async function Home() {
           settings={settings || undefined}
         />
         <div className="wrapper">
-          <OurServices />
+          <OurServicesSlider title="Наши услуги" />
           <AboutBlock />
-          <OurPartners partners={partners} />
-          <OurReviews reviews={reviews} />
+          <OurPartners partners={[...partners, ...partners]} />
+          <OurReviews reviews={[...reviews, ...reviews]} />
           <OurAdvantages advantages={advantages} />
           <ContactsBlock
             contacts={contacts || undefined}

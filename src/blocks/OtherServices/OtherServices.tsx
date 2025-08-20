@@ -3,6 +3,7 @@ import s from "./OtherServices.module.scss";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
 import ServiceItem from "@/components/ServiceItem/ServiceItem";
 import { services } from "@/data/dumpy-data";
+import clsx from "clsx";
 
 const OtherServices = () => {
   return (
@@ -14,7 +15,11 @@ const OtherServices = () => {
         </MainButton>
       </div>
 
-      <div className={s.servicesList}>
+      <div
+        className={clsx(s.servicesList, {
+          [s.wideItems]: services.slice(0, 4).length < 3,
+        })}
+      >
         {services.slice(0, 4).map((item) => (
           <ServiceItem item={item} key={item.slug} />
         ))}

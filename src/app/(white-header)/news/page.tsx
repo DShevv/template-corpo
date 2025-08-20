@@ -96,9 +96,8 @@ export default function News() {
               key={tag}
               className={clsx(
                 styles.tag,
-                selectedTag === "Все"
-                  ? tag === "" && styles.selected
-                  : selectedTag === tag && styles.selected
+                selectedTag === tag && styles.selected,
+                selectedTag === null && tag === "Все" && styles.selected
               )}
               onClick={() => {
                 handleTagChange(tag === "Все" ? "" : tag);

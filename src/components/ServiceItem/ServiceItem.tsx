@@ -8,9 +8,10 @@ import ArrowButton from "../Buttons/ArrowButton/ArrowButton";
 interface ServiceItemProps {
   className?: string;
   item: ServiceItemT;
+  disableArrow?: boolean;
 }
 
-const ServiceItem = ({ className, item }: ServiceItemProps) => {
+const ServiceItem = ({ className, item, disableArrow }: ServiceItemProps) => {
   return (
     <Link
       href={`/services/${item.slug}`}
@@ -18,7 +19,9 @@ const ServiceItem = ({ className, item }: ServiceItemProps) => {
     >
       <div className={clsx("h6", styles.title)}>{item.title}</div>
       <div className={styles.image}>
-        <ArrowButton className={styles.button} aria-label="Подробнее" />
+        {!disableArrow && (
+          <ArrowButton className={styles.button} aria-label="Подробнее" />
+        )}
 
         <Image src={item.image} alt={item.title} width={304} height={106} />
       </div>

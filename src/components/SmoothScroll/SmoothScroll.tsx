@@ -5,10 +5,15 @@ import Lenis from "lenis";
 
 export default function SmoothScroll() {
   useEffect(() => {
-    // Инициализируем Lenis с минимальными настройками
+    // Инициализируем Lenis с настройками для исключения элементов с overflow
     const lenis = new Lenis({
       duration: 1.2, // Продолжительность анимации скролла
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Плавная кривая
+      prevent: (node) => {
+        // Исключаем элементы с overflow-y: auto или scroll
+        const style = window.getComputedStyle(node);
+        return style.overflowY === "auto" || style.overflowY === "scroll";
+      },
     });
 
     // Функция для обновления скролла

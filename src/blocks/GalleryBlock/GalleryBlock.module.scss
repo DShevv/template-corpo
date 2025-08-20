@@ -52,6 +52,10 @@
           opacity: 1;
           transform: translate(-50%, 0);
         }
+
+        .image {
+          transform: scale(1);
+        }
       }
 
       @media (max-width: 768px) {
@@ -61,11 +65,13 @@
       }
 
       .image {
-        width: vw-1920(960);
+        width: vw-1920(1288);
         height: vw-1920(520);
         object-fit: cover;
         position: relative;
         z-index: 1;
+        transform: scale(0.9);
+        transition: all 0.5s ease;
 
         @media (max-width: 768px) {
           width: 335px;
@@ -99,7 +105,7 @@
         }
 
         .itemTitle {
-          color: var(--accent-1);
+          color: var(--text);
           margin-bottom: vw-1920(12);
 
           @media (max-width: 768px) {

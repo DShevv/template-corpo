@@ -50,11 +50,18 @@
 
   .swiper {
     margin-top: vw-1920(42);
-    width: 100%;
+    width: calc(100% + vw-1920(279));
+    margin-left: vw-1920(-150);
+    padding-right: vw-1920(139);
+    padding-left: vw-1920(140);
     height: vw-1920(400);
 
     @media (max-width: 768px) {
       margin-top: 0;
+      width: 100%;
+      margin-left: 0;
+      padding-right: 0;
+      padding-left: 0;
       height: 410px;
     }
 

@@ -46,7 +46,7 @@ const FeedbackPopup = observer(() => {
       className={clsx(styles.wrapper, { [styles.active]: feedback })}
       onClick={() => closePopup("feedback")}
     >
-      <div className={styles.container}>
+      <div className={styles.container} onClick={(e) => e.stopPropagation()}>
         <IconButton
           className={styles.close}
           onClick={() => closePopup("feedback")}

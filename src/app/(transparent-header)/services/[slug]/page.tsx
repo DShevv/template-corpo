@@ -66,12 +66,16 @@ export default async function ServicePage({
           { title: "Главная", href: "/" },
           { title: "Услуги", href: "/services" },
           {
-            title: "Строительство коттеджей и таунхаусов",
-            href: "/services/construction-of-cottages-and-townhouses",
+            title:
+              services.find((service) => service.slug === slug)?.title || "",
+            href: `/services/${slug}`,
           },
         ]}
-        title="Строительство коттеджей и таунхаусов"
-        description="Строим стильные дома и коммерческие объекты в Минске и области. Предлагаем популярные проекты дуплексов на 2 семьи и таунхаусов под ключ по конкурентоспособным ценам."
+        title={services.find((service) => service.slug === slug)?.title || ""}
+        description={
+          services.find((service) => service.slug === slug)?.description || ""
+        }
+        popup={"feedback"}
       />
 
       <div className={styles.wrapper}>
@@ -83,9 +87,9 @@ export default async function ServicePage({
           <ServiceInfoBlock />
           <OurAdvantages advantages={advantages} />
           <OurEmployees />
-          <OurPartners partners={partners} />
+          <OurPartners partners={[...partners, ...partners]} />
           <GalleryBlock gallery={gallery || []} />
-          <OurReviews reviews={reviews} />
+          <OurReviews reviews={[...reviews, ...reviews]} />
           <OtherServices />
           {settings && <Feedback settings={settings} />}
         </div>

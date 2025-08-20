@@ -89,15 +89,13 @@
       gap: 16px;
       padding: 24px;
 
-      &.active {
-        cursor: pointer;
-        background-color: #0b0c1980;
+      cursor: pointer;
+      background-color: #0b0c1980;
 
-        & > .contacts {
-          opacity: 1;
-          max-height: 174px;
-          transform: translateY(0);
-        }
+      & > .contacts {
+        opacity: 1;
+        max-height: 174px;
+        transform: translateY(0);
       }
     }
   }

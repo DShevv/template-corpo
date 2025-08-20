@@ -40,7 +40,7 @@ export default async function About() {
         <AboutBlock isHeader={false} />
         <OurEmployees />
         <OurServicesSlider />
-        <OurReviews reviews={reviews || []} />
+        <OurReviews reviews={[...reviews, ...reviews]} />
 
         <Feedback settings={settings || undefined} />
       </div>

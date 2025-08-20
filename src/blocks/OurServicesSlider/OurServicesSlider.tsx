@@ -11,25 +11,29 @@ import { services } from "@/data/dumpy-data";
 import ServiceItem from "@/components/ServiceItem/ServiceItem";
 import { Grid } from "swiper/modules";
 
-const OurServicesSlider = () => {
+const OurServicesSlider = ({ title }: { title?: string }) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-        <h2 className={clsx("h2", styles.title)}>Услуги компании</h2>
+        <h2 className={clsx("h2", styles.title)}>
+          {title || "Услуги компании"}
+        </h2>
 
-        <div className={styles.navigation}>
-          <ArrowButton
-            className={styles.prev}
-            onClick={() => swiperInstance?.slidePrev()}
-            aria-label="Назад"
-          />
-          <ArrowButton
-            className={styles.next}
-            onClick={() => swiperInstance?.slideNext()}
-            aria-label="Вперёд"
-          />
-        </div>
+        {services.length > 4 && (
+          <div className={styles.navigation}>
+            <ArrowButton
+              className={styles.prev}
+              onClick={() => swiperInstance?.slidePrev()}
+              aria-label="Назад"
+            />
+            <ArrowButton
+              className={styles.next}
+              onClick={() => swiperInstance?.slideNext()}
+              aria-label="Вперёд"
+            />
+          </div>
+        )}
       </div>
 
       <Swiper
@@ -38,7 +42,7 @@ const OurServicesSlider = () => {
         spaceBetween={24}
         breakpoints={{
           768: {
-            slidesPerView: 4,
+            slidesPerView: services.length < 3 ? 2 : 4,
             spaceBetween: 24,
             grid: {
               rows: 1,
@@ -51,26 +55,31 @@ const OurServicesSlider = () => {
           rows: 4,
           fill: "row",
         }}
-        loop={true}
       >
         {services.map((service, index) => (
           <SwiperSlide key={index} className={styles.slide}>
-            <ServiceItem item={service} className={styles.item} />
+            <ServiceItem
+              item={service}
+              className={styles.item}
+              disableArrow={services.length > 4}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className={styles.navigation}>
-        <ArrowButton
-          className={styles.prev}
-          onClick={() => swiperInstance?.slidePrev()}
-          aria-label="Назад"
-        />
-        <ArrowButton
-          className={styles.next}
-          onClick={() => swiperInstance?.slideNext()}
-          aria-label="Вперёд"
-        />
-      </div>
+      {services.length > 4 && (
+        <div className={styles.navigation}>
+          <ArrowButton
+            className={styles.prev}
+            onClick={() => swiperInstance?.slidePrev()}
+            aria-label="Назад"
+          />
+          <ArrowButton
+            className={styles.next}
+            onClick={() => swiperInstance?.slideNext()}
+            aria-label="Вперёд"
+          />
+        </div>
+      )}
     </section>
   );
 };

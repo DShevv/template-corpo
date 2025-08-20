@@ -18,7 +18,10 @@
   }
 
   .swiper {
-    width: 100%;
+    width: calc(100% + vw-1920(280));
+    margin-left: vw-1920(-140);
+    padding-right: vw-1920(140);
+    padding-left: vw-1920(140);
     height: 100%;
 
     @media (max-width: 768px) {
@@ -75,6 +78,8 @@
     bottom: vw-1920(125);
     left: 50%;
     transform: translateX(-50%);
+    z-index: 2;
+    pointer-events: none;
 
     &.isHiddenOnDesktop {
       display: none;
@@ -90,6 +95,11 @@
       &.isHiddenOnDesktop {
         display: flex;
       }
+    }
+
+    .next,
+    .prev {
+      pointer-events: auto;
     }
 
     .prev {

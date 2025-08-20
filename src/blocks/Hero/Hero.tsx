@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import heroImage from "@/assets/images/hero.png";
 import { ContactsT, SettingsT } from "@/types/types";
+import OpenPopupButton from "@/components/Buttons/OpenPopupButton/OpenPopupButton";
 
 const Hero = ({
   items,
@@ -17,6 +18,7 @@ const Hero = ({
   description,
   contacts,
   settings,
+  popup,
 }: {
   items?: { title: string; href: string }[];
   image?: StaticImageData | string;
@@ -24,6 +26,7 @@ const Hero = ({
   description?: string;
   contacts?: ContactsT;
   settings?: SettingsT;
+  popup?: string;
 }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
@@ -73,9 +76,14 @@ const Hero = ({
               "Мы специализируемся в 11 отраслях в более чем 55 странах и регионах, предлагая инновационные решения для самых сложных задач наших клиентов."}
           </p>
           {!items && (
-            <MainButton className={styles.button} href="/">
+            <MainButton className={styles.button} type="link" href="/about">
               Подробнее
             </MainButton>
+          )}
+          {popup && (
+            <OpenPopupButton className={styles.button} popup={popup}>
+              Оставить заявку
+            </OpenPopupButton>
           )}
         </section>
       </div>

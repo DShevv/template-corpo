@@ -33,7 +33,6 @@ const OurPartners = ({ partners }: OurPartnersProps) => {
           },
         }}
         onSwiper={setSwiperInstance}
-        loop={true}
       >
         {partners.map((partner, index) => (
           <SwiperSlide key={index} className={styles.slide}>

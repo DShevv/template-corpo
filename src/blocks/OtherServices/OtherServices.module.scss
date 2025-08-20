@@ -20,12 +20,21 @@
   }
 
   .servicesList {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: vw-1920(24);
 
+    &.wideItems {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     @media (max-width: 768px) {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       gap: 24px;
+
+      & > a {
+        grid-column: span 2;
+      }
     }
   }
 

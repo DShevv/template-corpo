@@ -103,7 +103,7 @@ const ContactsBlock = observer(
           </div>
 
           {isStandalone && (
-            <MainButton variant="white" onClick={() => openPopup("feedback")}>
+            <MainButton onClick={() => openPopup("feedback")}>
               Обратный звонок
             </MainButton>
           )}

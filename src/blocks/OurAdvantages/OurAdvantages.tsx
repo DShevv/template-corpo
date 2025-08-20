@@ -68,7 +68,7 @@ const OurAdvantages = ({ advantages }: OurAdvantagesProps) => {
             />
             <div className={clsx("h5", styles.number)}>{index + 1}</div>
             <div className={clsx("h5", styles.title)}>
-              <span>{advantage.title.split(" ")[0]}</span>
+              <span>{advantage.title.split(" ")[0]} </span>
               {advantage.title.split(" ").slice(1).join(" ")}
             </div>
             <p className={clsx("body-4", styles.description)}>

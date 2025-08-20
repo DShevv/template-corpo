@@ -15,6 +15,11 @@
   outline: none;
   text-decoration: none;
 
+  svg {
+    width: vw-1920(26);
+    height: vw-1920(26);
+  }
+
   @media (max-width: 768px) {
     width: 42px;
     height: 42px;
