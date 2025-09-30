@@ -8,6 +8,7 @@ import Image from "next/image";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
 import { useState } from "react";
 import { PartnerT } from "@/types/types";
+import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 
 type OurPartnersProps = {
   partners: PartnerT[];
@@ -15,6 +16,7 @@ type OurPartnersProps = {
 
 const OurPartners = ({ partners }: OurPartnersProps) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const { storeUrl } = useRuntimeConfig();
 
   if (!partners || partners.length === 0) return null;
 
@@ -37,14 +39,14 @@ const OurPartners = ({ partners }: OurPartnersProps) => {
         {partners.map((partner, index) => (
           <SwiperSlide key={index} className={styles.slide}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${partner.photo_path}`}
+              src={`${storeUrl}/${partner.photo_path}`}
               alt={partner.name}
               className={styles.image}
               width={632}
               height={302}
             />
             <Image
-              src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${partner.image_path}`}
+              src={`${storeUrl}/${partner.image_path}`}
               alt={partner.name}
               className={styles.logo}
               width={164}

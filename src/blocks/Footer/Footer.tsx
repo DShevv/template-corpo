@@ -6,25 +6,26 @@ import { SvgInstagram, SvgTelegram, SvgWhatsApp } from "@/assets/icons/svgs";
 import { headers } from "next/headers";
 import { ContactsT, SettingsT } from "@/types/types";
 import { services } from "@/data/dumpy-data";
+import { getStoreUrl } from "@/services/base";
 
 const FooterClient = ({
   host,
   className,
   settings,
   contacts,
+  storeUrl,
 }: {
   host: string;
   className?: string;
   settings?: SettingsT;
   contacts?: ContactsT;
+  storeUrl?: string;
 }) => {
   return (
     <footer className={clsx(styles.footer, className)}>
       <div className={styles.top}>
         <div className={styles.logo}>
-          <Logo
-            image={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.logo}`}
-          />
+          <Logo image={`${storeUrl}/${settings?.logo}`} />
           <p className={clsx("body-2", styles.description)}>
             {contacts?.company_description}
           </p>
@@ -165,7 +166,7 @@ async function Footer({
   contacts?: ContactsT;
   settings?: SettingsT;
 }) {
-  const headersList = await headers();
+  const [headersList, storeUrl] = await Promise.all([headers(), getStoreUrl()]);
   const host = headersList.get("host") || "site.com";
 
   const domain = host.split(":")[0];
@@ -176,6 +177,7 @@ async function Footer({
       className={className}
       contacts={contacts}
       settings={settings}
+      storeUrl={storeUrl}
     />
   );
 }

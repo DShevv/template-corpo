@@ -19,6 +19,7 @@
     "mobx-react-lite": "^4.1.0",
     "motion": "^12.6.3",
     "next": "15.2.4",
+    "next-runtime-env": "^3.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "slugify": "^1.6.6",

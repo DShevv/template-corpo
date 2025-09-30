@@ -18,6 +18,7 @@ import { observer } from "mobx-react-lite";
 import globalStore from "@/stores/global-store";
 import { services } from "@/data/dumpy-data";
 import { ContactsT, SettingsT } from "@/types/types";
+import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 
 const Header = observer(
   ({
@@ -33,6 +34,7 @@ const Header = observer(
   }) => {
     const { popupStore } = globalStore;
     const { openPopup } = popupStore;
+    const { storeUrl } = useRuntimeConfig();
 
     return (
       <header
@@ -44,7 +46,7 @@ const Header = observer(
         <div className={styles.top}>
           <Logo
             className={styles.logo}
-            image={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.logo}`}
+            image={`${storeUrl}/${settings?.logo}`}
           />
 
           <ul className={styles.menu}>

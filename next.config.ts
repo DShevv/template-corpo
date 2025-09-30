@@ -10,9 +10,14 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
       {
-        protocol: "https",
-        hostname: "temapi.webspaceteam.site",
-        pathname: "/**",
+        protocol: 'https',
+        hostname: process.env.SITE_NAME || process.env.NEXT_PUBLIC_SITE_NAME || 'webspaceteam.site',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: `**.${process.env.SITE_NAME || process.env.NEXT_PUBLIC_SITE_NAME}`,
+        pathname: '/**',
       },
     ],
   },

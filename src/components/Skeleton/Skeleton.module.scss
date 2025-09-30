@@ -1,0 +1,21 @@
+@use "../../assets/sass/functions" as *;
+
+.skeleton {
+  border-radius: vw-1920(6);
+  background-color: var(--accent-2);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @media (max-width: 768px) {
+    border-radius: 6px;
+  }
+
+  & > div {
+    background-color: var(--white);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}

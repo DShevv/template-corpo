@@ -7,6 +7,7 @@ import NewsItem from "@/components/NewsItem/NewsItem";
 import { useRef, useState } from "react";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
 import { NewsResponse } from "@/types/api";
+import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 
 import "swiper/css";
 
@@ -23,6 +24,7 @@ const NewsBlock = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperRef>(null);
+  const { storeUrl } = useRuntimeConfig();
 
   if (!news || news.data.length === 0) return null;
 
@@ -67,7 +69,11 @@ const NewsBlock = ({
       >
         {(isArrows ? news.data : news.data.slice(0, 4)).map((item, index) => (
           <SwiperSlide key={item.id} className={styles.slide}>
-            <NewsItem item={item} active={activeIndex === index} />
+            <NewsItem
+              item={item}
+              active={activeIndex === index}
+              storeUrl={storeUrl}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

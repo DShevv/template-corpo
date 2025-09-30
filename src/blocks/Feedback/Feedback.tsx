@@ -13,16 +13,18 @@ import { feedbackValidationSchema } from "@/utils/validationSchemas";
 import { sendFeedback } from "@/services/FeedbackService";
 import { observer } from "mobx-react-lite";
 import globalStore from "@/stores/global-store";
+import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 
 const Feedback = observer(({ settings }: { settings?: SettingsT }) => {
   const { notificationStore } = globalStore;
   const { setNotification } = notificationStore;
+  const { storeUrl } = useRuntimeConfig();
 
   return (
     <section className={styles.container}>
       <div className={styles.image}>
         <Image
-          src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.feedback_image}`}
+          src={`${storeUrl}/${settings?.feedback_image}`}
           alt="feedback"
           width={592}
           height={646}

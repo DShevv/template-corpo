@@ -10,6 +10,7 @@ import { ContactsT, SettingsT } from "@/types/types";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
+import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 
 const HeaderMobile = observer(
   ({ contacts, settings }: { contacts?: ContactsT; settings?: SettingsT }) => {
@@ -17,6 +18,7 @@ const HeaderMobile = observer(
     const { openPopup } = popupStore;
     const [isOverFirstBlock, setIsOverFirstBlock] = useState(false);
     const pathname = usePathname();
+    const { storeUrl } = useRuntimeConfig();
 
     useEffect(() => {
       setIsOverFirstBlock(false);
@@ -64,10 +66,7 @@ const HeaderMobile = observer(
           [styles.headerScrolled]: isOverFirstBlock,
         })}
       >
-        <Logo
-          className={styles.logo}
-          image={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.logo}`}
-        />
+        <Logo className={styles.logo} image={`${storeUrl}/${settings?.logo}`} />
 
         <div className={styles.buttons}>
           {contacts?.email && (

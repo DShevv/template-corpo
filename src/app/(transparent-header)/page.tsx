@@ -20,6 +20,7 @@ import {
 } from "@/services/SettingsService";
 import { getNews } from "@/services/NewsService";
 import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
+import { getStoreUrl } from "@/services/base";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("main");
@@ -35,12 +36,16 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const partners = await getPartners();
-  const reviews = await getReviews();
-  const advantages = await getAdvantages();
-  const contacts = await getContacts();
-  const settings = await getSettings();
-  const news = await getNews();
+  const [partners, reviews, advantages, contacts, settings, news, storageUrl] =
+    await Promise.all([
+      getPartners(),
+      getReviews(),
+      getAdvantages(),
+      getContacts(),
+      getSettings(),
+      getNews(),
+      getStoreUrl(),
+    ]);
 
   return (
     <>
@@ -67,7 +72,7 @@ export default async function Home() {
           <OurAdvantages advantages={advantages} />
           <ContactsBlock
             contacts={contacts || undefined}
-            logo={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.logo}`}
+            logo={`${storageUrl}/${settings?.logo}`}
           />
           <NewsBlock news={news} />
           <Feedback settings={settings || undefined} />

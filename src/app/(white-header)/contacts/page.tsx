@@ -6,6 +6,7 @@ import OtherCities from "@/blocks/OtherCities/OtherCities";
 import Feedback from "@/blocks/Feedback/Feedback";
 import { getContacts, getSeoTag } from "@/services/SettingsService";
 import { getSettings } from "@/services/SettingsService";
+import { getStoreUrl } from "@/services/base";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("contacts");
@@ -21,8 +22,11 @@ export async function generateMetadata() {
 }
 
 export default async function Contacts() {
-  const contacts = await getContacts();
-  const settings = await getSettings();
+  const [contacts, settings, storageUrl] = await Promise.all([
+    getContacts(),
+    getSettings(),
+    getStoreUrl(),
+  ]);
 
   return (
     <>
@@ -40,7 +44,7 @@ export default async function Contacts() {
           isStandalone
           className={styles.contacts}
           contacts={contacts || undefined}
-          logo={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.logo}`}
+          logo={`${storageUrl}/${settings?.logo}`}
         />
         <OtherCities />
         <Feedback settings={settings || undefined} />

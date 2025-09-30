@@ -8,6 +8,7 @@ import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
 import { useState } from "react";
 import ReviewItem from "@/components/ReviewItem/ReviewItem";
 import { ReviewT } from "@/types/types";
+import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 
 type OurReviewsProps = {
   reviews: ReviewT[];
@@ -15,6 +16,7 @@ type OurReviewsProps = {
 
 const OurReviews = ({ reviews }: OurReviewsProps) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const { storeUrl } = useRuntimeConfig();
 
   if (!reviews || reviews.length === 0) return null;
 
@@ -62,7 +64,7 @@ const OurReviews = ({ reviews }: OurReviewsProps) => {
         {reviews.map((review, index) => (
           <SwiperSlide key={index} className={styles.slide}>
             <ReviewItem
-              image={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${review.author_photo}`}
+              image={`${storeUrl}/${review.author_photo}`}
               title={"title"}
               className={styles.item}
             />

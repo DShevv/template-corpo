@@ -4,6 +4,7 @@ import Script from "next/script";
 import SmoothScroll from "@/components/SmoothScroll/SmoothScroll";
 import { getSettings } from "@/services/SettingsService";
 import Notification from "@/components/Notification/Notification";
+import { getStoreUrl } from "@/services/base";
 
 const onest = Onest({
   variable: "--font-family",
@@ -12,9 +13,10 @@ const onest = Onest({
 
 export async function generateMetadata() {
   const settings = await getSettings();
+  const storageUrl = await getStoreUrl();
   return {
     icons: {
-      icon: `${process.env.NEXT_PUBLIC_STORAGE_URL}/${settings?.favicon}`,
+      icon: `${storageUrl}/${settings?.favicon}`,
     },
   };
 }

@@ -9,9 +9,10 @@ interface NewsItemProps {
   className?: string;
   item: NewsItemT;
   active?: boolean;
+  storeUrl?: string;
 }
 
-const NewsItem = ({ className, item, active }: NewsItemProps) => {
+const NewsItem = ({ className, item, active, storeUrl }: NewsItemProps) => {
   return (
     <Link
       href={`/news/${item.slug}`}
@@ -21,7 +22,7 @@ const NewsItem = ({ className, item, active }: NewsItemProps) => {
     >
       <div className={styles.image}>
         <Image
-          src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.photo_path}`}
+          src={`${storeUrl}/${item.photo_path}`}
           alt={item.title}
           width={304}
           height={106}

@@ -1,8 +1,11 @@
+import { getApiUrl } from "@/services/base";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function GET() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/seo/feed.xml`);
+  const apiUrl = await getApiUrl();
+  const res = await fetch(`${apiUrl}/v1/seo/feed.xml`);
   const xml = await res.text();
 
   return new Response(xml, {

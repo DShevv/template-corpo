@@ -8,9 +8,11 @@ import Image from "next/image";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
 import { useState } from "react";
 import { GalleryT } from "@/types/types";
+import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 
 const GalleryBlock = ({ gallery }: { gallery: GalleryT[] }) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const { storeUrl } = useRuntimeConfig();
 
   if (gallery.length === 0) {
     return null;
@@ -38,7 +40,7 @@ const GalleryBlock = ({ gallery }: { gallery: GalleryT[] }) => {
         {gallery.map((item) => (
           <SwiperSlide key={item.id} className={styles.slide}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.image_path}`}
+              src={`${storeUrl}/${item.image_path}`}
               alt={item.title}
               className={styles.image}
               width={960}
@@ -56,7 +58,7 @@ const GalleryBlock = ({ gallery }: { gallery: GalleryT[] }) => {
           gallery.map((item) => (
             <SwiperSlide key={item.id} className={styles.slide}>
               <Image
-                src={`${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.image_path}`}
+                src={`${storeUrl}/${item.image_path}`}
                 alt={item.title}
                 className={styles.image}
                 width={960}
