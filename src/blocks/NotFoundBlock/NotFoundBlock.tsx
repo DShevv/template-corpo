@@ -7,14 +7,18 @@ import MainButton from "@/components/Buttons/MainButton/MainButton";
 import Image from "next/image";
 import Header from "../Header/Header";
 import { useEffect, useRef, useState } from "react";
-import { ContactsT, SettingsT } from "@/types/types";
+import { ContactsT, ServiceT, SettingsT } from "@/types/types";
 
 const NotFoundBlock = ({
   settings,
   contacts,
+  services,
+  storeUrl,
 }: {
-  settings: SettingsT | null;
-  contacts: ContactsT | null;
+  settings: Promise<SettingsT | null>;
+  contacts: Promise<ContactsT | null>;
+  services: Promise<ServiceT[] | null>;
+  storeUrl: string;
 }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
@@ -41,8 +45,10 @@ const NotFoundBlock = ({
       <Header
         isTransparent
         isHidden={isHeaderHidden}
-        contacts={contacts || undefined}
-        settings={settings || undefined}
+        contacts={contacts}
+        settings={settings}
+        services={services}
+        storeUrl={storeUrl}
       />
       <div className="wrapper">
         <section className={styles.container}>

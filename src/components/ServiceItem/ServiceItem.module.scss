@@ -22,9 +22,18 @@
   .title {
     color: var(--text);
     padding: vw-1920(20);
+    padding-bottom: 0;
+    margin-bottom: vw-1920(20);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @media (max-width: 768px) {
       padding: 16px;
+      padding-bottom: 0;
+      margin-bottom: 16px;
     }
   }
 

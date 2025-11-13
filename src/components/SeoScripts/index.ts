@@ -1,0 +1,1 @@
+export { SeoScriptsHead, SeoScriptsBody } from './SeoScripts';

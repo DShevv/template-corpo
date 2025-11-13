@@ -1,10 +1,7 @@
-import { AdvantageT, ServiceItemT } from "@/types/types";
+import { ServiceItemT } from "@/types/types";
 import serviceItemImage from "@/assets/images/service-image-1.jpg";
 import serviceItemImage2 from "@/assets/images/service-image-3.jpg";
-import advantageImage1 from "@/assets/images/adv-1.jpg";
-import advantageImage2 from "@/assets/images/adv-2.jpg";
-import advantageImage3 from "@/assets/images/adv-3.jpg";
-import advantageImage4 from "@/assets/images/adv-4.jpg";
+
 
 export const services: ServiceItemT[] = [
   {
@@ -49,7 +46,7 @@ export const services: ServiceItemT[] = [
 
 
 
-export const advantages: AdvantageT[] = [
+/* export const advantages: AdvantageT[] = [
   {
     title: "Сопровождение строительства",
     description: "Мы предоставляем весь комплекс услуг по постройке загородных домов. ",
@@ -132,5 +129,5 @@ export const advantages: AdvantageT[] = [
   },
 
 
-];
+]; */
 

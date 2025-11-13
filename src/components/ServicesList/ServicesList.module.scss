@@ -1,0 +1,20 @@
+@use "../../assets/sass/functions" as *;
+
+.services {
+  margin-top: vw-1920(72);
+  margin-bottom: vw-1920(36);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: vw-1920(32) vw-1920(24);
+
+  @media (max-width: 768px) {
+    margin-top: 48px;
+    margin-bottom: 32px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.pagination {
+  // Стили для пагинации можно добавить здесь при необходимости
+}

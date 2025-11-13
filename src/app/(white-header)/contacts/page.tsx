@@ -21,12 +21,10 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Contacts() {
-  const [contacts, settings, storageUrl] = await Promise.all([
-    getContacts(),
-    getSettings(),
-    getStoreUrl(),
-  ]);
+export default function Contacts() {
+  const contacts = getContacts();
+  const settings = getSettings();
+  const storeUrl = getStoreUrl();
 
   return (
     <>
@@ -44,10 +42,11 @@ export default async function Contacts() {
           isStandalone
           className={styles.contacts}
           contacts={contacts || undefined}
-          logo={`${storageUrl}/${settings?.logo}`}
+          settings={settings || undefined}
+          storeUrl={storeUrl}
         />
         <OtherCities />
-        <Feedback settings={settings || undefined} />
+        <Feedback settings={settings || undefined} storeUrl={storeUrl} />
       </div>
     </>
   );

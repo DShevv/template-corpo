@@ -5,20 +5,28 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import ReviewItem from "@/components/ReviewItem/ReviewItem";
 import { ReviewT } from "@/types/types";
-import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 
 type OurReviewsProps = {
-  reviews: ReviewT[];
+  reviews: Promise<ReviewT[]>;
+  storeUrl: string;
 };
 
-const OurReviews = ({ reviews }: OurReviewsProps) => {
+const OurReviews = ({ reviews, storeUrl }: OurReviewsProps) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
-  const { storeUrl } = useRuntimeConfig();
 
-  if (!reviews || reviews.length === 0) return null;
+  const reviewsData = use(reviews);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
+
+  if (!reviewsData || reviewsData.length === 0) return null;
 
   return (
     <section className={styles.container}>
@@ -32,7 +40,7 @@ const OurReviews = ({ reviews }: OurReviewsProps) => {
         </p>
         <div
           className={clsx(styles.navigation, {
-            [styles.isHiddenOnDesktop]: reviews.length <= 4,
+            [styles.isHiddenOnDesktop]: reviewsData.length <= 4,
           })}
         >
           <ArrowButton
@@ -61,7 +69,7 @@ const OurReviews = ({ reviews }: OurReviewsProps) => {
         onSwiper={setSwiperInstance}
         loop={true}
       >
-        {reviews.map((review, index) => (
+        {reviewsData.map((review, index) => (
           <SwiperSlide key={index} className={styles.slide}>
             <ReviewItem
               image={`${storeUrl}/${review.author_photo}`}
@@ -73,7 +81,7 @@ const OurReviews = ({ reviews }: OurReviewsProps) => {
       </Swiper>
       <div
         className={clsx(styles.navigation, {
-          [styles.isHiddenOnDesktop]: reviews.length <= 4,
+          [styles.isHiddenOnDesktop]: reviewsData?.length <= 4,
         })}
       >
         <ArrowButton

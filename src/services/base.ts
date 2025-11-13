@@ -1,30 +1,40 @@
-import { getRuntimeConfig } from '../utils/runtime-config';
+import { cache } from "react";
 
-export async function apiRequest(endpoint: string, options: RequestInit = {}) {
-  const config = await getRuntimeConfig();
-  const url = `${config.apiUrl}${endpoint}`;
 
-  return fetch(url, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...options.headers,
+// Кешируем во время одного рендера
+export const getApiUrl = cache(() => {
+  return process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || '';
+});
+
+export const getSiteUrl = cache(() => {
+  return process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '';
+});
+
+export const getSiteName = cache(() => {
+  return process.env.SITE_NAME || process.env.NEXT_PUBLIC_SITE_NAME || 'webspaceteam.site';
+});
+
+export const getStoreUrl = cache(() => {
+  return process.env.STORE_URL || process.env.NEXT_PUBLIC_STORE_URL || '';
+});
+
+export const getStoreUrlApi = cache(async () => {
+  const response = await fetch('/api/config', {
+    next: {
+      revalidate: 60,
     },
   });
-}
+  const data = await response.json();
+  return data.storeUrl || null;
 
-export async function getApiUrl(): Promise<string> {
-  const config = await getRuntimeConfig();
-  return config.apiUrl;
-}
+});
 
-export async function getSiteUrl(): Promise<string> {
-  const config = await getRuntimeConfig();
-  return config.siteUrl;
-}
-
-
-export async function getStoreUrl(): Promise<string> {
-  const config = await getRuntimeConfig();
-  return config.storeUrl;
-} 
+export const getApiUrlApi = cache(async () => {
+  const response = await fetch('/api/config', {
+    next: {
+      revalidate: 60,
+    },
+  });
+  const data = await response.json();
+  return data.apiUrl || null;
+});

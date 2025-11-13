@@ -16,9 +16,8 @@ import clsx from "clsx";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
 import { observer } from "mobx-react-lite";
 import globalStore from "@/stores/global-store";
-import { services } from "@/data/dumpy-data";
-import { ContactsT, SettingsT } from "@/types/types";
-import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
+import { ContactsT, ServiceT, SettingsT } from "@/types/types";
+import { use } from "react";
 
 const Header = observer(
   ({
@@ -26,16 +25,21 @@ const Header = observer(
     isHidden = false,
     contacts,
     settings,
+    storeUrl,
+    services,
   }: {
     isTransparent?: boolean;
     isHidden?: boolean;
-    contacts?: ContactsT;
-    settings?: SettingsT;
+    contacts: Promise<ContactsT | null>;
+    settings: Promise<SettingsT | null>;
+    storeUrl: string;
+    services: Promise<ServiceT[] | null>;
   }) => {
     const { popupStore } = globalStore;
     const { openPopup } = popupStore;
-    const { storeUrl } = useRuntimeConfig();
-
+    const contactsData = use(contacts);
+    const settingsData = use(settings);
+    const servicesData = use(services);
     return (
       <header
         className={clsx(styles.container, {
@@ -46,7 +50,7 @@ const Header = observer(
         <div className={styles.top}>
           <Logo
             className={styles.logo}
-            image={`${storeUrl}/${settings?.logo}`}
+            image={`${storeUrl}/${settingsData?.logo}`}
           />
 
           <ul className={styles.menu}>
@@ -60,7 +64,7 @@ const Header = observer(
                 Услуги <SvgArrowRight />
               </Link>
               <ul className={styles.subMenu}>
-                {services.map((service, index) => (
+                {servicesData?.map((service, index) => (
                   <li key={index}>
                     <Link
                       className={clsx(styles.link, "body-2")}
@@ -92,34 +96,36 @@ const Header = observer(
 
         <div className={styles.bottom}>
           <div className={styles.info}>
-            {contacts?.working_hours && (
+            {contactsData?.working_hours && (
               <div className={clsx(styles.infoItem, "t-button-2")}>
                 <div className={styles.icon}>
                   <SvgTime />
                 </div>
-                <div className={styles.infoText}>{contacts?.working_hours}</div>
+                <div className={styles.infoText}>
+                  {contactsData?.working_hours}
+                </div>
               </div>
             )}
-            {contacts?.email && (
+            {contactsData?.email && (
               <Link
                 className={clsx(styles.infoItem, "t-button-2")}
-                href={`mailto:${contacts?.email}`}
+                href={`mailto:${contactsData?.email}`}
               >
                 <div className={styles.icon}>
                   <SvgMail />
                 </div>
-                <div className={styles.infoText}>{contacts?.email}</div>
+                <div className={styles.infoText}>{contactsData?.email}</div>
               </Link>
             )}
-            {contacts?.phones && contacts.phones.length > 0 && (
+            {contactsData?.phones && contactsData.phones.length > 0 && (
               <Link
                 className={clsx(styles.infoItem, "t-button-2")}
-                href={`tel:${contacts?.phones[0]}`}
+                href={`tel:${contactsData?.phones[0]}`}
               >
                 <div className={styles.icon}>
                   <SvgPhone />
                 </div>
-                <div className={styles.infoText}>{contacts?.phones[0]}</div>
+                <div className={styles.infoText}>{contactsData?.phones[0]}</div>
               </Link>
             )}
           </div>
@@ -132,27 +138,27 @@ const Header = observer(
           </MainButton>
 
           <div className={styles.socials}>
-            {contacts?.social_links.telegram && (
+            {contactsData?.social_links.telegram && (
               <Link
-                href={`https://t.me/${contacts?.social_links.telegram}`}
+                href={`https://t.me/${contactsData?.social_links.telegram}`}
                 target="_blank"
                 aria-label="Telegram"
               >
                 <SvgTelegram />
               </Link>
             )}
-            {contacts?.social_links.instagram && (
+            {contactsData?.social_links.instagram && (
               <Link
-                href={`https://www.instagram.com/${contacts?.social_links.instagram}`}
+                href={`https://www.instagram.com/${contactsData?.social_links.instagram}`}
                 target="_blank"
                 aria-label="Instagram"
               >
                 <SvgInstagram />
               </Link>
             )}
-            {contacts?.social_links.whatsapp && (
+            {contactsData?.social_links.whatsapp && (
               <Link
-                href={`https://wa.me/${contacts?.social_links.whatsapp}`}
+                href={`https://wa.me/${contactsData?.social_links.whatsapp}`}
                 target="_blank"
                 aria-label="WhatsApp"
               >

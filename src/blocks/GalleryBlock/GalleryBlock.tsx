@@ -6,15 +6,20 @@ import { Swiper as SwiperType } from "swiper";
 
 import Image from "next/image";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
-import { useState } from "react";
+import { use, useState } from "react";
 import { GalleryT } from "@/types/types";
-import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 
-const GalleryBlock = ({ gallery }: { gallery: GalleryT[] }) => {
+const GalleryBlock = ({
+  gallery,
+  storeUrl,
+}: {
+  gallery: Promise<GalleryT[]>;
+  storeUrl: string;
+}) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
-  const { storeUrl } = useRuntimeConfig();
+  const galleryData = use(gallery);
 
-  if (gallery.length === 0) {
+  if (galleryData && galleryData.length === 0) {
     return null;
   }
 
@@ -37,7 +42,7 @@ const GalleryBlock = ({ gallery }: { gallery: GalleryT[] }) => {
         }}
         onSwiper={setSwiperInstance}
       >
-        {gallery.map((item) => (
+        {galleryData?.map((item) => (
           <SwiperSlide key={item.id} className={styles.slide}>
             <Image
               src={`${storeUrl}/${item.image_path}`}
@@ -54,8 +59,9 @@ const GalleryBlock = ({ gallery }: { gallery: GalleryT[] }) => {
             </div>
           </SwiperSlide>
         ))}
-        {gallery.length < 6 &&
-          gallery.map((item) => (
+        {galleryData &&
+          galleryData.length < 6 &&
+          galleryData.map((item) => (
             <SwiperSlide key={item.id} className={styles.slide}>
               <Image
                 src={`${storeUrl}/${item.image_path}`}

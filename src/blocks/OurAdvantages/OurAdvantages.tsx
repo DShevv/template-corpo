@@ -1,16 +1,16 @@
 "use client";
 import clsx from "clsx";
 import styles from "./OurAdvantages.module.scss";
-import { advantages as advantagesData } from "@/data/dumpy-data";
-import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { use, useCallback, useEffect, useRef, useState } from "react";
 import { AdvantageT } from "@/types/types";
+import { faIconsMap } from "@/assets/fa-icons";
 
 type OurAdvantagesProps = {
-  advantages: AdvantageT[];
+  advantages: Promise<AdvantageT[]>;
 };
 
 const OurAdvantages = ({ advantages }: OurAdvantagesProps) => {
+  const advantagesData = use(advantages);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const itemRefs = useRef<HTMLElement[]>([]);
 
@@ -44,38 +44,46 @@ const OurAdvantages = ({ advantages }: OurAdvantagesProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!advantages || advantages.length === 0) return null;
+  if (!advantagesData || advantagesData.length === 0) return null;
 
   return (
     <section className={styles.container}>
       <h2 className={clsx("h2", styles.title)}>Наши преимущества</h2>
 
       <div className={styles.advantages}>
-        {advantages.slice(0, 4).map((advantage, index) => (
-          <div
-            key={index}
-            ref={(el) => setRef(el, index)}
-            className={clsx(styles.advantage, {
-              [styles.active]: activeIndex === index,
-            })}
-          >
-            <Image
+        {advantagesData.slice(0, 4).map((advantage, index) => {
+          const Icon =
+            faIconsMap[
+              advantage.icon.replace("fas ", "") as keyof typeof faIconsMap
+            ];
+
+          return (
+            <div
+              key={index}
+              ref={(el) => setRef(el, index)}
+              className={clsx(styles.advantage, {
+                [styles.active]: activeIndex === index,
+              })}
+            >
+              {/* <Image
               src={advantagesData[index].image}
               alt={advantage.title}
               className={styles.image}
               width={190}
               height={190}
-            />
-            <div className={clsx("h5", styles.number)}>{index + 1}</div>
-            <div className={clsx("h5", styles.title)}>
-              <span>{advantage.title.split(" ")[0]} </span>
-              {advantage.title.split(" ").slice(1).join(" ")}
+            /> */}
+              <Icon className={styles.image} />
+              <div className={clsx("h5", styles.number)}>{index + 1}</div>
+              <div className={clsx("h5", styles.title)}>
+                <span>{advantage.title.split(" ")[0]} </span>
+                {advantage.title.split(" ").slice(1).join(" ")}
+              </div>
+              <p className={clsx("body-4", styles.description)}>
+                {advantagesData[index].description}
+              </p>
             </div>
-            <p className={clsx("body-4", styles.description)}>
-              {advantagesData[index].description}
-            </p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

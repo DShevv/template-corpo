@@ -4,7 +4,7 @@ import { getApiUrl } from "./base";
 
 export const getReviews = async (): Promise<ReviewT[]> => {
   try {
-    const apiUrl = await getApiUrl();
+    const apiUrl = getApiUrl();
     const response = await fetch(`${apiUrl}/v1/reviews`, { next: { revalidate: 60 } });
     const data: ApiResponse<ReviewT[]> = await response.json();
 

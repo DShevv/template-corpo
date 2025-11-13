@@ -5,31 +5,35 @@ import MobileMenu from "@/blocks/MobileMenu/MobileMenu";
 import { getContacts } from "@/services/SettingsService";
 import { getSettings } from "@/services/SettingsService";
 import dynamic from "next/dynamic";
+import { getStoreUrl } from "@/services/base";
+import { getServices } from "@/services/ServicesService";
 
 const FloatingCallButton = dynamic(
   () => import("@/components/FloatingCallButton/FloatingCallButton")
 );
 
-export default async function Layout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const contacts = await getContacts();
-  const settings = await getSettings();
-
+  const contacts = getContacts();
+  const settings = getSettings();
+  const storeUrl = getStoreUrl();
+  const services = getServices();
   return (
     <>
       <HeaderMobile
-        contacts={contacts || undefined}
-        settings={settings || undefined}
+        contacts={contacts}
+        settings={settings}
+        storeUrl={storeUrl}
       />
 
       <main>{children}</main>
       <ImageViewer />
       <FeedbackPopup />
       <FloatingCallButton />
-      <MobileMenu contacts={contacts || undefined} />
+      <MobileMenu contacts={contacts || undefined} services={services} />
     </>
   );
 }

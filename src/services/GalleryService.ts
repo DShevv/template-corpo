@@ -4,7 +4,7 @@ import { getApiUrl } from "./base";
 
 export const getGallery = async (): Promise<GalleryT[]> => {
   try {
-    const apiUrl = await getApiUrl();
+    const apiUrl = getApiUrl();
     const response = await fetch(`${apiUrl}/v1/photos`, { next: { revalidate: 60 } });
     const data: ApiResponse<GalleryT[]> = await response.json();
 

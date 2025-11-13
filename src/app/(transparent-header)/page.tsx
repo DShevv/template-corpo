@@ -18,8 +18,10 @@ import {
   getSeoTag,
   getSettings,
 } from "@/services/SettingsService";
+import { getServices } from "@/services/ServicesService";
 import { getNews } from "@/services/NewsService";
 import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
+import { Suspense } from "react";
 import { getStoreUrl } from "@/services/base";
 
 export async function generateMetadata() {
@@ -35,18 +37,15 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Home() {
-  const [partners, reviews, advantages, contacts, settings, news, storageUrl] =
-    await Promise.all([
-      getPartners(),
-      getReviews(),
-      getAdvantages(),
-      getContacts(),
-      getSettings(),
-      getNews(),
-      getStoreUrl(),
-    ]);
-
+export default function Home() {
+  const contacts = getContacts();
+  const settings = getSettings();
+  const partners = getPartners();
+  const reviews = getReviews();
+  const advantages = getAdvantages();
+  const news = getNews();
+  const storeUrl = getStoreUrl();
+  const services = getServices();
   return (
     <>
       <Hero
@@ -55,32 +54,50 @@ export default async function Home() {
         description={
           " Мы специализируемся в 11 отраслях в более чем 55 странах и регионах, предлагая инновационные решения для самых сложных задач наших клиентов."
         }
-        contacts={contacts || undefined}
-        settings={settings || undefined}
+        contacts={contacts}
+        settings={settings}
+        storeUrl={storeUrl}
+        services={services || []}
       />
 
       <div className={styles.wrapper}>
         <Header
-          contacts={contacts || undefined}
-          settings={settings || undefined}
+          contacts={contacts}
+          settings={settings}
+          storeUrl={storeUrl}
+          services={services}
         />
         <div className="wrapper">
-          <OurServicesSlider title="Наши услуги" />
-          <AboutBlock />
-          <OurPartners partners={[...partners, ...partners]} />
-          <OurReviews reviews={[...reviews, ...reviews]} />
-          <OurAdvantages advantages={advantages} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <OurServicesSlider
+              title="Наши услуги"
+              services={services || []}
+              storeUrl={storeUrl}
+            />
+          </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <AboutBlock />
+          </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <OurPartners partners={partners} />
+          </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <OurReviews reviews={reviews} storeUrl={storeUrl} />
+          </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <OurAdvantages advantages={advantages} />
+          </Suspense>
           <ContactsBlock
-            contacts={contacts || undefined}
-            logo={`${storageUrl}/${settings?.logo}`}
+            contacts={contacts}
+            settings={settings}
+            storeUrl={storeUrl}
           />
-          <NewsBlock news={news} />
-          <Feedback settings={settings || undefined} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <NewsBlock news={news} storeUrl={storeUrl} />
+          </Suspense>
+          <Feedback settings={settings} storeUrl={storeUrl} />
         </div>
-        <Footer
-          settings={settings || undefined}
-          contacts={contacts || undefined}
-        />
+        <Footer settings={settings} contacts={contacts} />
       </div>
     </>
   );

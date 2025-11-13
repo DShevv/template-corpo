@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 import { useEffect, useRef, useState } from "react";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import heroImage from "@/assets/images/hero.png";
-import { ContactsT, SettingsT } from "@/types/types";
+import { ContactsT, ServiceT, SettingsT } from "@/types/types";
 import OpenPopupButton from "@/components/Buttons/OpenPopupButton/OpenPopupButton";
 
 const Hero = ({
@@ -19,14 +19,18 @@ const Hero = ({
   contacts,
   settings,
   popup,
+  storeUrl,
+  services,
 }: {
   items?: { title: string; href: string }[];
   image?: StaticImageData | string;
   title?: string;
   description?: string;
-  contacts?: ContactsT;
-  settings?: SettingsT;
+  contacts: Promise<ContactsT | null>;
+  settings: Promise<SettingsT | null>;
   popup?: string;
+  storeUrl: string;
+  services: Promise<ServiceT[] | null>;
 }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
@@ -59,11 +63,18 @@ const Hero = ({
         isHidden={isHeaderHidden}
         contacts={contacts}
         settings={settings}
+        storeUrl={storeUrl}
+        services={services}
       />
       <div className="wrapper">
         <section className={styles.container}>
           <div className={styles.image}>
-            <Image src={image || heroImage} alt="hero" />
+            <Image
+              src={image || heroImage}
+              alt="hero"
+              width={1920}
+              height={1080}
+            />
           </div>
 
           {items && <Breadcrumbs items={items} />}

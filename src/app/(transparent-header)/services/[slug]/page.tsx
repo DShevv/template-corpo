@@ -19,7 +19,9 @@ import {
   getSettings,
 } from "@/services/SettingsService";
 import { getGallery } from "@/services/GalleryService";
-import { services } from "@/data/dumpy-data";
+import { getStoreUrl } from "@/services/base";
+import { getServiceBySlug, getServices } from "@/services/ServicesService";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -50,48 +52,58 @@ export default async function ServicePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const advantages = await getAdvantages();
-  const partners = await getPartners();
-  const reviews = await getReviews();
-  const settings = await getSettings();
-  const contacts = await getContacts();
-  const gallery = await getGallery();
+  const advantages = getAdvantages();
+  const partners = getPartners();
+  const reviews = getReviews();
+  const settings = getSettings();
+  const contacts = getContacts();
+  const gallery = getGallery();
+  const storeUrl = getStoreUrl();
+  const services = getServices();
+
+  const servicesData = await getServiceBySlug({ slug });
+
+  if (!servicesData) {
+    notFound();
+  }
+
   return (
     <>
       <Hero
         settings={settings || undefined}
         contacts={contacts || undefined}
-        image={services.find((service) => service.slug === slug)?.image}
+        image={`${storeUrl}/${servicesData.photo_path}`}
         items={[
           { title: "Главная", href: "/" },
           { title: "Услуги", href: "/services" },
           {
-            title:
-              services.find((service) => service.slug === slug)?.title || "",
+            title: servicesData.title || "",
             href: `/services/${slug}`,
           },
         ]}
-        title={services.find((service) => service.slug === slug)?.title || ""}
-        description={
-          services.find((service) => service.slug === slug)?.description || ""
-        }
+        title={servicesData.title || ""}
+        description={servicesData.subtitle || ""}
         popup={"feedback"}
+        storeUrl={storeUrl}
+        services={services}
       />
 
       <div className={styles.wrapper}>
         <Header
           contacts={contacts || undefined}
           settings={settings || undefined}
+          storeUrl={storeUrl}
+          services={services}
         />
         <div className="wrapper">
           <ServiceInfoBlock />
           <OurAdvantages advantages={advantages} />
           <OurEmployees />
-          <OurPartners partners={[...partners, ...partners]} />
-          <GalleryBlock gallery={gallery || []} />
-          <OurReviews reviews={[...reviews, ...reviews]} />
+          <OurPartners partners={partners} />
+          <GalleryBlock gallery={gallery} storeUrl={storeUrl} />
+          <OurReviews reviews={reviews} storeUrl={storeUrl} />
           <OtherServices />
-          {settings && <Feedback settings={settings} />}
+          {settings && <Feedback settings={settings} storeUrl={storeUrl} />}
         </div>
         <Footer
           contacts={contacts || undefined}

@@ -1,10 +1,10 @@
-import { getApiUrl } from "./base";
+import { getApiUrlApi } from "./base";
 import { FeedbackT } from "@/types/types";
 import { ApiResponse } from "@/types/api";
 
 export const sendFeedback = async (data: FeedbackT): Promise<boolean> => {
   try {
-    const apiUrl = await getApiUrl();
+    const apiUrl = await getApiUrlApi();
     const response = await fetch(`${apiUrl}/v1/feedback`, {
       method: "POST",
       body: JSON.stringify(data),

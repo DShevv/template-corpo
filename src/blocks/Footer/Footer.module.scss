@@ -106,6 +106,7 @@
       flex-wrap: wrap;
       gap: vw-1920(20);
       flex: 0 0 vw-1920(532);
+      height: fit-content;
 
       @media (max-width: 768px) {
         flex: 0 0 100%;
