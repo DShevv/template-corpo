@@ -29,7 +29,7 @@
 
     .tag {
       width: fit-content;
-      border: 1px solid var(--accent-2);
+      border: 1px solid hsl(from var(--accent-2) h s l / 0.3);
       padding: vw-1920(8) vw-1920(18);
       background: var(--white);
       display: flex;
@@ -40,6 +40,7 @@
 
       &.selected {
         background-color: var(--accent-2);
+        color: var(--white);
       }
 
       @media (max-width: 768px) {

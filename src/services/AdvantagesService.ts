@@ -4,7 +4,7 @@ import { ApiResponse } from "@/types/api";
 
 export const getAdvantages = async (): Promise<AdvantageT[]> => {
   try {
-    const apiUrl = await getApiUrl();
+    const apiUrl = getApiUrl();
     const response = await fetch(`${apiUrl}/v1/advantages`, { next: { revalidate: 60 } });
     const data: ApiResponse<AdvantageT[]> = await response.json();
 

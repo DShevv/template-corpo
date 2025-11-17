@@ -2,12 +2,10 @@ import FirstBlock from "@/blocks/FirstBlock/FirstBlock";
 import firstBlockImage from "@/assets/images/services.jpg";
 import styles from "./page.module.scss";
 import Feedback from "@/blocks/Feedback/Feedback";
-import { services } from "@/data/dumpy-data";
-import Pagination from "@/components/Pagination/Pagination";
-import ServiceItem from "@/components/ServiceItem/ServiceItem";
+import ServicesList from "@/components/ServicesList/ServicesList";
 import { CanonicalLink } from "@/components/CanonicalLink/CanonicalLink";
 import { getSeoTag, getSettings } from "@/services/SettingsService";
-import { Suspense } from "react";
+import { getStoreUrl } from "@/services/base";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("services");
@@ -22,8 +20,9 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Services() {
-  const settings = await getSettings();
+export default function Services() {
+  const settings = getSettings();
+  const storeUrl = getStoreUrl();
   return (
     <>
       <CanonicalLink href="/services" />
@@ -31,27 +30,15 @@ export default async function Services() {
         image={firstBlockImage}
         items={[
           { title: "Главная", href: "/" },
-          { title: "Услуги", href: "/services" },
+          { title: "Каталог", href: "/services" },
         ]}
-        title="Услуги компании"
-        description="Здесь вы найдете исчерпывающую информацию о спектре профессиональных решений, которые мы предлагаем клиентам."
+        title="Каталог услуг"
+        description="Подберите идеальный спецэффект для вашего события! В нашем каталоге вы найдёте готовые решения и вдохновляющие идеи, которые помогут создать нужную атмосферу и удивить ваших гостей."
       />
       <div className={styles.wrapper}>
-        <div className={styles.services}>
-          {services.map((item, index) => (
-            <ServiceItem key={index} item={item} />
-          ))}
-        </div>
+        <ServicesList current={1} max={10} maxPerView={6} storeUrl={storeUrl} />
 
-        {services.length > 6 && (
-          <div className={styles.pagination}>
-            <Suspense>
-              <Pagination current={1} max={10} maxPerView={6} />
-            </Suspense>
-          </div>
-        )}
-
-        {settings && <Feedback settings={settings} />}
+        {settings && <Feedback settings={settings} storeUrl={storeUrl} />}
       </div>
     </>
   );

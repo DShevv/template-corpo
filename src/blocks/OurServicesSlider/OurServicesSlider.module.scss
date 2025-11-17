@@ -40,20 +40,21 @@
 
   .swiper {
     margin-top: vw-1920(42);
-    width: calc(100% + vw-1920(280));
-    margin-left: vw-1920(-140);
-    padding-right: vw-1920(140);
-    padding-left: vw-1920(140);
+    width: 100svw;
+    margin-left: calc((100dvw - vw-1920(1288)) / 2 * -1);
+    padding: 0 calc((100dvw - vw-1920(1288)) / 2);
     height: vw-1920(260);
 
     @media (max-width: 768px) {
       margin-top: 24px;
+      margin-left: -20px;
+      padding: 0 20px;
       height: auto;
     }
 
     .slide {
       position: relative;
-      width: vw-1920(335);
+      width: vw-1920(632);
       overflow: hidden;
 
       @media (max-width: 768px) {

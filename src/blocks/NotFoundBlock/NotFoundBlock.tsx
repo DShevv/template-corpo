@@ -1,49 +1,12 @@
-"use client";
-
 import clsx from "clsx";
 import styles from "./NotFoundBlock.module.scss";
-import heroImage from "@/assets/images/404.jpg";
+import heroImage from "@/assets/images/404.png";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
 import Image from "next/image";
-import Header from "../Header/Header";
-import { useEffect, useRef, useState } from "react";
-import { ContactsT, SettingsT } from "@/types/types";
 
-const NotFoundBlock = ({
-  settings,
-  contacts,
-}: {
-  settings: SettingsT | null;
-  contacts: ContactsT | null;
-}) => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        const heroRect = heroRef.current.getBoundingClientRect();
-        const isHeroVisible = heroRect.bottom > 0;
-        setIsHeaderHidden(!isHeroVisible);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+const NotFoundBlock = () => {
   return (
-    <div ref={heroRef} data-first-block className={styles.wrapper}>
-      <Header
-        isTransparent
-        isHidden={isHeaderHidden}
-        contacts={contacts || undefined}
-        settings={settings || undefined}
-      />
+    <div data-first-block className={styles.wrapper}>
       <div className="wrapper">
         <section className={styles.container}>
           <div className={styles.image}>

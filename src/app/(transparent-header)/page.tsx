@@ -1,25 +1,23 @@
 import Hero from "@/blocks/Hero/Hero";
 import styles from "./page.module.scss";
-import Header from "@/blocks/Header/Header";
 import AboutBlock from "@/blocks/AboutBlock/AboutBlock";
 import OurPartners from "@/blocks/OurPartners/OurPartners";
-import OurReviews from "@/blocks/OurReviews/OurReviews";
 import OurAdvantages from "@/blocks/OurAdvantages/OurAdvantages";
 import ContactsBlock from "@/blocks/ContactsBlock/ContactsBlock";
 import NewsBlock from "@/blocks/NewsBlock/NewsBlock";
 import Feedback from "@/blocks/Feedback/Feedback";
 import Footer from "@/blocks/Footer/Footer";
-import heroImage from "@/assets/images/hero.png";
 import { getPartners } from "@/services/PartnersService";
-import { getReviews } from "@/services/ReviewsService";
 import { getAdvantages } from "@/services/AdvantagesService";
 import {
   getContacts,
   getSeoTag,
   getSettings,
 } from "@/services/SettingsService";
+import { getServices } from "@/services/ServicesService";
 import { getNews } from "@/services/NewsService";
 import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
+import { Suspense } from "react";
 import { getStoreUrl } from "@/services/base";
 
 export async function generateMetadata() {
@@ -35,52 +33,57 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Home() {
-  const [partners, reviews, advantages, contacts, settings, news, storageUrl] =
-    await Promise.all([
-      getPartners(),
-      getReviews(),
-      getAdvantages(),
-      getContacts(),
-      getSettings(),
-      getNews(),
-      getStoreUrl(),
-    ]);
-
+export default function Home() {
+  const contacts = getContacts();
+  const settings = getSettings();
+  const partners = getPartners();
+  const advantages = getAdvantages();
+  const news = getNews();
+  const storeUrl = getStoreUrl();
+  const services = getServices();
   return (
     <>
       <Hero
-        image={heroImage}
-        title={"Создаем счастливое будущее для вас"}
-        description={
-          " Мы специализируемся в 11 отраслях в более чем 55 странах и регионах, предлагая инновационные решения для самых сложных задач наших клиентов."
-        }
-        contacts={contacts || undefined}
-        settings={settings || undefined}
+        contacts={contacts}
+        settings={settings}
+        storeUrl={storeUrl}
+        services={services || []}
       />
 
       <div className={styles.wrapper}>
-        <Header
-          contacts={contacts || undefined}
-          settings={settings || undefined}
-        />
         <div className="wrapper">
-          <OurServicesSlider title="Наши услуги" />
-          <AboutBlock />
-          <OurPartners partners={[...partners, ...partners]} />
-          <OurReviews reviews={[...reviews, ...reviews]} />
-          <OurAdvantages advantages={advantages} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <OurServicesSlider
+              title="Какие спецэффекты мы создаём"
+              services={services || []}
+              storeUrl={storeUrl}
+            />
+          </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <AboutBlock />
+          </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <OurPartners partners={partners} />
+          </Suspense>
+
+          <Suspense fallback={<div>Loading...</div>}>
+            <OurAdvantages advantages={advantages} />
+          </Suspense>
           <ContactsBlock
-            contacts={contacts || undefined}
-            logo={`${storageUrl}/${settings?.logo}`}
+            contacts={contacts}
+            settings={settings}
+            storeUrl={storeUrl}
           />
-          <NewsBlock news={news} />
-          <Feedback settings={settings || undefined} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <NewsBlock
+              title="Последние статьи"
+              news={news}
+              storeUrl={storeUrl}
+            />
+          </Suspense>
+          <Feedback settings={settings} storeUrl={storeUrl} />
         </div>
-        <Footer
-          settings={settings || undefined}
-          contacts={contacts || undefined}
-        />
+        <Footer settings={settings} contacts={contacts} />
       </div>
     </>
   );

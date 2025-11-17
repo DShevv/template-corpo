@@ -4,10 +4,11 @@ import Feedback from "@/blocks/Feedback/Feedback";
 import NewsListBlock from "@/blocks/NewsListBlock/NewsListBlock";
 import { CanonicalLink } from "@/components/CanonicalLink/CanonicalLink";
 import { getSettings } from "@/services/SettingsService";
+import { getStoreUrl } from "@/services/base";
 
-export default async function News() {
-  const settings = await getSettings();
-
+export default function News() {
+  const settings = getSettings();
+  const storeUrl = getStoreUrl();
   return (
     <>
       <CanonicalLink href="/news" />
@@ -20,8 +21,8 @@ export default async function News() {
         title="Статьи по тематикам"
         description="Предлагаем вам детально изучить актуальные материалы по выбранным направлениям из нашей обновлённой базы публикаций"
       />
-      <NewsListBlock />
-      {settings && <Feedback settings={settings} />}
+      <NewsListBlock storeUrl={storeUrl} />
+      {settings && <Feedback settings={settings} storeUrl={storeUrl} />}
     </>
   );
 }

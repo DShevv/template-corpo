@@ -10,18 +10,15 @@ import NewsItem from "@/components/NewsItem/NewsItem";
 import Pagination from "@/components/Pagination/Pagination";
 import { getNews, getNewsTags } from "@/services/NewsService";
 import { NewsResponse } from "@/types/api";
-import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 import NewsListSkeleton from "@/blocks/NewsListSkeleton/NewsListSkeleton";
 import styles from "./NewsListBlock.module.scss";
 
-export default function NewsListBlock() {
+export default function NewsListBlock({ storeUrl }: { storeUrl: string }) {
   const searchParams = useSearchParams();
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [uniqueTags, setUniqueTags] = useState<string[]>(["Все"]);
-  const { storeUrl } = useRuntimeConfig();
   const [news, setNews] = useState<NewsResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
   const tagFromUrl = searchParams.get("tag");
 

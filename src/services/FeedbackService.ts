@@ -4,7 +4,7 @@ import { ApiResponse } from "@/types/api";
 
 export const sendFeedback = async (data: FeedbackT): Promise<boolean> => {
   try {
-    const apiUrl = await getApiUrl();
+    const apiUrl = getApiUrl();
     const response = await fetch(`${apiUrl}/v1/feedback`, {
       method: "POST",
       body: JSON.stringify(data),

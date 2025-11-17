@@ -3,6 +3,10 @@
 .container {
   margin-top: vw-1920(140);
 
+  &.standalone {
+    margin-top: vw-1920(72);
+  }
+
   @media (max-width: 768px) {
     margin-top: 72px;
   }

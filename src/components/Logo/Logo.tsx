@@ -5,6 +5,7 @@ import logo from "@/assets/images/Logo.png";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
+import { useEffect, useState } from "react";
 
 const Logo = ({
   className,
@@ -14,8 +15,15 @@ const Logo = ({
   image?: string | StaticImageData;
 }) => {
   const pathname = usePathname();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const isMainPage = pathname === "/";
+
+  if (!isClient) return null;
 
   if (isMainPage) {
     return (

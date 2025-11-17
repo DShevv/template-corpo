@@ -4,7 +4,7 @@
   margin-top: vw-1920(140);
   display: flex;
   gap: vw-1920(32);
-  border: 1px solid var(--accent-2);
+  border: 1px solid hsl(from var(--accent-2) h s l / 0.3);
   align-items: stretch;
   position: relative;
 

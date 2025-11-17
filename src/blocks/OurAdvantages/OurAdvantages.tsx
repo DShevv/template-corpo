@@ -7,10 +7,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AdvantageT } from "@/types/types";
 
 type OurAdvantagesProps = {
-  advantages: AdvantageT[];
+  advantages: Promise<AdvantageT[]>;
 };
 
 const OurAdvantages = ({ advantages }: OurAdvantagesProps) => {
+  console.log(advantages);
+
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const itemRefs = useRef<HTMLElement[]>([]);
 
@@ -44,14 +46,14 @@ const OurAdvantages = ({ advantages }: OurAdvantagesProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!advantages || advantages.length === 0) return null;
+  if (!advantagesData || advantagesData.length === 0) return null;
 
   return (
     <section className={styles.container}>
       <h2 className={clsx("h2", styles.title)}>Наши преимущества</h2>
 
       <div className={styles.advantages}>
-        {advantages.slice(0, 4).map((advantage, index) => (
+        {advantagesData.slice(0, 4).map((advantage, index) => (
           <div
             key={index}
             ref={(el) => setRef(el, index)}

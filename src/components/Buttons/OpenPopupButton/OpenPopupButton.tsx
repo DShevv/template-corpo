@@ -1,3 +1,4 @@
+"use client";
 import MainButton from "../MainButton/MainButton";
 import globalStore from "@/stores/global-store";
 import { observer } from "mobx-react-lite";

@@ -4,7 +4,12 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-  background-color: var(--accent-1);
+  background-color: var(--white);
+  padding-top: vw-1920(48);
+
+  @media (max-width: 768px) {
+    padding-top: 24px;
+  }
 
   :global(.wrapper) {
     margin-left: vw-1920(491);

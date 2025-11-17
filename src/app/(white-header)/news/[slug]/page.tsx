@@ -8,7 +8,9 @@ import InlineButton from "@/components/Buttons/InlineButton/InlineButton";
 import NewsBlock from "@/blocks/NewsBlock/NewsBlock";
 import { getSeoTag, getSettings } from "@/services/SettingsService";
 import { getNews, getNewsBySlug } from "@/services/NewsService";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+import { getStoreUrl } from "@/services/base";
+import { formatDate } from "@/utils/helper";
 
 export async function generateMetadata({
   params,
@@ -50,11 +52,12 @@ export default async function NewsPage({
 }) {
   const { slug } = await params;
   const news = await getNewsBySlug(slug);
-  const settings = await getSettings();
-  const otherNews = await getNews(undefined, 1, 4);
+  const settings = getSettings();
+  const otherNews = getNews(undefined, 1, 4);
+  const storeUrl = getStoreUrl();
 
   if (!news) {
-    redirect("/404");
+    notFound();
   }
 
   return (
@@ -65,12 +68,12 @@ export default async function NewsPage({
           { title: "Главная", href: "/" },
           { title: "Статьи", href: "/news" },
           {
-            title: "Прошла Международная конференция в г. Минске",
-            href: "/news/1",
+            title: news.title,
+            href: `/news/${slug}`,
           },
         ]}
-        title="Прошла Международная конференция в г. Минске"
-        date="26.06.2025"
+        title={news.title}
+        date={formatDate(news.publication_date)}
       />
       <div className={styles.wrapper}>
         <div className={styles.container}>
@@ -141,9 +144,13 @@ export default async function NewsPage({
         </div>
 
         {otherNews && (
-          <NewsBlock isArrows title="Другие новости" news={otherNews} />
+          <NewsBlock
+            title="Другие статьи"
+            news={otherNews}
+            storeUrl={storeUrl}
+          />
         )}
-        {settings && <Feedback settings={settings} />}
+        {settings && <Feedback settings={settings} storeUrl={storeUrl} />}
       </div>
     </>
   );

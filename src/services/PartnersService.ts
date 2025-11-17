@@ -4,7 +4,7 @@ import { getApiUrl } from "./base";
 
 export const getPartners = async (): Promise<PartnerT[]> => {
   try {
-    const apiUrl = await getApiUrl();
+    const apiUrl = getApiUrl();
     const response = await fetch(`${apiUrl}/v1/brands`, { next: { revalidate: 60 } });
     const data: ApiResponse<PartnerT[]> = await response.json();
 

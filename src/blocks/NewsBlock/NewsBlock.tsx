@@ -4,11 +4,9 @@ import styles from "./NewsBlock.module.scss";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import NewsItem from "@/components/NewsItem/NewsItem";
-import { useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
 import { NewsResponse } from "@/types/api";
-import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
-
 import "swiper/css";
 
 const NewsBlock = ({
@@ -16,17 +14,26 @@ const NewsBlock = ({
   title,
   isArrows = false,
   news,
+  storeUrl,
 }: {
   className?: string;
   title?: string;
   isArrows?: boolean;
-  news: NewsResponse | null;
+  news: Promise<NewsResponse | null>;
+  storeUrl: string;
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperRef>(null);
-  const { storeUrl } = useRuntimeConfig();
+  const newsData = use(news);
+  const [isClient, setIsClient] = useState(false);
 
-  if (!news || news.data.length === 0) return null;
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
+
+  if (!newsData || newsData.data.length === 0) return null;
 
   return (
     <section className={clsx(styles.container, className)}>
@@ -49,7 +56,7 @@ const NewsBlock = ({
           </div>
         ) : (
           <MainButton type="link" href="/news" className={styles.button}>
-            Все новости
+            Все статьи
           </MainButton>
         )}
       </header>
@@ -67,15 +74,17 @@ const NewsBlock = ({
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         ref={swiperRef}
       >
-        {(isArrows ? news.data : news.data.slice(0, 4)).map((item, index) => (
-          <SwiperSlide key={item.id} className={styles.slide}>
-            <NewsItem
-              item={item}
-              active={activeIndex === index}
-              storeUrl={storeUrl}
-            />
-          </SwiperSlide>
-        ))}
+        {(isArrows ? newsData.data : newsData.data.slice(0, 4)).map(
+          (item, index) => (
+            <SwiperSlide key={item.id} className={styles.slide}>
+              <NewsItem
+                item={item}
+                active={activeIndex === index}
+                storeUrl={storeUrl}
+              />
+            </SwiperSlide>
+          )
+        )}
       </Swiper>
 
       {isArrows ? (
@@ -93,7 +102,7 @@ const NewsBlock = ({
         </div>
       ) : (
         <MainButton type="link" href="/news" className={styles.button}>
-          Все новости
+          Все статьи
         </MainButton>
       )}
     </section>

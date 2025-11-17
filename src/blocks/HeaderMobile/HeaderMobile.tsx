@@ -7,19 +7,26 @@ import globalStore from "@/stores/global-store";
 import { SvgMail, SvgMenu, SvgPhone } from "@/assets/icons/svgs";
 import IconButton from "@/components/Buttons/IconButton/IconButton";
 import { ContactsT, SettingsT } from "@/types/types";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
 
 const HeaderMobile = observer(
-  ({ contacts, settings }: { contacts?: ContactsT; settings?: SettingsT }) => {
+  ({
+    contacts,
+    settings,
+    storeUrl,
+  }: {
+    contacts: Promise<ContactsT | null>;
+    settings: Promise<SettingsT | null>;
+    storeUrl: string;
+  }) => {
     const { popupStore } = globalStore;
     const { openPopup } = popupStore;
     const [isOverFirstBlock, setIsOverFirstBlock] = useState(false);
     const pathname = usePathname();
-    const { storeUrl } = useRuntimeConfig();
-
+    const contactsData = use(contacts);
+    const settingsData = use(settings);
     useEffect(() => {
       setIsOverFirstBlock(false);
 
@@ -66,23 +73,26 @@ const HeaderMobile = observer(
           [styles.headerScrolled]: isOverFirstBlock,
         })}
       >
-        <Logo className={styles.logo} image={`${storeUrl}/${settings?.logo}`} />
+        <Logo
+          className={styles.logo}
+          image={`${storeUrl}/${settingsData?.logo}`}
+        />
 
         <div className={styles.buttons}>
-          {contacts?.email && (
+          {contactsData?.email && (
             <IconButton
               icon={<SvgMail />}
               type="link"
-              href={`mailto:${contacts?.email}`}
+              href={`mailto:${contactsData?.email}`}
               aria-label="Написать на почту"
               className={styles.button}
             />
           )}
-          {contacts?.phones && contacts.phones.length > 0 && (
+          {contactsData?.phones && contactsData.phones.length > 0 && (
             <IconButton
               icon={<SvgPhone />}
               type="link"
-              href={`tel:${contacts?.phones[0]}`}
+              href={`tel:${contactsData?.phones[0]}`}
               aria-label="Позвонить"
               className={styles.button}
             />

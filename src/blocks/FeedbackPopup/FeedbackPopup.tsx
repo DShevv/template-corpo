@@ -7,8 +7,6 @@ import { Formik, Form } from "formik";
 import MainInput from "@/components/Inputs/MainInput/MainInput";
 import CommentInput from "@/components/Inputs/CommentInput/CommentInput";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
-import Checkbox from "@/components/Inputs/Checkbox/Checkbox";
-import Link from "next/link";
 import { observer } from "mobx-react-lite";
 import globalStore from "@/stores/global-store";
 import { useEffect } from "react";
@@ -61,7 +59,6 @@ const FeedbackPopup = observer(() => {
             phone: "",
             email: "",
             comment: "",
-            isAgree: false,
           }}
           validateOnChange={false}
           validateOnBlur={false}
@@ -122,14 +119,10 @@ const FeedbackPopup = observer(() => {
                 onChange={(value) => setFieldValue("comment", value)}
               />
               <div className={styles.buttons}>
-                <MainButton
-                  type="submit"
-                  className={styles.button}
-                  disabled={!values.isAgree}
-                >
+                <MainButton type="submit" className={styles.button}>
                   Отправить
                 </MainButton>
-                <Checkbox
+                {/*  <Checkbox
                   name="isAgree"
                   className={styles.checkbox}
                   checked={values.isAgree}
@@ -138,7 +131,7 @@ const FeedbackPopup = observer(() => {
                   <Link href="/privacy-policy" className={styles.link}>
                     Согласие на обработку персональных данных
                   </Link>
-                </Checkbox>
+                </Checkbox> */}
               </div>
             </Form>
           )}

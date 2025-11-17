@@ -3,11 +3,11 @@ import firstBlockImage from "@/assets/images/about.jpg";
 import styles from "./page.module.scss";
 import Feedback from "@/blocks/Feedback/Feedback";
 import AboutBlock from "@/blocks/AboutBlock/AboutBlock";
-import OurReviews from "@/blocks/OurReviews/OurReviews";
 import OurEmployees from "@/blocks/OurEmployees/OurEmployees";
 import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
-import { getReviews } from "@/services/ReviewsService";
 import { getSeoTag, getSettings } from "@/services/SettingsService";
+import { getStoreUrl } from "@/services/base";
+import { getServices } from "@/services/ServicesService";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("about");
@@ -22,9 +22,10 @@ export async function generateMetadata() {
   };
 }
 
-export default async function About() {
-  const reviews = await getReviews();
-  const settings = await getSettings();
+export default function About() {
+  const settings = getSettings();
+  const storeUrl = getStoreUrl();
+  const services = getServices();
   return (
     <>
       <FirstBlock
@@ -34,15 +35,14 @@ export default async function About() {
           { title: "О компании", href: "/about" },
         ]}
         title="О компании"
-        description="Наша компания относительно недавно вышла на рынок услуг, но уже успела зарекомендовать себя как надежный партнер."
+        description="Мы — компания Speceffektyminsk, и наша миссия заключается в том, чтобы создавать незабываемые визуальные впечатления и атмосферу настоящего «вау»-эффекта для ваших событий."
       />
       <div className={styles.wrapper}>
         <AboutBlock isHeader={false} />
         <OurEmployees />
-        <OurServicesSlider />
-        <OurReviews reviews={[...reviews, ...reviews]} />
+        <OurServicesSlider services={services} storeUrl={storeUrl} />
 
-        <Feedback settings={settings || undefined} />
+        <Feedback settings={settings || undefined} storeUrl={storeUrl} />
       </div>
     </>
   );

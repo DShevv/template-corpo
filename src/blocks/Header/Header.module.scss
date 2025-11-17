@@ -1,23 +1,25 @@
 @use "../../assets/sass/functions" as *;
 
 .container {
-  padding: vw-1920(48) 0 vw-1920(40);
-  flex: 0 0 vw-1920(352);
-  width: vw-1920(352);
-  border-right: 1px solid var(--accent-2);
+  padding: vw-1920(24) 0 vw-1920(11);
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: vw-1920(24);
-  height: 100dvh;
   position: fixed;
-  background-color: var(--white);
+  background-color: transparent;
   top: 0;
   left: 0;
   z-index: 101;
   transition:
     opacity 0.3s ease,
-    visibility 0.3s ease;
+    visibility 0.3s ease,
+    background-color 0.3s ease;
+
+  &.scrolled {
+    background-color: var(--white);
+  }
 
   @media (max-width: 768px) {
     opacity: 0;
@@ -32,88 +34,102 @@
     pointer-events: none;
   }
 
-  .logo {
-    margin: 0 vw-1920(48);
-  }
-
-  .menu {
-    margin-top: vw-1920(48);
-    list-style: none;
+  .inner {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: vw-1920(1288);
+    margin: 0 auto;
+    width: 100%;
 
-    .link {
+    .top {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: vw-1920(16);
-      padding: vw-1920(18) vw-1920(32) vw-1920(18) vw-1920(48);
+      gap: vw-1920(36);
 
-      color: var(--text);
-      text-decoration: none;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background: var(--accent-2);
-        font-weight: 700;
+      .logo {
+        width: vw-1920(178);
+        height: vw-1920(46);
       }
 
-      svg {
-        color: var(--accent-1);
-        width: vw-1920(24);
-        height: vw-1920(24);
+      .menu {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: vw-1920(32);
+
+        .link {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: vw-1920(6);
+
+          color: var(--text);
+          text-decoration: none;
+          transition: all 0.3s ease;
+
+          &:hover {
+            font-weight: 700;
+          }
+
+          svg {
+            color: var(--text);
+            transform: rotate(90deg);
+            width: vw-1920(24);
+            height: vw-1920(24);
+          }
+        }
       }
-    }
-  }
 
-  .menuItem {
-    position: relative;
-
-    &:hover {
-      .subMenu {
-        opacity: 1;
-        visibility: visible;
-      }
-    }
-
-    .subMenu {
-      position: absolute;
-      top: 0;
-      right: 0;
-      transform: translateX(100%);
-      max-width: 100%;
-      background-color: var(--white);
-      list-style: none;
-      padding: vw-1920(16);
-      display: flex;
-      flex-direction: column;
-      gap: vw-1920(12);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-
-      .link {
-        font-weight: 500;
-        font-size: vw-1920(18);
-        padding: 0;
+      .menuItem {
+        position: relative;
 
         &:hover {
-          background: none;
-          font-weight: 700;
+          .subMenu {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+
+        .subMenu {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          transform: translateY(100%);
+          width: fit-content;
+          background-color: var(--text);
+          list-style: none;
+          padding: vw-1920(16);
+          display: flex;
+          flex-direction: column;
+          gap: vw-1920(10);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          z-index: 5;
+
+          .link {
+            font-weight: 500;
+            font-size: vw-1920(18);
+            padding: 0;
+            color: var(--white);
+
+            &:hover {
+              background: none;
+              font-weight: 700;
+            }
+          }
         }
       }
     }
-  }
 
-  .bottom {
-    padding: 0 vw-1920(48);
+    .bottom {
+    }
   }
 
   .info {
     display: flex;
-    flex-direction: column;
-    gap: vw-1920(16);
-    margin-bottom: vw-1920(32);
+    align-items: center;
+    gap: vw-1920(24);
 
     .infoItem {
       display: flex;
@@ -150,7 +166,7 @@
   }
 
   .button {
-    width: 100%;
+    width: vw-1920(206);
     min-width: initial;
   }
 
@@ -160,22 +176,54 @@
     align-items: center;
     width: fit-content;
     margin: 0 auto;
-    margin-top: vw-1920(24);
 
     a {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: vw-1920(32);
-      height: vw-1920(32);
+      width: vw-1920(26);
+      height: vw-1920(26);
       border-radius: 50%;
       transition: all 0.3s ease;
 
       svg {
-        width: vw-1920(32);
-        height: vw-1920(32);
+        width: vw-1920(26);
+        height: vw-1920(26);
       }
     }
+  }
+
+  .infoItem {
+    display: flex;
+    align-items: center;
+    gap: vw-1920(8);
+    text-decoration: none;
+    color: var(--text);
+    max-width: vw-1920(296);
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .infoText {
+      display: flex;
+      flex-direction: column;
+      gap: vw-1920(4);
+
+      @media (max-width: 768px) {
+        gap: 4px;
+      }
+
+      span {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  a.infoItem:hover {
+    text-decoration: underline;
   }
 
   &.transparent {
@@ -215,6 +263,45 @@
 
     .button {
       max-width: 100%;
+    }
+  }
+
+  .swiper {
+    max-width: vw-1920(1288);
+    width: 100%;
+    margin: 0 auto;
+
+    .slide {
+      width: auto !important;
+      margin-right: vw-1920(24);
+
+      .sliderLink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: vw-1920(8);
+        text-decoration: none;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.1);
+        padding: vw-1920(11) vw-1920(24);
+        border-radius: vw-1920(32);
+        transition: all 0.3s ease;
+
+        svg {
+          width: vw-1920(24);
+          height: vw-1920(24);
+          transition: all 0.3s ease;
+        }
+
+        &:hover {
+          background: var(--accent-2);
+          color: var(--white);
+
+          svg {
+            filter: invert(1);
+          }
+        }
+      }
     }
   }
 }

@@ -6,19 +6,20 @@ import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import Image from "next/image";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
-import { useState } from "react";
+import { use, useState } from "react";
 import { PartnerT } from "@/types/types";
-import { useRuntimeConfig } from "@/utils/useRuntimeConfig";
+import { getStoreUrl } from "@/services/base";
 
 type OurPartnersProps = {
-  partners: PartnerT[];
+  partners: Promise<PartnerT[]>;
 };
 
 const OurPartners = ({ partners }: OurPartnersProps) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
-  const { storeUrl } = useRuntimeConfig();
+  const storeUrl = getStoreUrl();
+  const partnersData = use(partners);
 
-  if (!partners || partners.length === 0) return null;
+  if (!partnersData || partnersData.length === 0) return null;
 
   return (
     <section className={styles.container}>
@@ -36,7 +37,7 @@ const OurPartners = ({ partners }: OurPartnersProps) => {
         }}
         onSwiper={setSwiperInstance}
       >
-        {partners.map((partner, index) => (
+        {partnersData.map((partner, index) => (
           <SwiperSlide key={index} className={styles.slide}>
             <Image
               src={`${storeUrl}/${partner.photo_path}`}
@@ -58,7 +59,7 @@ const OurPartners = ({ partners }: OurPartnersProps) => {
 
       <div
         className={clsx(styles.navigation, {
-          [styles.isHiddenOnDesktop]: partners.length <= 2,
+          [styles.isHiddenOnDesktop]: partnersData?.length <= 2,
         })}
       >
         <ArrowButton

@@ -2,7 +2,6 @@ import FirstBlock from "@/blocks/FirstBlock/FirstBlock";
 import firstBlockImage from "@/assets/images/contacts.jpg";
 import ContactsBlock from "@/blocks/ContactsBlock/ContactsBlock";
 import styles from "./page.module.scss";
-import OtherCities from "@/blocks/OtherCities/OtherCities";
 import Feedback from "@/blocks/Feedback/Feedback";
 import { getContacts, getSeoTag } from "@/services/SettingsService";
 import { getSettings } from "@/services/SettingsService";
@@ -21,12 +20,10 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Contacts() {
-  const [contacts, settings, storageUrl] = await Promise.all([
-    getContacts(),
-    getSettings(),
-    getStoreUrl(),
-  ]);
+export default function Contacts() {
+  const contacts = getContacts();
+  const settings = getSettings();
+  const storeUrl = getStoreUrl();
 
   return (
     <>
@@ -44,10 +41,11 @@ export default async function Contacts() {
           isStandalone
           className={styles.contacts}
           contacts={contacts || undefined}
-          logo={`${storageUrl}/${settings?.logo}`}
+          settings={settings || undefined}
+          storeUrl={storeUrl}
         />
-        <OtherCities />
-        <Feedback settings={settings || undefined} />
+
+        <Feedback settings={settings || undefined} storeUrl={storeUrl} />
       </div>
     </>
   );

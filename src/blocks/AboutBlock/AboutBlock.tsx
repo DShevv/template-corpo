@@ -1,13 +1,17 @@
 import clsx from "clsx";
 import styles from "./AboutBlock.module.scss";
-import aboutImage from "@/assets/images/about.png";
 import Image from "next/image";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
-import { advantages, advantages as advantagesData } from "@/data/dumpy-data";
+import { getStoreUrl } from "@/services/base";
+import { getSettings } from "@/services/SettingsService";
+import { advantages } from "@/data/dumpy-data";
 
-const AboutBlock = ({ isHeader = true }: { isHeader?: boolean }) => {
+const AboutBlock = async ({ isHeader = true }: { isHeader?: boolean }) => {
+  const [settings] = await Promise.all([getSettings()]);
+  const storeUrl = getStoreUrl();
+
   return (
-    <section className={styles.container}>
+    <section className={clsx(styles.container)}>
       <div className={styles.caption}>
         <div className={styles.text}>
           {isHeader && <h2 className={clsx("h2", styles.title)}>О компании</h2>}
@@ -42,7 +46,7 @@ const AboutBlock = ({ isHeader = true }: { isHeader?: boolean }) => {
             {advantages.slice(0, 3).map((advantage, index) => (
               <div key={index} className={clsx(styles.advantage)}>
                 <Image
-                  src={advantagesData[index].image}
+                  src={advantage.image}
                   alt={advantage.title}
                   className={styles.image}
                   width={190}
@@ -56,7 +60,13 @@ const AboutBlock = ({ isHeader = true }: { isHeader?: boolean }) => {
           </div>
         )}
       </div>
-      <Image src={aboutImage} alt="о компании" className={styles.image} />
+      <Image
+        src={`${storeUrl}/${settings?.about?.image}`}
+        alt="о компании"
+        className={styles.image}
+        width={1920}
+        height={1080}
+      />
     </section>
   );
 };

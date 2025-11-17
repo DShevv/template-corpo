@@ -4,9 +4,9 @@ import Logo from "@/components/Logo/Logo";
 import Link from "next/link";
 import { SvgInstagram, SvgTelegram, SvgWhatsApp } from "@/assets/icons/svgs";
 import { headers } from "next/headers";
-import { ContactsT, SettingsT } from "@/types/types";
-import { services } from "@/data/dumpy-data";
+import { ContactsT, ServiceT, SettingsT } from "@/types/types";
 import { getStoreUrl } from "@/services/base";
+import { getServices } from "@/services/ServicesService";
 
 const FooterClient = ({
   host,
@@ -14,12 +14,14 @@ const FooterClient = ({
   settings,
   contacts,
   storeUrl,
+  services,
 }: {
   host: string;
   className?: string;
-  settings?: SettingsT;
-  contacts?: ContactsT;
+  settings: SettingsT | null;
+  contacts: ContactsT | null;
   storeUrl?: string;
+  services: ServiceT[] | null;
 }) => {
   return (
     <footer className={clsx(styles.footer, className)}>
@@ -64,7 +66,7 @@ const FooterClient = ({
             <div className={styles.col}>
               <div className={clsx("body-2", styles.title)}>Услуги</div>
               <ul className={styles.list}>
-                {services.map((service, index) => (
+                {services?.map((service, index) => (
                   <li className={styles.item} key={index}>
                     <Link
                       href={`/services/${service.slug}`}
@@ -163,21 +165,27 @@ async function Footer({
   settings,
 }: {
   className?: string;
-  contacts?: ContactsT;
-  settings?: SettingsT;
+  contacts: Promise<ContactsT | null>;
+  settings: Promise<SettingsT | null>;
 }) {
-  const [headersList, storeUrl] = await Promise.all([headers(), getStoreUrl()]);
+  const [headersList, storeUrl, services] = await Promise.all([
+    headers(),
+    getStoreUrl(),
+    getServices(),
+  ]);
   const host = headersList.get("host") || "site.com";
 
   const domain = host.split(":")[0];
+  const [contactsData, settingsData] = await Promise.all([contacts, settings]);
 
   return (
     <FooterClient
       host={domain}
       className={className}
-      contacts={contacts}
-      settings={settings}
+      contacts={contactsData}
+      settings={settingsData}
       storeUrl={storeUrl}
+      services={services}
     />
   );
 }

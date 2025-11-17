@@ -10,6 +10,7 @@ import {
   getSeoTag,
   getSettings,
 } from "@/services/SettingsService";
+import { getStoreUrl } from "@/services/base";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("404");
@@ -24,21 +25,27 @@ export async function generateMetadata() {
   };
 }
 
-export default async function NotFound() {
-  const settings = await getSettings();
-  const contacts = await getContacts();
+export default function NotFound() {
+  const settings = getSettings();
+  const contacts = getContacts();
+  const storeUrl = getStoreUrl();
   return (
     <>
-      <HeaderMobile />
+      <HeaderMobile
+        contacts={contacts}
+        settings={settings}
+        storeUrl={storeUrl}
+      />
 
       <main>
-        <NotFoundBlock
-          settings={settings || null}
-          contacts={contacts || null}
-        />
+        <NotFoundBlock />
 
         <div className={styles.wrapper}>
-          <Footer className={styles.footer} settings={settings || undefined} />
+          <Footer
+            className={styles.footer}
+            settings={settings}
+            contacts={contacts}
+          />
         </div>
       </main>
       <ImageViewer />

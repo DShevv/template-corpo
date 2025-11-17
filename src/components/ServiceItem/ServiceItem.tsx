@@ -2,16 +2,22 @@ import Image from "next/image";
 import styles from "./ServiceItem.module.scss";
 import Link from "next/link";
 import clsx from "clsx";
-import { ServiceItemT } from "@/types/types";
+import { ServiceT } from "@/types/types";
 import ArrowButton from "../Buttons/ArrowButton/ArrowButton";
 
 interface ServiceItemProps {
   className?: string;
-  item: ServiceItemT;
+  item: ServiceT;
   disableArrow?: boolean;
+  storeUrl: string;
 }
 
-const ServiceItem = ({ className, item, disableArrow }: ServiceItemProps) => {
+const ServiceItem = ({
+  className,
+  item,
+  disableArrow,
+  storeUrl,
+}: ServiceItemProps) => {
   return (
     <Link
       href={`/services/${item.slug}`}
@@ -23,7 +29,12 @@ const ServiceItem = ({ className, item, disableArrow }: ServiceItemProps) => {
           <ArrowButton className={styles.button} aria-label="Подробнее" />
         )}
 
-        <Image src={item.image} alt={item.title} width={304} height={106} />
+        <Image
+          src={`${storeUrl}/${item.photo_path}`}
+          alt={item.title}
+          width={304}
+          height={106}
+        />
       </div>
     </Link>
   );

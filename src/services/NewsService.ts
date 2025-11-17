@@ -5,7 +5,7 @@ import { getApiUrl } from "./base";
 
 export const getNews = async (tag?: string, page?: number, per_page = 8): Promise<NewsResponse | null> => {
   try {
-    const apiUrl = await getApiUrl();
+    const apiUrl = getApiUrl();
     const params = new URLSearchParams();
     if (tag) params.set("tag", tag);
     if (page) params.set("page", page.toString());
@@ -27,7 +27,7 @@ export const getNews = async (tag?: string, page?: number, per_page = 8): Promis
 
 export const getNewsTags = async (): Promise<string[] | null> => {
   try {
-    const apiUrl = await getApiUrl();
+    const apiUrl = getApiUrl();
     const response = await fetch(`${apiUrl}/v1/news/tags`, { next: { revalidate: 60 } });
     const data: ApiResponse<string[]> = await response.json();
 
@@ -44,7 +44,7 @@ export const getNewsTags = async (): Promise<string[] | null> => {
 
 export const getNewsBySlug = async (slug: string): Promise<NewsItemT | null> => {
   try {
-    const apiUrl = await getApiUrl();
+    const apiUrl = getApiUrl();
     const response = await fetch(`${apiUrl}/v1/news/slug/${slug}`, { next: { revalidate: 60 } });
     const data: ApiResponse<NewsItemT> = await response.json();
 

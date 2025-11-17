@@ -3,9 +3,7 @@
 .container {
   margin-top: vw-1920(140);
   position: relative;
-  width: calc(100% + vw-1920(280));
-  margin-left: vw-1920(-140);
-  padding-left: vw-1920(140);
+  width: 100%;
   margin-bottom: vw-1920(-84);
 
   @media (max-width: 768px) {
@@ -26,8 +24,10 @@
   }
 
   .swiper {
-    width: calc(100% + vw-1920(140));
-    margin-left: vw-1920(-140);
+    width: 100svw;
+    margin-left: calc((100dvw - vw-1920(1288)) / 2 * -1);
+    padding-left: calc((100dvw - vw-1920(1288)) / 2);
+    padding-right: calc((100dvw - vw-1920(1288)) / 2);
     padding-bottom: vw-1920(84);
     height: 100%;
     position: relative;
@@ -92,7 +92,7 @@
           8px 32px 20px 0 rgba(11, 12, 25, 0.01),
           14px 57px 24px 0 rgba(11, 12, 25, 0.01),
           22px 89px 26px 0 rgba(11, 12, 25, 0);
-        background: var(--white);
+        background: var(--text);
         border: 1px solid var(--accent-2);
         opacity: 0;
         transform: translate(-50%, 100%);
@@ -105,7 +105,7 @@
         }
 
         .itemTitle {
-          color: var(--text);
+          color: var(--white);
           margin-bottom: vw-1920(12);
 
           @media (max-width: 768px) {
@@ -116,7 +116,7 @@
         }
 
         .description {
-          color: var(--text);
+          color: var(--white);
           opacity: 0.7;
           font-weight: 300;
           font-size: 14px;
@@ -129,7 +129,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: calc(100% - vw-1920(160));
+    width: vw-1920(1448);
     position: absolute;
     top: vw-1920(348);
     left: 50%;

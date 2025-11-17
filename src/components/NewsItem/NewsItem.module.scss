@@ -28,7 +28,7 @@
 
       .tag {
         background: var(--accent-2);
-        color: var(--text);
+        color: var(--white);
       }
     }
   }
@@ -37,12 +37,17 @@
     .image {
       &::after {
         opacity: 0.8;
-        background-color: var(--text);
+        background-color: var(--white);
       }
     }
 
     .tag {
       background: var(--accent-2);
+      color: var(--white);
+    }
+
+    .title,
+    .date {
       color: var(--text);
     }
   }
@@ -85,6 +90,7 @@
     padding: vw-1920(8) vw-1920(18);
     z-index: 2;
     transition: all 0.3s ease-in-out;
+    color: var(--text);
 
     @media (max-width: 768px) {
       padding: 8px 18px;
@@ -92,7 +98,7 @@
   }
 
   .date {
-    color: var(--white);
+    color: var(--text);
     margin-bottom: vw-1920(8);
     position: relative;
     z-index: 2;
@@ -103,7 +109,7 @@
   }
 
   .title {
-    color: var(--white);
+    color: var(--text);
     position: relative;
     z-index: 2;
   }

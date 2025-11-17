@@ -1,13 +1,17 @@
 @use "../../assets/sass/functions" as *;
 
 .footer {
+  max-width: vw-1920(1288);
+  margin: 0 auto;
   margin-top: vw-1920(140);
-  padding: vw-1920(48) vw-1920(140) vw-1920(32) vw-1920(492);
-  background: var(--text);
+  width: 100%;
+  background: var(--white);
 
   @media (max-width: 768px) {
     margin-top: 72px;
-    padding: 32px 20px 32px;
+    max-width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   .top {
@@ -73,7 +77,7 @@
         }
 
         .title {
-          color: var(--white);
+          color: var(--text);
           opacity: 0.6;
         }
 
@@ -89,7 +93,7 @@
 
           .item {
             .link {
-              color: var(--white);
+              color: var(--text);
               text-decoration: none;
 
               &:hover {
@@ -106,6 +110,7 @@
       flex-wrap: wrap;
       gap: vw-1920(20);
       flex: 0 0 vw-1920(532);
+      height: fit-content;
 
       @media (max-width: 768px) {
         flex: 0 0 100%;
@@ -139,12 +144,12 @@
         }
 
         .itemTitle {
-          color: var(--white);
+          color: var(--text);
           opacity: 0.6;
         }
 
         .itemDescription {
-          color: var(--white);
+          color: var(--text);
           text-decoration: none;
           display: flex;
           flex-direction: column;
@@ -206,12 +211,12 @@
     }
 
     .copyright {
-      color: var(--white);
+      color: var(--text);
       opacity: 0.6;
     }
 
     .policy {
-      color: var(--white);
+      color: var(--text);
       opacity: 0.6;
 
       text-decoration: none;
@@ -222,7 +227,7 @@
     }
 
     .dev {
-      color: var(--white);
+      color: var(--text);
 
       span {
         opacity: 0.6;
@@ -231,7 +236,7 @@
       a {
         text-decoration: underline;
         text-decoration-skip-ink: none;
-        color: var(--white);
+        color: var(--text);
       }
     }
   }

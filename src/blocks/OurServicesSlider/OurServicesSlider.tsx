@@ -6,13 +6,32 @@ import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/grid";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
-import { useState } from "react";
-import { services } from "@/data/dumpy-data";
+import { use, useEffect, useState } from "react";
 import ServiceItem from "@/components/ServiceItem/ServiceItem";
 import { Grid } from "swiper/modules";
+import { ServiceT } from "@/types/types";
 
-const OurServicesSlider = ({ title }: { title?: string }) => {
+const OurServicesSlider = ({
+  title,
+  services,
+  storeUrl,
+}: {
+  title?: string;
+  services: Promise<ServiceT[] | null>;
+  storeUrl: string;
+}) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const [isClient, setIsClient] = useState(false);
+  const servicesData = use(services);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!servicesData) return null;
+
+  if (!isClient) return null;
+
   return (
     <section className={styles.container}>
       <div className={styles.header}>
@@ -20,7 +39,7 @@ const OurServicesSlider = ({ title }: { title?: string }) => {
           {title || "Услуги компании"}
         </h2>
 
-        {services.length > 4 && (
+        {servicesData?.length > 4 && (
           <div className={styles.navigation}>
             <ArrowButton
               className={styles.prev}
@@ -42,7 +61,7 @@ const OurServicesSlider = ({ title }: { title?: string }) => {
         spaceBetween={24}
         breakpoints={{
           768: {
-            slidesPerView: services.length < 3 ? 2 : 4,
+            slidesPerView: "auto",
             spaceBetween: 24,
             grid: {
               rows: 1,
@@ -56,17 +75,18 @@ const OurServicesSlider = ({ title }: { title?: string }) => {
           fill: "row",
         }}
       >
-        {services.map((service, index) => (
+        {servicesData?.map((service, index) => (
           <SwiperSlide key={index} className={styles.slide}>
             <ServiceItem
               item={service}
               className={styles.item}
-              disableArrow={services.length > 4}
+              disableArrow={servicesData?.length > 4}
+              storeUrl={storeUrl}
             />
           </SwiperSlide>
         ))}
       </Swiper>
-      {services.length > 4 && (
+      {servicesData?.length && servicesData?.length > 4 && (
         <div className={styles.navigation}>
           <ArrowButton
             className={styles.prev}

@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  color: var(--white);
+  color: var(--text);
   border: none;
   outline: none;
   text-decoration: none;
@@ -34,7 +34,7 @@
   &:disabled,
   &.disabled {
     background: var(--gray);
-    color: var(--text);
+    color: var(--white);
     cursor: default;
 
     span {

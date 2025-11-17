@@ -25,8 +25,8 @@
     min-height: vw-1920(120);
     padding: vw-1920(14) vw-1920(16);
     border: 1px solid transparent;
-    color: var(--text);
-    background: var(--white);
+    color: var(--white);
+    background: var(--text);
     border: 1px solid rgba(37, 51, 140, 0.2);
     border-radius: 0;
     transition: all 0.2s ease;
@@ -40,7 +40,7 @@
 
     &::placeholder {
       opacity: 0.4;
-      color: var(--text);
+      color: var(--white);
     }
 
     &.error {
