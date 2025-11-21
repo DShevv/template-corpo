@@ -1,5 +1,4 @@
 import FirstBlock from "@/blocks/FirstBlock/FirstBlock";
-import firstBlockImage from "@/assets/images/news.jpg";
 import styles from "./page.module.scss";
 import Feedback from "@/blocks/Feedback/Feedback";
 import newsItemImage from "@/assets/images/news-item.jpg";
@@ -63,7 +62,7 @@ export default async function NewsPage({
   return (
     <>
       <FirstBlock
-        image={firstBlockImage}
+        image={`${storeUrl}/${news.photo_path}`}
         items={[
           { title: "Главная", href: "/" },
           { title: "Статьи", href: "/news" },

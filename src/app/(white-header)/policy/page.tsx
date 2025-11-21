@@ -22,6 +22,7 @@ export default async function Policy() {
   return (
     <>
       <FirstBlock
+        page="policy"
         image={firstBlockImage}
         items={[
           { title: "Главная", href: "/" },

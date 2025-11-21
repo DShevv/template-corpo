@@ -6,7 +6,6 @@ import { getContacts } from "@/services/SettingsService";
 import { getSettings } from "@/services/SettingsService";
 import dynamic from "next/dynamic";
 import { getStoreUrl } from "@/services/base";
-import { getServices } from "@/services/ServicesService";
 
 const FloatingCallButton = dynamic(
   () => import("@/components/FloatingCallButton/FloatingCallButton")
@@ -20,7 +19,6 @@ export default function Layout({
   const contacts = getContacts();
   const settings = getSettings();
   const storeUrl = getStoreUrl();
-  const services = getServices();
   return (
     <>
       <HeaderMobile
@@ -31,9 +29,9 @@ export default function Layout({
 
       <main>{children}</main>
       <ImageViewer />
-      <FeedbackPopup />
+      <FeedbackPopup settings={settings} storeUrl={storeUrl} />
       <FloatingCallButton />
-      <MobileMenu contacts={contacts || undefined} services={services} />
+      <MobileMenu contacts={contacts || undefined} />
     </>
   );
 }

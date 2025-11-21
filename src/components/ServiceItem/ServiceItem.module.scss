@@ -8,10 +8,10 @@
   transition: all 0.3s ease-in-out;
   border: 1px solid hsl(from var(--accent-2) h s l / 0.3);
   justify-content: space-between;
-  height: vw-1920(260);
+  min-height: vw-1920(260);
 
   @media (max-width: 768px) {
-    height: 200px;
+    min-height: 200px;
     width: 100%;
   }
 
@@ -23,7 +23,7 @@
     color: var(--text);
     padding: vw-1920(20);
     padding-bottom: 0;
-    margin-bottom: vw-1920(20);
+    margin-bottom: vw-1920(12);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -33,6 +33,17 @@
     @media (max-width: 768px) {
       padding: 16px;
       padding-bottom: 0;
+      margin-bottom: 8px;
+    }
+  }
+
+  .subtitle {
+    color: var(--text);
+    padding: 0 vw-1920(20);
+    margin-bottom: vw-1920(34);
+
+    @media (max-width: 768px) {
+      padding: 0 16px;
       margin-bottom: 16px;
     }
   }

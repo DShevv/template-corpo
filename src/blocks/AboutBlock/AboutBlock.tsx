@@ -4,38 +4,24 @@ import Image from "next/image";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
 import { getStoreUrl } from "@/services/base";
 import { getSettings } from "@/services/SettingsService";
-import { advantages } from "@/data/dumpy-data";
+import { faIconsMap } from "@/assets/fa-icons";
+import { getAdvantages } from "@/services/AdvantagesService";
 
 const AboutBlock = async ({ isHeader = true }: { isHeader?: boolean }) => {
   const [settings] = await Promise.all([getSettings()]);
+  const advantages = await getAdvantages();
   const storeUrl = getStoreUrl();
+
+  if (!advantages || advantages.length === 0) return null;
 
   return (
     <section className={clsx(styles.container)}>
       <div className={styles.caption}>
         <div className={styles.text}>
           {isHeader && <h2 className={clsx("h2", styles.title)}>О компании</h2>}
-          <p>
-            Наш сплочённый коллектив специалистов с профильным образованием
-            успешно работает в сфере строительства более 8 лет. За это время
-            мы реализовали десятки частных домов — примеры объектов и отзывы
-            довольных клиентов доступны для ознакомления в портфолио на сайте.
-          </p>
-          <p>
-            Сегодня мы трансформируем накопленный опыт в продуманные проекты,
-            где каждая деталь — это результат профессиональной экспертизы и
-            внимания к потребностям заказчика.
-          </p>
-          <p>
-            Сегодня мы трансформируем накопленный опыт в продуманные проекты,
-            где каждая деталь — это результат профессиональной экспертизы и
-            внимания к потребностям заказчика.
-          </p>
-          <p>
-            Сегодня мы трансформируем накопленный опыт в продуманные проекты,
-            где каждая деталь — это результат профессиональной экспертизы и
-            внимания к потребностям заказчика.
-          </p>
+          <div
+            dangerouslySetInnerHTML={{ __html: settings?.about?.text || "" }}
+          />
         </div>
         {isHeader ? (
           <MainButton type="link" href="/about" className={styles.button}>
@@ -43,20 +29,21 @@ const AboutBlock = async ({ isHeader = true }: { isHeader?: boolean }) => {
           </MainButton>
         ) : (
           <div className={styles.blocks}>
-            {advantages.slice(0, 3).map((advantage, index) => (
-              <div key={index} className={clsx(styles.advantage)}>
-                <Image
-                  src={advantage.image}
-                  alt={advantage.title}
-                  className={styles.image}
-                  width={190}
-                  height={190}
-                />
-                <div className={clsx("h7", styles.title)}>
-                  {advantage.title}
+            {advantages.slice(0, 3).map((advantage, index) => {
+              const Icon =
+                faIconsMap[
+                  advantage.icon.replace("fas ", "") as keyof typeof faIconsMap
+                ];
+
+              return (
+                <div key={index} className={clsx(styles.advantage)}>
+                  <Icon className={styles.image} />
+                  <div className={clsx("h7", styles.title)}>
+                    {advantage.title}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

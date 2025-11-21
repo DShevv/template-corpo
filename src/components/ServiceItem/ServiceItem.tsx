@@ -10,6 +10,7 @@ interface ServiceItemProps {
   item: ServiceT;
   disableArrow?: boolean;
   storeUrl: string;
+  category?: string;
 }
 
 const ServiceItem = ({
@@ -17,24 +18,25 @@ const ServiceItem = ({
   item,
   disableArrow,
   storeUrl,
+  category,
 }: ServiceItemProps) => {
+  const image =
+    typeof item.photo_path === "string"
+      ? `${storeUrl}/${item.photo_path}`
+      : item.photo_path.src;
   return (
     <Link
-      href={`/services/${item.slug}`}
+      href={`/services/${category ? `${category}/` : ""}${item.slug}`}
       className={clsx(styles.container, className)}
     >
       <div className={clsx("h6", styles.title)}>{item.title}</div>
+      <div className={clsx("body-3", styles.subtitle)}>{item.subtitle}</div>
       <div className={styles.image}>
         {!disableArrow && (
           <ArrowButton className={styles.button} aria-label="Подробнее" />
         )}
 
-        <Image
-          src={`${storeUrl}/${item.photo_path}`}
-          alt={item.title}
-          width={304}
-          height={106}
-        />
+        <Image src={image} alt={item.title} width={304} height={106} />
       </div>
     </Link>
   );

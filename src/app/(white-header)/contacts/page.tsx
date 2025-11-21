@@ -28,6 +28,7 @@ export default function Contacts() {
   return (
     <>
       <FirstBlock
+        page="contacts"
         image={firstBlockImage}
         items={[
           { title: "Главная", href: "/" },

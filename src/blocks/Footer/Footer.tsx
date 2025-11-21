@@ -45,7 +45,7 @@ const FooterClient = ({
                 </li>
                 <li className={styles.item}>
                   <Link href="/about" className={clsx("body-3", styles.link)}>
-                    О компании
+                    О компании
                   </Link>
                 </li>
                 <li className={styles.item}>

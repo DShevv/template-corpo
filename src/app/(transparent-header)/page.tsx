@@ -47,7 +47,7 @@ export default function Home() {
         contacts={contacts}
         settings={settings}
         storeUrl={storeUrl}
-        services={services || []}
+        isVideo={true}
       />
 
       <div className={styles.wrapper}>
@@ -57,6 +57,7 @@ export default function Home() {
               title="Какие спецэффекты мы создаём"
               services={services || []}
               storeUrl={storeUrl}
+              category="special-effects"
             />
           </Suspense>
           <Suspense fallback={<div>Loading...</div>}>

@@ -18,21 +18,14 @@ import {
 import Link from "next/link";
 import { AnimatePresence, motion as m } from "motion/react";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
-import { ContactsT, ServiceT } from "@/types/types";
+import { ContactsT } from "@/types/types";
 
 const MobileMenu = observer(
-  ({
-    contacts,
-    services,
-  }: {
-    contacts: Promise<ContactsT | null>;
-    services: Promise<ServiceT[] | null>;
-  }) => {
+  ({ contacts }: { contacts: Promise<ContactsT | null> }) => {
     const { popupStore } = globalStore;
     const { menu, closePopup, openPopup } = popupStore;
     const [isOpen, setIsOpen] = useState(false);
     const contactsData = use(contacts);
-    const servicesData = use(services);
     useEffect(() => {
       if (menu) {
         const scrollPosition = window.scrollY;
@@ -106,17 +99,24 @@ const MobileMenu = observer(
                     transition={{ duration: 0.3 }}
                     className={styles.subMenu}
                   >
-                    {servicesData?.map((service, index) => (
-                      <li key={index}>
-                        <Link
-                          className={clsx(styles.subLink, "body-5")}
-                          href={`/services/${service.slug}`}
-                          onClick={() => closePopup("menu")}
-                        >
-                          {service.title}
-                        </Link>
-                      </li>
-                    ))}
+                    <li>
+                      <Link
+                        className={clsx(styles.subLink, "body-5")}
+                        href="/services/special-effects"
+                        onClick={() => closePopup("menu")}
+                      >
+                        Спецэффекты
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className={clsx(styles.subLink, "body-5")}
+                        href="/services/events"
+                        onClick={() => closePopup("menu")}
+                      >
+                        Мероприятия
+                      </Link>
+                    </li>
                   </m.ul>
                 )}
               </AnimatePresence>

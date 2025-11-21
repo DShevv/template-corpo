@@ -13,6 +13,7 @@ export default function News() {
     <>
       <CanonicalLink href="/news" />
       <FirstBlock
+        page="news"
         image={firstBlockImage}
         items={[
           { title: "Главная", href: "/" },

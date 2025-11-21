@@ -15,6 +15,7 @@ export type PartnerT = {
 };
 
 export type AdvantageT = {
+  icon: string;
   title: string;
   description: string;
   image: string | StaticImageData;
@@ -58,7 +59,41 @@ export type SettingsT = {
   about: {
     text: string;
     image: string | StaticImageData;
+    content_blocks: (TextBlockT | ImageTextBlockT | FeaturesImagesBlockT)[] | null;
   };
+}
+
+export type TextBlockT = {
+  type: 'text';
+  content: {
+    text: string;
+  }
+}
+
+export type ImageTextBlockT = {
+  type: 'image_text';
+  content: {
+    text: string;
+    image_path: string
+    image_position: 'left' | 'right';
+  }
+}
+
+export type ImageBlockT = {
+  type: 'image';
+  content: {
+    image_path: string
+  }
+}
+
+export type FeaturesImagesBlockT = {
+  type: 'feature_section';
+  content: {
+    title: string;
+    text_primary: string;
+    text_secondary: string;
+    image_path: string;
+  }
 }
 
 export type ContactsT = {
@@ -107,7 +142,8 @@ export type ServiceT = {
   title: string;
   subtitle: string;
   slug: string;
-  photo_path: string;
+  icon_path: string;
+  photo_path: string | StaticImageData;
   blocks: (TextImageBlockT | TextGridBlockT | FeaturesImages | TextT | ImageT)[] | null;
 };
 
@@ -193,4 +229,32 @@ export type BannerT = {
   is_active: boolean;
   created_at: string;
   updated_at: string;
+};
+
+export type ContentPageT = {
+  id: number;
+  title: string;
+  slug: string;
+  fields: {
+    image: {
+      alt: string | null;
+      path: string;
+      type: 'image';
+      title: string | null;
+      caption: string | null;
+    };
+    subtitle: {
+      html: string;
+      type: 'text';
+    };
+  };
+};
+
+export type EmployeeT = {
+  id: number;
+  full_name: string;
+  photo_path: string | StaticImageData;
+  position: string;
+  phone: string;
+  email: string;
 };

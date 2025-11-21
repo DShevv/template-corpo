@@ -4,7 +4,7 @@ import MainButton from "@/components/Buttons/MainButton/MainButton";
 import Image, { StaticImageData } from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import heroImage from "@/assets/images/hero.png";
-import { ContactsT, ServiceT, SettingsT } from "@/types/types";
+import { ContactsT, SettingsT } from "@/types/types";
 import OpenPopupButton from "@/components/Buttons/OpenPopupButton/OpenPopupButton";
 import { getBanners } from "@/services/BannersService";
 import { getStoreUrl } from "@/services/base";
@@ -15,6 +15,7 @@ const Hero = async ({
   title,
   description,
   popup,
+  isVideo = false,
 }: {
   items?: { title: string; href: string }[];
   image?: StaticImageData | string;
@@ -24,10 +25,13 @@ const Hero = async ({
   settings: Promise<SettingsT | null>;
   popup?: string;
   storeUrl: string;
-  services: Promise<ServiceT[] | null>;
+  isVideo: boolean;
 }) => {
   const banners = await getBanners();
   const storeUrl = getStoreUrl();
+
+  const imageUrl = image || `${storeUrl}/${banners?.[0]?.photo_path}`;
+
   return (
     <div
       data-first-block
@@ -36,16 +40,26 @@ const Hero = async ({
       <div className="wrapper">
         <section className={styles.container}>
           <div className={styles.image}>
-            <Image
-              src={
-                image || banners?.[0]?.photo_path
-                  ? `${storeUrl}/${banners?.[0]?.photo_path}`
-                  : heroImage
-              }
-              alt="hero"
-              width={1920}
-              height={1080}
-            />
+            {isVideo ? (
+              <video
+                poster={typeof imageUrl === "string" ? imageUrl : imageUrl.src}
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls={false}
+                className={styles.bgVideo}
+              >
+                <source src={"/videos/bg-video.mp4"} type="video/mp4" />
+              </video>
+            ) : (
+              <Image
+                src={imageUrl || heroImage}
+                alt="hero"
+                width={1920}
+                height={1080}
+              />
+            )}
           </div>
 
           <div className={styles.inner}>
@@ -58,7 +72,7 @@ const Hero = async ({
             </h1>
             <p className={clsx("body-1", styles.description)}>
               {description ||
-                banners?.[0]?.description ||
+                banners?.[0]?.subtitle ||
                 "Мы специализируемся в 11 отраслях в более чем 55 странах и регионах, предлагая инновационные решения для самых сложных задач наших клиентов."}
             </p>
             {!items && (

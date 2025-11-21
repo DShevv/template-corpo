@@ -14,3 +14,7 @@
     height: fit-content;
   }
 }
+
+:global(.white):has(.wrapper) {
+  overflow-x: hidden;
+}

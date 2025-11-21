@@ -10,9 +10,9 @@ import {
   SeoScriptsHead,
 } from "@/components/SeoScripts/SeoScripts";
 import { getContacts } from "@/services/SettingsService";
-import { getServices } from "@/services/ServicesService";
 import Header from "@/blocks/Header/Header";
 import { DynamicSettings } from "@/components/DynamicSettings/DynamicSettings";
+import { getServicesTwo } from "@/services/ServicesService";
 
 const onest = Onest({
   variable: "--font-family",
@@ -37,7 +37,7 @@ export default function RootLayout({
   const contacts = getContacts();
   const settings = getSettings();
   const storeUrl = getStoreUrl();
-  const services = getServices();
+  const services = getServicesTwo();
   return (
     <html lang="ru">
       <head>

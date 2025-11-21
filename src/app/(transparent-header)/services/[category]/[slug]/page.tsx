@@ -3,7 +3,6 @@ import Feedback from "@/blocks/Feedback/Feedback";
 import OurAdvantages from "@/blocks/OurAdvantages/OurAdvantages";
 import OurEmployees from "@/blocks/OurEmployees/OurEmployees";
 import OurPartners from "@/blocks/OurPartners/OurPartners";
-import ServiceInfoBlock from "@/blocks/ServiceInfoBlock/ServiceInfoBlock";
 import Footer from "@/blocks/Footer/Footer";
 import Hero from "@/blocks/Hero/Hero";
 import Header from "@/blocks/Header/Header";
@@ -17,9 +16,24 @@ import {
 } from "@/services/SettingsService";
 import { getGallery } from "@/services/GalleryService";
 import { getStoreUrl } from "@/services/base";
-import { getServiceBySlug, getServices } from "@/services/ServicesService";
+import {
+  getServiceBySlug,
+  getServiceBySlugTwo,
+  getServices,
+  getServicesTwo,
+} from "@/services/ServicesService";
 import { notFound } from "next/navigation";
 import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
+import { getEmployees } from "@/services/EmployeesService";
+import TextBlock from "@/blocks/TextBlock/TextBlock";
+import ImageTextBlock from "@/blocks/ImageTextBlock/ImageTextBlock";
+import {
+  ImageBlockT,
+  ImageTextBlockT,
+  ServiceT,
+  TextBlockT,
+} from "@/types/types";
+import ImageBlock from "@/blocks/ImageBlock/ImageBlock";
 
 export async function generateMetadata({
   params,
@@ -47,18 +61,22 @@ export async function generateMetadata({
 export default async function ServicePage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; category: string }>;
 }) {
-  const { slug } = await params;
+  const { slug, category } = await params;
   const advantages = getAdvantages();
   const partners = getPartners();
   const settings = getSettings();
   const contacts = getContacts();
   const gallery = getGallery();
   const storeUrl = getStoreUrl();
-  const services = getServices();
-
-  const servicesData = await getServiceBySlug({ slug });
+  const services = category === "events" ? getServicesTwo() : getServices();
+  const employees = getEmployees();
+  const servicesData =
+    category === "events"
+      ? await getServiceBySlugTwo({ slug })
+      : await getServiceBySlug({ slug });
+  const servicesTwo = getServicesTwo();
 
   if (!servicesData) {
     notFound();
@@ -82,7 +100,7 @@ export default async function ServicePage({
         description={servicesData.subtitle || ""}
         popup={"feedback"}
         storeUrl={storeUrl}
-        services={services}
+        isVideo={false}
       />
 
       <div className={styles.wrapper}>
@@ -90,12 +108,13 @@ export default async function ServicePage({
           contacts={contacts || undefined}
           settings={settings || undefined}
           storeUrl={storeUrl}
-          services={services}
+          services={servicesTwo}
         />
         <div className="wrapper">
-          <ServiceInfoBlock />
+          <ServiceContent servicesData={servicesData} />
+          {/* <ServiceInfoBlock /> */}
           <OurAdvantages advantages={advantages} />
-          <OurEmployees />
+          <OurEmployees employees={employees} storeUrl={storeUrl} />
           <OurPartners partners={partners} />
           <GalleryBlock gallery={gallery} storeUrl={storeUrl} />
 
@@ -103,6 +122,7 @@ export default async function ServicePage({
             title="Другие услуги"
             services={services || []}
             storeUrl={storeUrl}
+            category={category}
           />
           {settings && <Feedback settings={settings} storeUrl={storeUrl} />}
         </div>
@@ -114,3 +134,55 @@ export default async function ServicePage({
     </>
   );
 }
+
+const ServiceContent = async ({ servicesData }: { servicesData: ServiceT }) => {
+  return (
+    <>
+      {servicesData.blocks?.map((block, index) => {
+        if (block.type === "text_image") {
+          return (
+            <ImageTextBlock
+              key={index}
+              className={index === 0 ? "mt-0" : ""}
+              content={
+                {
+                  text: block.text,
+                  image_path: block.image_path,
+                  image_position: block.image_position,
+                } as ImageTextBlockT["content"]
+              }
+            />
+          );
+        }
+
+        if (block.type === "text") {
+          return (
+            <TextBlock
+              key={index}
+              className={index === 0 ? "mt-0" : ""}
+              content={
+                {
+                  text: block.text,
+                } as TextBlockT["content"]
+              }
+            />
+          );
+        }
+
+        if (block.type === "image") {
+          return (
+            <ImageBlock
+              key={index}
+              className={index === 0 ? "mt-0" : ""}
+              content={
+                {
+                  image_path: block.image_path,
+                } as ImageBlockT["content"]
+              }
+            />
+          );
+        }
+      })}
+    </>
+  );
+};

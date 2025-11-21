@@ -27,6 +27,7 @@ export default function Services() {
     <>
       <CanonicalLink href="/services" />
       <FirstBlock
+        page="services"
         image={firstBlockImage}
         items={[
           { title: "Главная", href: "/" },
@@ -36,7 +37,13 @@ export default function Services() {
         description="Подберите идеальный спецэффект для вашего события! В нашем каталоге вы найдёте готовые решения и вдохновляющие идеи, которые помогут создать нужную атмосферу и удивить ваших гостей."
       />
       <div className={styles.wrapper}>
-        <ServicesList current={1} max={10} maxPerView={6} storeUrl={storeUrl} />
+        <ServicesList
+          current={1}
+          max={10}
+          maxPerView={6}
+          storeUrl={storeUrl}
+          isDefault
+        />
 
         {settings && <Feedback settings={settings} storeUrl={storeUrl} />}
       </div>

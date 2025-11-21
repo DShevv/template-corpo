@@ -57,6 +57,10 @@
           .description {
             color: var(--white);
           }
+
+          .image {
+            fill: var(--accent-1);
+          }
         }
       }
 
@@ -75,22 +79,28 @@
         .description {
           color: var(--white);
         }
+
+        .image {
+          fill: var(--accent-1);
+        }
       }
 
       .image {
         position: absolute;
-        top: vw-1920(-64);
-        right: vw-1920(-64);
-        width: vw-1920(190);
-        height: vw-1920(190);
-        border-radius: 50%;
+        top: vw-1920(16);
+        right: vw-1920(16);
+        width: vw-1920(48);
+        height: vw-1920(48);
+
         object-fit: cover;
+        fill: var(--accent-2);
+        transition: fill 0.3s ease-in-out;
 
         @media (max-width: 768px) {
-          top: -64px;
-          right: -33px;
-          width: 190px;
-          height: 190px;
+          top: 24px;
+          right: 24px;
+          width: 48px;
+          height: 48px;
         }
       }
 
