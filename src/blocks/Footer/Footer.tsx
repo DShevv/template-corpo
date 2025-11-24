@@ -150,8 +150,8 @@ const FooterClient = ({
 
         <div className={clsx("body-6", styles.dev)}>
           <span>Дизайн и разработка: </span>
-          <Link href="https://web-space.by" target="_blank">
-            Web-space.by
+          <Link href="https://cropas.by" target="_blank">
+            Cropas.by
           </Link>
         </div>
       </div>
