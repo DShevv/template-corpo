@@ -9,7 +9,6 @@ import ContactsBlock from "@/blocks/ContactsBlock/ContactsBlock";
 import NewsBlock from "@/blocks/NewsBlock/NewsBlock";
 import Feedback from "@/blocks/Feedback/Feedback";
 import Footer from "@/blocks/Footer/Footer";
-import heroImage from "@/assets/images/hero.png";
 import { getPartners } from "@/services/PartnersService";
 import { getReviews } from "@/services/ReviewsService";
 import { getAdvantages } from "@/services/AdvantagesService";
@@ -23,6 +22,7 @@ import { getNews } from "@/services/NewsService";
 import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
 import { Suspense } from "react";
 import { getStoreUrl } from "@/services/base";
+import { getBanners } from "@/services/BannersService";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("main");
@@ -46,18 +46,15 @@ export default function Home() {
   const news = getNews();
   const storeUrl = getStoreUrl();
   const services = getServices();
+  const banners = getBanners();
   return (
     <>
       <Hero
-        image={heroImage}
-        title={"Создаем счастливое будущее для вас"}
-        description={
-          " Мы специализируемся в 11 отраслях в более чем 55 странах и регионах, предлагая инновационные решения для самых сложных задач наших клиентов."
-        }
         contacts={contacts}
         settings={settings}
         storeUrl={storeUrl}
         services={services || []}
+        banners={banners}
       />
 
       <div className={styles.wrapper}>
