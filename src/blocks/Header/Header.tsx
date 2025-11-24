@@ -166,15 +166,17 @@ const Header = observer(
           {servicesData?.map((service) => (
             <SwiperSlide key={service.id} className={styles.slide}>
               <Link
-                href={`/services/events/${service.slug}`}
+                href={`/services/special-effects/${service.slug}`}
                 className={styles.sliderLink}
               >
-                <Image
-                  src={`${storeUrl}/${service.icon_path}`}
-                  alt={service.title}
-                  width={24}
-                  height={24}
-                />
+                {service.icon_path && (
+                  <Image
+                    src={`${storeUrl}/${service.icon_path}`}
+                    alt={service.title}
+                    width={24}
+                    height={24}
+                  />
+                )}
                 <div className={clsx("t-button-2", styles.sliderText)}>
                   {service.title}
                 </div>

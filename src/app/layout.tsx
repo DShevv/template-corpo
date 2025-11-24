@@ -12,7 +12,7 @@ import {
 import { getContacts } from "@/services/SettingsService";
 import Header from "@/blocks/Header/Header";
 import { DynamicSettings } from "@/components/DynamicSettings/DynamicSettings";
-import { getServicesTwo } from "@/services/ServicesService";
+import { getServices } from "@/services/ServicesService";
 
 const onest = Onest({
   variable: "--font-family",
@@ -37,7 +37,7 @@ export default function RootLayout({
   const contacts = getContacts();
   const settings = getSettings();
   const storeUrl = getStoreUrl();
-  const services = getServicesTwo();
+  const services = getServices();
   return (
     <html lang="ru">
       <head>

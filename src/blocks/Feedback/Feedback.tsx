@@ -12,6 +12,8 @@ import { sendFeedback } from "@/services/FeedbackService";
 import { observer } from "mobx-react-lite";
 import globalStore from "@/stores/global-store";
 import { use, useEffect, useState } from "react";
+import Checkbox from "@/components/Inputs/Checkbox/Checkbox";
+import Link from "next/link";
 
 const Feedback = observer(
   ({
@@ -49,6 +51,7 @@ const Feedback = observer(
             phone: "",
             email: "",
             comment: "",
+            isAgree: false,
           }}
           validationSchema={feedbackValidationSchema}
           validateOnChange={false}
@@ -117,10 +120,14 @@ const Feedback = observer(
                 }
               />
               <div className={styles.buttons}>
-                <MainButton type="submit" className={styles.button}>
+                <MainButton
+                  type="submit"
+                  className={styles.button}
+                  disabled={!values.isAgree}
+                >
                   Отправить
                 </MainButton>
-                {/*  <Checkbox
+                <Checkbox
                   name="isAgree"
                   className={styles.checkbox}
                   checked={values.isAgree}
@@ -129,7 +136,7 @@ const Feedback = observer(
                   <Link href="/privacy-policy" className={styles.link}>
                     Согласие на обработку персональных данных
                   </Link>
-                </Checkbox> */}
+                </Checkbox>
               </div>
             </Form>
           )}

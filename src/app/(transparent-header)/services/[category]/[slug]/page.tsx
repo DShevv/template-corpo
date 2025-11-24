@@ -76,7 +76,7 @@ export default async function ServicePage({
     category === "events"
       ? await getServiceBySlugTwo({ slug })
       : await getServiceBySlug({ slug });
-  const servicesTwo = getServicesTwo();
+  const servicesTwo = getServices();
 
   if (!servicesData) {
     notFound();

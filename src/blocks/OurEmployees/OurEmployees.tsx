@@ -20,6 +20,8 @@ const OurEmployees = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const employeesData = use(employees);
 
+  if (!employeesData || employeesData.length === 0) return null;
+
   return (
     <div className={s.container}>
       <div className={s.header}>

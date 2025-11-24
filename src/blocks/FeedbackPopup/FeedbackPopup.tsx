@@ -14,6 +14,8 @@ import { SvgClose } from "@/assets/icons/svgs";
 import { feedbackValidationSchema } from "@/utils/validationSchemas";
 import { sendFeedback } from "@/services/FeedbackService";
 import { SettingsT } from "@/types/types";
+import Checkbox from "@/components/Inputs/Checkbox/Checkbox";
+import Link from "next/link";
 
 const FeedbackPopup = observer(
   ({
@@ -72,6 +74,7 @@ const FeedbackPopup = observer(
               phone: "",
               email: "",
               comment: "",
+              isAgree: false,
             }}
             validateOnChange={false}
             validateOnBlur={false}
@@ -132,19 +135,23 @@ const FeedbackPopup = observer(
                   onChange={(value) => setFieldValue("comment", value)}
                 />
                 <div className={styles.buttons}>
-                  <MainButton type="submit" className={styles.button}>
+                  <MainButton
+                    type="submit"
+                    className={styles.button}
+                    disabled={!values.isAgree}
+                  >
                     Отправить
                   </MainButton>
-                  {/*  <Checkbox
-                  name="isAgree"
-                  className={styles.checkbox}
-                  checked={values.isAgree}
-                  onChange={() => setFieldValue("isAgree", !values.isAgree)}
-                >
-                  <Link href="/privacy-policy" className={styles.link}>
-                    Согласие на обработку персональных данных
-                  </Link>
-                </Checkbox> */}
+                  <Checkbox
+                    name="isAgree"
+                    className={styles.checkbox}
+                    checked={values.isAgree}
+                    onChange={() => setFieldValue("isAgree", !values.isAgree)}
+                  >
+                    <Link href="/privacy-policy" className={styles.link}>
+                      Согласие на обработку персональных данных
+                    </Link>
+                  </Checkbox>
                 </div>
               </Form>
             )}
