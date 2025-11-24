@@ -31,6 +31,7 @@ export default function RootLayout({
         settings={settings}
         storeUrl={storeUrl}
         services={services}
+        isInverted={true}
       />
       <HeaderMobile
         contacts={contacts}

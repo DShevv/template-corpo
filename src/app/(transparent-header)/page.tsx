@@ -63,6 +63,7 @@ export default function Home() {
           settings={settings}
           storeUrl={storeUrl}
           services={services}
+          isInverted={true}
         />
         <div className="wrapper">
           <Suspense fallback={<div>Loading...</div>}>

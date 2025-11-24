@@ -34,6 +34,10 @@
 
   .logo {
     margin: 0 vw-1920(48);
+
+    &.inverted {
+      filter: invert(1);
+    }
   }
 
   .menu {

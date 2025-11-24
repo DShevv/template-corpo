@@ -27,6 +27,7 @@ const Header = observer(
     settings,
     storeUrl,
     services,
+    isInverted = false,
   }: {
     isTransparent?: boolean;
     isHidden?: boolean;
@@ -34,6 +35,7 @@ const Header = observer(
     settings: Promise<SettingsT | null>;
     storeUrl: string;
     services: Promise<ServiceT[] | null>;
+    isInverted?: boolean;
   }) => {
     const { popupStore } = globalStore;
     const { openPopup } = popupStore;
@@ -49,7 +51,7 @@ const Header = observer(
       >
         <div className={styles.top}>
           <Logo
-            className={styles.logo}
+            className={clsx(styles.logo, { [styles.inverted]: isInverted })}
             image={`${storeUrl}/${settingsData?.logo}`}
           />
 

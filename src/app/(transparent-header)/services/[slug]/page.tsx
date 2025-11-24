@@ -94,6 +94,7 @@ export default async function ServicePage({
           settings={settings || undefined}
           storeUrl={storeUrl}
           services={services}
+          isInverted={true}
         />
         <div className="wrapper">
           <ServiceInfoBlock />
