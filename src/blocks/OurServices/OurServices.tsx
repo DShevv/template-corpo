@@ -4,7 +4,7 @@ import ServiceItem from "@/components/ServiceItem/ServiceItem";
 import { getStoreUrl } from "@/services/base";
 import { getServices } from "@/services/ServicesService";
 
-const OurServices = async () => {
+const OurServices = async ({ href }: { href: string }) => {
   const storeUrl = getStoreUrl();
   const services = await getServices();
   return (
@@ -14,7 +14,12 @@ const OurServices = async () => {
       <div className={styles.services}>
         {services &&
           services.map((service, index) => (
-            <ServiceItem key={index} item={service} storeUrl={storeUrl} />
+            <ServiceItem
+              key={index}
+              item={service}
+              storeUrl={storeUrl}
+              href={href}
+            />
           ))}
       </div>
     </section>

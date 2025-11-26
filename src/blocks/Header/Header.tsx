@@ -18,6 +18,8 @@ import { observer } from "mobx-react-lite";
 import globalStore from "@/stores/global-store";
 import { ContactsT, ServiceT, SettingsT } from "@/types/types";
 import { use } from "react";
+import Image from "next/image";
+import nanImage from "@/assets/images/nan.svg";
 
 const Header = observer(
   ({
@@ -27,6 +29,8 @@ const Header = observer(
     settings,
     storeUrl,
     services,
+    products,
+    companyServices,
     isInverted = false,
   }: {
     isTransparent?: boolean;
@@ -35,6 +39,8 @@ const Header = observer(
     settings: Promise<SettingsT | null>;
     storeUrl: string;
     services: Promise<ServiceT[] | null>;
+    products: Promise<ServiceT[] | null>;
+    companyServices: Promise<ServiceT[] | null>;
     isInverted?: boolean;
   }) => {
     const { popupStore } = globalStore;
@@ -42,6 +48,8 @@ const Header = observer(
     const contactsData = use(contacts);
     const settingsData = use(settings);
     const servicesData = use(services);
+    const productsData = use(products);
+    const companyServicesData = use(companyServices);
     return (
       <header
         className={clsx(styles.container, {
@@ -62,6 +70,23 @@ const Header = observer(
               </Link>
             </li>
             <li className={styles.menuItem}>
+              <Link className={clsx(styles.link, "body-2")} href="/products">
+                Продукция <SvgArrowRight />
+              </Link>
+              <ul className={styles.subMenu}>
+                {productsData?.map((product, index) => (
+                  <li key={index}>
+                    <Link
+                      className={clsx(styles.link, "body-2")}
+                      href={`/products/${product.slug}`}
+                    >
+                      {product.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
+            <li className={styles.menuItem}>
               <Link className={clsx(styles.link, "body-2")} href="/services">
                 Услуги <SvgArrowRight />
               </Link>
@@ -78,14 +103,26 @@ const Header = observer(
                 ))}
               </ul>
             </li>
-            <li>
+            <li className={styles.menuItem}>
               <Link className={clsx(styles.link, "body-2")} href="/about">
-                О компании
+                Компания <SvgArrowRight />
               </Link>
+              <ul className={styles.subMenu}>
+                {companyServicesData?.map((companyService, index) => (
+                  <li key={index}>
+                    <Link
+                      className={clsx(styles.link, "body-2")}
+                      href={`/about/${companyService.slug}`}
+                    >
+                      {companyService.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </li>
             <li>
               <Link className={clsx(styles.link, "body-2")} href="/news">
-                Статьи
+                Новости
               </Link>
             </li>
             <li>
@@ -138,6 +175,14 @@ const Header = observer(
           >
             Обратный звонок
           </MainButton>
+
+          <Image
+            src={nanImage}
+            alt="logo"
+            width={256}
+            height={58}
+            className={clsx(styles.nan, { [styles.inverted]: isInverted })}
+          />
 
           <div className={styles.socials}>
             {contactsData?.social_links.telegram && (

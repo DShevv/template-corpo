@@ -5,11 +5,10 @@ import Feedback from "@/blocks/Feedback/Feedback";
 import AboutBlock from "@/blocks/AboutBlock/AboutBlock";
 import OurReviews from "@/blocks/OurReviews/OurReviews";
 import OurEmployees from "@/blocks/OurEmployees/OurEmployees";
-import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
 import { getReviews } from "@/services/ReviewsService";
 import { getSeoTag, getSettings } from "@/services/SettingsService";
 import { getStoreUrl } from "@/services/base";
-import { getServices } from "@/services/ServicesService";
+import { getEmployees } from "@/services/EmployeesService";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("about");
@@ -28,7 +27,7 @@ export default function About() {
   const reviews = getReviews();
   const settings = getSettings();
   const storeUrl = getStoreUrl();
-  const services = getServices();
+  const employees = getEmployees();
   return (
     <>
       <FirstBlock
@@ -42,8 +41,8 @@ export default function About() {
       />
       <div className={styles.wrapper}>
         <AboutBlock isHeader={false} />
-        <OurEmployees />
-        <OurServicesSlider services={services} storeUrl={storeUrl} />
+        <OurEmployees employees={employees} storeUrl={storeUrl} />
+
         <OurReviews reviews={reviews} storeUrl={storeUrl} />
 
         <Feedback settings={settings || undefined} storeUrl={storeUrl} />

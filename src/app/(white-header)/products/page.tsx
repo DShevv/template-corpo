@@ -6,10 +6,10 @@ import ServicesList from "@/components/ServicesList/ServicesList";
 import { CanonicalLink } from "@/components/CanonicalLink/CanonicalLink";
 import { getSeoTag, getSettings } from "@/services/SettingsService";
 import { getStoreUrl } from "@/services/base";
-import { getServices } from "@/services/ServicesService";
+import { getProducts } from "@/services/ServicesService";
 
 export async function generateMetadata() {
-  const seoTag = await getSeoTag("services");
+  const seoTag = await getSeoTag("products");
   return {
     title: seoTag?.title,
     description: seoTag?.description,
@@ -24,21 +24,28 @@ export async function generateMetadata() {
 export default function Services() {
   const settings = getSettings();
   const storeUrl = getStoreUrl();
-  const services = getServices();
+  const products = getProducts();
   return (
     <>
-      <CanonicalLink href="/services" />
+      <CanonicalLink href="/products" />
       <FirstBlock
         image={firstBlockImage}
         items={[
           { title: "Главная", href: "/" },
-          { title: "Услуги", href: "/services" },
+          { title: "Продукция", href: "/products" },
         ]}
-        title="Услуги компании"
+        title="Продукция компании"
         description="Здесь вы найдете исчерпывающую информацию о спектре профессиональных решений, которые мы предлагаем клиентам."
       />
       <div className={styles.wrapper}>
-        <ServicesList storeUrl={storeUrl} services={services} href="services" />
+        <ServicesList
+          current={1}
+          max={10}
+          maxPerView={6}
+          storeUrl={storeUrl}
+          services={products}
+          href="products"
+        />
 
         {settings && <Feedback settings={settings} storeUrl={storeUrl} />}
       </div>

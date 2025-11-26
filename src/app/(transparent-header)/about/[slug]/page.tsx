@@ -20,9 +20,9 @@ import {
 import { getGallery } from "@/services/GalleryService";
 import { getStoreUrl } from "@/services/base";
 import {
-  getProducts,
+  getCompanyServiceBySlug,
   getCompanyServices,
-  getServiceBySlug,
+  getProducts,
   getServices,
 } from "@/services/ServicesService";
 import { notFound } from "next/navigation";
@@ -77,7 +77,7 @@ export default async function ServicePage({
   const employees = getEmployees();
   const products = getProducts();
   const companyServices = getCompanyServices();
-  const servicesData = await getServiceBySlug({ slug });
+  const servicesData = await getCompanyServiceBySlug({ slug });
 
   if (!servicesData) {
     notFound();
@@ -91,10 +91,10 @@ export default async function ServicePage({
         image={`${storeUrl}/${servicesData.photo_path}`}
         items={[
           { title: "Главная", href: "/" },
-          { title: "Услуги", href: "/services" },
+          { title: "Компания", href: "/about" },
           {
             title: servicesData.title || "",
-            href: `/services/${slug}`,
+            href: `/about/${slug}`,
           },
         ]}
         title={servicesData.title || ""}

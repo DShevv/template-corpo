@@ -14,11 +14,13 @@ import { ServiceT } from "@/types/types";
 const OurServicesSlider = ({
   title,
   services,
+  href,
   storeUrl,
 }: {
   title?: string;
   services: Promise<ServiceT[] | null>;
   storeUrl: string;
+  href: string;
 }) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   const [isClient, setIsClient] = useState(false);
@@ -82,6 +84,7 @@ const OurServicesSlider = ({
               className={styles.item}
               disableArrow={servicesData?.length > 4}
               storeUrl={storeUrl}
+              href={href}
             />
           </SwiperSlide>
         ))}

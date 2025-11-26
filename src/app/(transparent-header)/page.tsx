@@ -17,7 +17,11 @@ import {
   getSeoTag,
   getSettings,
 } from "@/services/SettingsService";
-import { getServices } from "@/services/ServicesService";
+import {
+  getCompanyServices,
+  getProducts,
+  getServices,
+} from "@/services/ServicesService";
 import { getNews } from "@/services/NewsService";
 import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
 import { Suspense } from "react";
@@ -46,6 +50,8 @@ export default function Home() {
   const news = getNews();
   const storeUrl = getStoreUrl();
   const services = getServices();
+  const products = getProducts();
+  const companyServices = getCompanyServices();
   const banners = getBanners();
   return (
     <>
@@ -54,6 +60,8 @@ export default function Home() {
         settings={settings}
         storeUrl={storeUrl}
         services={services || []}
+        products={products}
+        companyServices={companyServices}
         banners={banners}
       />
 
@@ -63,6 +71,8 @@ export default function Home() {
           settings={settings}
           storeUrl={storeUrl}
           services={services}
+          products={products}
+          companyServices={companyServices}
           isInverted={true}
         />
         <div className="wrapper">
@@ -71,6 +81,7 @@ export default function Home() {
               title="Наши услуги"
               services={services || []}
               storeUrl={storeUrl}
+              href="services"
             />
           </Suspense>
           <Suspense fallback={<div>Loading...</div>}>

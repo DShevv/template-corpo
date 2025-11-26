@@ -20,9 +20,9 @@ import {
 import { getGallery } from "@/services/GalleryService";
 import { getStoreUrl } from "@/services/base";
 import {
-  getProducts,
   getCompanyServices,
-  getServiceBySlug,
+  getProductBySlug,
+  getProducts,
   getServices,
 } from "@/services/ServicesService";
 import { notFound } from "next/navigation";
@@ -77,7 +77,7 @@ export default async function ServicePage({
   const employees = getEmployees();
   const products = getProducts();
   const companyServices = getCompanyServices();
-  const servicesData = await getServiceBySlug({ slug });
+  const servicesData = await getProductBySlug({ slug });
 
   if (!servicesData) {
     notFound();
@@ -91,17 +91,17 @@ export default async function ServicePage({
         image={`${storeUrl}/${servicesData.photo_path}`}
         items={[
           { title: "Главная", href: "/" },
-          { title: "Услуги", href: "/services" },
+          { title: "Продукция", href: "/products" },
           {
             title: servicesData.title || "",
-            href: `/services/${slug}`,
+            href: `/products/${slug}`,
           },
         ]}
         title={servicesData.title || ""}
         description={servicesData.subtitle || ""}
         popup={"feedback"}
         storeUrl={storeUrl}
-        services={services}
+        services={products}
         products={products}
         companyServices={companyServices}
       />
@@ -125,10 +125,10 @@ export default async function ServicePage({
           <GalleryBlock gallery={gallery} storeUrl={storeUrl} />
           <OurReviews reviews={reviews} storeUrl={storeUrl} />
           <OtherServices
-            services={services}
-            href="services"
-            title="Услуги компании"
-            buttonText="Все услуги"
+            services={products}
+            href="products"
+            title="Продукция компании"
+            buttonText="Вся продукция"
           />
           {settings && <Feedback settings={settings} storeUrl={storeUrl} />}
         </div>
@@ -141,7 +141,7 @@ export default async function ServicePage({
   );
 }
 
-const ServiceContent = async ({
+const ServiceContent = ({
   servicesData,
 }: {
   servicesData: ServiceT["blocks"];
@@ -192,6 +192,8 @@ const ServiceContent = async ({
             />
           );
         }
+
+        return null;
       })}
     </>
   );

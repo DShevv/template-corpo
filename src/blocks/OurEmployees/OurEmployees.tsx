@@ -1,56 +1,24 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { use, useRef, useState } from "react";
 import s from "./OurEmployees.module.scss";
 import EmployeeItem from "@/components/EmployeeItem/EmployeeItem";
-import EmployeeImage from "@/assets/images/employee.jpg";
-import EmployeeImage2 from "@/assets/images/emp1.png";
-import EmployeeImage3 from "@/assets/images/emp2.jpg";
-import EmployeeImage4 from "@/assets/images/emp3.png";
 import ArrowButton from "@/components/Buttons/ArrowButton/ArrowButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import clsx from "clsx";
+import { EmployeeT } from "@/types/types";
 
-const employees = [
-  {
-    id: 1,
-    image: EmployeeImage,
-    name: "Анна Иванова",
-    phone: "+375 (99) 999-99-99",
-    email: "info@website.by",
-    position: "Директор",
-  },
-  {
-    id: 2,
-    image: EmployeeImage3,
-    name: "Елена Николаева",
-    phone: "+375 (99) 999-99-99",
-    email: "info@website.by",
-    position: "Заместитель директора",
-  },
-  {
-    id: 3,
-    image: EmployeeImage2,
-    name: "Иван Алексеев",
-    phone: "+375 (99) 999-99-99",
-    email: "info@website.by",
-    position: "Менеджер по продаже",
-  },
-  {
-    id: 4,
-    image: EmployeeImage4,
-    name: "Михаил Новиков",
-    phone: "+375 (99) 999-99-99",
-    email: "info@website.by",
-    position: "Специалист по продаже",
-  },
-];
-
-const OurEmployees = () => {
+const OurEmployees = ({
+  employees,
+  storeUrl,
+}: {
+  employees: Promise<EmployeeT[] | null>;
+  storeUrl: string;
+}) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const employeesData = use(employees);
   return (
     <div className={s.container}>
       <div className={s.header}>
@@ -79,16 +47,20 @@ const OurEmployees = () => {
         loop={true}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
-        {employees.map((employee, index) => (
+        {employeesData?.map((employee, index) => (
           <SwiperSlide key={employee.id} className={s.slide}>
-            <EmployeeItem employee={employee} active={index === activeIndex} />
+            <EmployeeItem
+              employee={employee}
+              active={index === activeIndex}
+              storeUrl={storeUrl}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
 
       <div
         className={clsx(s.navigation, {
-          [s.isHiddenOnDesktop]: employees.length <= 4,
+          [s.isHiddenOnDesktop]: employeesData && employeesData.length <= 4,
         })}
       >
         <ArrowButton

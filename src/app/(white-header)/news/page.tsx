@@ -15,9 +15,9 @@ export default function News() {
         image={firstBlockImage}
         items={[
           { title: "Главная", href: "/" },
-          { title: "Статьи", href: "/news" },
+          { title: "Новости", href: "/news" },
         ]}
-        title="Статьи по тематикам"
+        title="Новости по тематикам"
         description="Предлагаем вам детально изучить актуальные материалы по выбранным направлениям из нашей обновлённой базы публикаций"
       />
       <NewsListBlock storeUrl={storeUrl} />

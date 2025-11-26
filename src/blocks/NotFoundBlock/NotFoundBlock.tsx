@@ -14,10 +14,14 @@ const NotFoundBlock = ({
   contacts,
   services,
   storeUrl,
+  products,
+  companyServices,
 }: {
   settings: Promise<SettingsT | null>;
   contacts: Promise<ContactsT | null>;
   services: Promise<ServiceT[] | null>;
+  products: Promise<ServiceT[] | null>;
+  companyServices: Promise<ServiceT[] | null>;
   storeUrl: string;
 }) => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -49,6 +53,8 @@ const NotFoundBlock = ({
         settings={settings}
         services={services}
         storeUrl={storeUrl}
+        products={products}
+        companyServices={companyServices}
       />
       <div className="wrapper">
         <section className={styles.container}>

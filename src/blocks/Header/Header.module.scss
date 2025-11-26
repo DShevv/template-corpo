@@ -40,6 +40,16 @@
     }
   }
 
+  .nan {
+    margin-top: vw-1920(16);
+    width: vw-1920(256);
+    height: vw-1920(58);
+
+    &.inverted {
+      filter: invert(1);
+    }
+  }
+
   .menu {
     margin-top: vw-1920(48);
     list-style: none;

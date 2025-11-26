@@ -50,7 +50,7 @@ const FooterClient = ({
                 </li>
                 <li className={styles.item}>
                   <Link href="/news" className={clsx("body-3", styles.link)}>
-                    Статьи
+                    Новости
                   </Link>
                 </li>
                 <li className={styles.item}>

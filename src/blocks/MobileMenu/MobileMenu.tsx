@@ -19,20 +19,30 @@ import Link from "next/link";
 import { AnimatePresence, motion as m } from "motion/react";
 import MainButton from "@/components/Buttons/MainButton/MainButton";
 import { ContactsT, ServiceT } from "@/types/types";
+import Image from "next/image";
+import nanImage from "@/assets/images/nan.svg";
 
 const MobileMenu = observer(
   ({
     contacts,
     services,
+    companyServices,
+    products,
   }: {
     contacts: Promise<ContactsT | null>;
     services: Promise<ServiceT[] | null>;
+    companyServices: Promise<ServiceT[] | null>;
+    products: Promise<ServiceT[] | null>;
   }) => {
     const { popupStore } = globalStore;
     const { menu, closePopup, openPopup } = popupStore;
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenProducts, setIsOpenProducts] = useState(false);
+    const [isOpenCompanyServices, setIsOpenCompanyServices] = useState(false);
     const contactsData = use(contacts);
     const servicesData = use(services);
+    const companyServicesData = use(companyServices);
+    const productsData = use(products);
     useEffect(() => {
       if (menu) {
         const scrollPosition = window.scrollY;
@@ -85,6 +95,47 @@ const MobileMenu = observer(
             <li>
               <div
                 className={clsx(styles.link, "h5")}
+                onClick={() => setIsOpenProducts(!isOpenProducts)}
+              >
+                <Link href="/products" onClick={() => closePopup("menu")}>
+                  Продукция
+                </Link>{" "}
+                <SvgArrowRight
+                  style={{
+                    transform: isOpenProducts
+                      ? "rotate(90deg)"
+                      : "rotate(0deg)",
+                  }}
+                />
+              </div>
+              <AnimatePresence>
+                {isOpenProducts && (
+                  <m.ul
+                    layout
+                    initial={{ height: 0 }}
+                    animate={{ height: "auto" }}
+                    exit={{ height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={styles.subMenu}
+                  >
+                    {productsData?.map((product, index) => (
+                      <li key={index}>
+                        <Link
+                          className={clsx(styles.subLink, "body-5")}
+                          href={`/products/${product.slug}`}
+                          onClick={() => closePopup("menu")}
+                        >
+                          {product.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </m.ul>
+                )}
+              </AnimatePresence>
+            </li>
+            <li>
+              <div
+                className={clsx(styles.link, "h5")}
                 onClick={() => setIsOpen(!isOpen)}
               >
                 <Link href="/services" onClick={() => closePopup("menu")}>
@@ -122,13 +173,45 @@ const MobileMenu = observer(
               </AnimatePresence>
             </li>
             <li>
-              <Link
-                href="/about"
+              <div
                 className={clsx(styles.link, "h5")}
-                onClick={() => closePopup("menu")}
+                onClick={() => setIsOpenCompanyServices(!isOpenCompanyServices)}
               >
-                О компании
-              </Link>
+                <Link href="/about" onClick={() => closePopup("menu")}>
+                  Компания
+                </Link>{" "}
+                <SvgArrowRight
+                  style={{
+                    transform: isOpenCompanyServices
+                      ? "rotate(90deg)"
+                      : "rotate(0deg)",
+                  }}
+                />
+              </div>
+              <AnimatePresence>
+                {isOpenCompanyServices && (
+                  <m.ul
+                    layout
+                    initial={{ height: 0 }}
+                    animate={{ height: "auto" }}
+                    exit={{ height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={styles.subMenu}
+                  >
+                    {companyServicesData?.map((companyService, index) => (
+                      <li key={index}>
+                        <Link
+                          className={clsx(styles.subLink, "body-5")}
+                          href={`/about/${companyService.slug}`}
+                          onClick={() => closePopup("menu")}
+                        >
+                          {companyService.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </m.ul>
+                )}
+              </AnimatePresence>
             </li>
             <li>
               <Link
@@ -136,7 +219,7 @@ const MobileMenu = observer(
                 className={clsx(styles.link, "h5")}
                 onClick={() => closePopup("menu")}
               >
-                Статьи
+                Новости
               </Link>
             </li>
             <li>
@@ -226,6 +309,14 @@ const MobileMenu = observer(
                 </Link>
               )}
             </div>
+
+            <Image
+              src={nanImage}
+              alt="logo"
+              width={256}
+              height={58}
+              className={styles.nan}
+            />
           </div>
         </div>
       </div>

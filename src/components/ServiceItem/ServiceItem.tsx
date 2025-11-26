@@ -10,6 +10,7 @@ interface ServiceItemProps {
   item: ServiceT;
   disableArrow?: boolean;
   storeUrl: string;
+  href: string;
 }
 
 const ServiceItem = ({
@@ -17,10 +18,11 @@ const ServiceItem = ({
   item,
   disableArrow,
   storeUrl,
+  href,
 }: ServiceItemProps) => {
   return (
     <Link
-      href={`/services/${item.slug}`}
+      href={`/${href}/${item.slug}`}
       className={clsx(styles.container, className)}
     >
       <div className={clsx("h6", styles.title)}>{item.title}</div>

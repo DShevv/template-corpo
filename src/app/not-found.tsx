@@ -11,7 +11,11 @@ import {
   getSettings,
 } from "@/services/SettingsService";
 import { getStoreUrl } from "@/services/base";
-import { getServices } from "@/services/ServicesService";
+import {
+  getCompanyServices,
+  getProducts,
+  getServices,
+} from "@/services/ServicesService";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("404");
@@ -31,6 +35,8 @@ export default function NotFound() {
   const contacts = getContacts();
   const storeUrl = getStoreUrl();
   const services = getServices();
+  const products = getProducts();
+  const companyServices = getCompanyServices();
   return (
     <>
       <HeaderMobile
@@ -44,6 +50,8 @@ export default function NotFound() {
           settings={settings}
           contacts={contacts}
           services={services}
+          products={products}
+          companyServices={companyServices}
           storeUrl={storeUrl}
         />
 

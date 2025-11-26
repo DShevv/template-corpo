@@ -21,6 +21,8 @@ const Hero = ({
   popup,
   storeUrl,
   services,
+  products,
+  companyServices,
   banners,
 }: {
   items?: { title: string; href: string }[];
@@ -32,6 +34,8 @@ const Hero = ({
   popup?: string;
   storeUrl: string;
   services: Promise<ServiceT[] | null>;
+  products: Promise<ServiceT[] | null>;
+  companyServices: Promise<ServiceT[] | null>;
   banners?: Promise<BannerT[] | null>;
 }) => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -71,6 +75,8 @@ const Hero = ({
         settings={settings}
         storeUrl={storeUrl}
         services={services}
+        products={products}
+        companyServices={companyServices}
       />
       <div className="wrapper">
         <section className={styles.container}>

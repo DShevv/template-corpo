@@ -66,7 +66,7 @@ export default async function NewsPage({
         image={firstBlockImage}
         items={[
           { title: "Главная", href: "/" },
-          { title: "Статьи", href: "/news" },
+          { title: "Новости", href: "/news" },
           {
             title: news.title,
             href: `/news/${slug}`,

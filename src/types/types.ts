@@ -56,6 +56,7 @@ export type SettingsT = {
   about: {
     text: string;
     image: string | StaticImageData;
+    content_blocks: (TextBlockT | ImageTextBlockT | FeaturesImagesBlockT)[] | null;
   };
 }
 
@@ -105,7 +106,7 @@ export type ServiceT = {
   subtitle: string;
   slug: string;
   photo_path: string;
-  blocks: (TextImageBlockT | TextGridBlockT | FeaturesImages | TextT | ImageT)[] | null;
+  blocks: (TextImageBlockT | TextT | ImageT)[] | null;
 };
 
 export type TextImageBlockT = {
@@ -190,4 +191,46 @@ export type BannerT = {
   is_active: boolean;
   created_at: string;
   updated_at: string;
+};
+
+export type TextBlockT = {
+  type: 'text';
+  content: {
+    text: string;
+  }
+}
+
+export type ImageTextBlockT = {
+  type: 'image_text';
+  content: {
+    text: string;
+    image_path: string
+    image_position: 'left' | 'right';
+  }
+}
+
+export type ImageBlockT = {
+  type: 'image';
+  content: {
+    image_path: string
+  }
+}
+
+export type FeaturesImagesBlockT = {
+  type: 'feature_section';
+  content: {
+    title: string;
+    text_primary: string;
+    text_secondary: string;
+    image_path: string;
+  }
+}
+
+export type EmployeeT = {
+  id: number;
+  full_name: string;
+  photo_path: string | StaticImageData;
+  position: string;
+  phone: string;
+  email: string;
 };
