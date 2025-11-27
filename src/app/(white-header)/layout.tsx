@@ -52,7 +52,7 @@ export default function RootLayout({
       </div>
       <ImageViewer />
 
-      <FeedbackPopup />
+      <FeedbackPopup settings={settings} storeUrl={storeUrl} />
       <FloatingCallButton />
       <MobileMenu
         contacts={contacts}

@@ -19,7 +19,7 @@ const FirstBlock = ({
   return (
     <section data-first-block className={styles.container}>
       <div className={styles.image}>
-        <Image src={image} alt={`${title} фото`} />
+        <Image src={image} alt={`${title} фото`} width={1920} height={900} />
       </div>
       <div className={styles.content}>
         <Breadcrumbs items={items} />

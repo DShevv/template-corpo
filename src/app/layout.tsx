@@ -9,6 +9,7 @@ import {
   SeoScriptsBody,
   SeoScriptsHead,
 } from "@/components/SeoScripts/SeoScripts";
+import { DynamicSettings } from "@/components/DynamicSettings/DynamicSettings";
 
 const onest = Onest({
   variable: "--font-family",
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang="ru">
       <head>
         <SeoScriptsHead />
+        <DynamicSettings />
       </head>
       <body className={`${onest.variable}`}>
         <SeoScriptsBody />

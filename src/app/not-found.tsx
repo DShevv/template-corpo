@@ -65,7 +65,7 @@ export default function NotFound() {
       </main>
       <ImageViewer />
 
-      <FeedbackPopup />
+      <FeedbackPopup settings={settings} storeUrl={storeUrl} />
       <FloatingCallButton />
     </>
   );

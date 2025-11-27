@@ -98,7 +98,7 @@ const Hero = ({
           </h1>
           <p className={clsx("body-1", styles.description)}>
             {description ||
-              bannersData?.[0]?.description ||
+              bannersData?.[0]?.subtitle ||
               "Мы специализируемся в 11 отраслях в более чем 55 странах и регионах, предлагая инновационные решения для самых сложных задач наших клиентов."}
           </p>
           {!items && (
@@ -107,7 +107,7 @@ const Hero = ({
               type="link"
               href={bannersData?.[0]?.button_link || "/about"}
             >
-              Подробнее
+              {bannersData?.[0]?.button_text || "Подробнее"}
             </MainButton>
           )}
           {popup && (

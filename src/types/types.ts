@@ -40,12 +40,15 @@ export type ReviewT = {
 
 export type SettingsT = {
   colors: {
-    primary: string;
-    accent: string;
-    secondary: string;
-    button_secondary: string;
-    text: string;
-    background: string;
+    icon_color: string;
+    button_color_static: string;
+    button_color_hover: string;
+    button_color_static_additional: string;
+    heading_color: string;
+    main_text_color: string;
+    link_color: string;
+    background_color: string;
+    card_background_color: string;
   },
   logo: string | StaticImageData;
   favicon: string | StaticImageData;

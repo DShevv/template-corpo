@@ -37,7 +37,7 @@ export default function Layout({
 
       <main>{children}</main>
       <ImageViewer />
-      <FeedbackPopup />
+      <FeedbackPopup settings={settings} storeUrl={storeUrl} />
       <FloatingCallButton />
       <MobileMenu
         contacts={contacts || undefined}
