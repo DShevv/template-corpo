@@ -50,6 +50,20 @@ export const getServiceBySlug = async ({
         };
       }
 
+      if (block.type === "image") {
+        return {
+          ...block,
+          ...JSON.parse(block.images_data),
+        }
+      }
+
+      if (block.type === "text_image") {
+        return {
+          ...block,
+          ...JSON.parse(block.images_data),
+        }
+      }
+
       return block;
     }) ?? [];
 

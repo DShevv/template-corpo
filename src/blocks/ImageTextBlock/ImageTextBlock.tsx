@@ -5,9 +5,11 @@ import { getStoreUrl } from "@/services/base";
 import { ImageTextBlockT } from "@/types/types";
 
 const ImageTextBlock = ({
+  images,
   content,
   className,
 }: {
+  images: ImageTextBlockT["images"];
   content: ImageTextBlockT["content"];
   className?: string;
 }) => {
@@ -27,13 +29,28 @@ const ImageTextBlock = ({
           dangerouslySetInnerHTML={{ __html: content.text }}
         />
       </div>
-      <Image
-        src={`${storeUrl}/${content.image_path}`}
-        alt={content.text.split(" ").slice(0, 10).join(" ")}
-        className={styles.image}
-        width={1920}
-        height={1080}
-      />
+      <div className={styles.images}>
+        {content.image_path && (
+          <Image
+            src={`${storeUrl}/${content.image_path}`}
+            alt={"Изображение"}
+            className={styles.image}
+            width={1920}
+            height={1080}
+          />
+        )}
+        {images &&
+          images.map((image) => (
+            <Image
+              key={image.image_path}
+              src={`${storeUrl}/${image.image_path}`}
+              alt={"Изображение"}
+              className={styles.image}
+              width={1920}
+              height={1080}
+            />
+          ))}
+      </div>
     </section>
   );
 };

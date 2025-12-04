@@ -77,6 +77,9 @@ export type ImageTextBlockT = {
     image_path: string
     image_position: 'left' | 'right';
   }
+  images: {
+    image_path: string;
+  }[];
 }
 
 export type ImageBlockT = {
@@ -154,11 +157,10 @@ export type TextImageBlockT = {
   text: string;
   image_path: string | null;
   image_position: 'left' | 'right';
-  images_data: {
-    images: {
-      image_path: string;
-    }[];
-  };
+  images_data: string;
+  images: {
+    image_path: string;
+  }[];
 };
 
 export type TextGridBlockT = {
@@ -197,6 +199,10 @@ export type ImageT = {
   service_id: number;
   type: 'image';
   image_path: string;
+  images_data: string;
+  images: {
+    image_path: string;
+  }[];
 };
 
 export type SeoSettingsT = {

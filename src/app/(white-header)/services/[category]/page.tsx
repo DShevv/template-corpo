@@ -61,7 +61,7 @@ export default async function Services({
       <div className={styles.wrapper}>
         <ServicesList
           current={1}
-          max={10}
+          max={1}
           maxPerView={6}
           storeUrl={storeUrl}
           category={category}

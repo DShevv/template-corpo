@@ -144,6 +144,7 @@ const ServiceContent = async ({ servicesData }: { servicesData: ServiceT }) => {
             <ImageTextBlock
               key={index}
               className={index === 0 ? "mt-0" : ""}
+              images={block.images}
               content={
                 {
                   text: block.text,
@@ -174,6 +175,7 @@ const ServiceContent = async ({ servicesData }: { servicesData: ServiceT }) => {
             <ImageBlock
               key={index}
               className={index === 0 ? "mt-0" : ""}
+              images={block.images}
               content={
                 {
                   image_path: block.image_path,

@@ -64,7 +64,13 @@ const AboutContent = async () => {
     <>
       {settings?.about?.content_blocks?.map((block, index) => {
         if (block.type === "image_text") {
-          return <ImageTextBlock key={index} content={block.content} />;
+          return (
+            <ImageTextBlock
+              key={index}
+              content={block.content}
+              images={block.images}
+            />
+          );
         }
 
         if (block.type === "text") {
