@@ -92,8 +92,12 @@ export default async function ServicePage({
           { title: "Главная", href: "/" },
           { title: "Услуги", href: "/services" },
           {
+            title: category === "events" ? "Мероприятия" : "Спецэффекты",
+            href: `/services/${category}`,
+          },
+          {
             title: servicesData.title || "",
-            href: `/services/${slug}`,
+            href: `/services/${category}/${slug}`,
           },
         ]}
         title={servicesData.title || ""}
