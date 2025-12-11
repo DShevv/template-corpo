@@ -108,6 +108,7 @@ export type ContactsT = {
     instagram: string;
     telegram: string;
     whatsapp: string;
+    viber: string;
   },
   company_info: string;
   bank_details: string;

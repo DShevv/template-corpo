@@ -2,11 +2,17 @@ import clsx from "clsx";
 import styles from "./Footer.module.scss";
 import Logo from "@/components/Logo/Logo";
 import Link from "next/link";
-import { SvgInstagram, SvgTelegram, SvgWhatsApp } from "@/assets/icons/svgs";
+import {
+  SvgInstagram,
+  SvgTelegram,
+  SvgViber,
+  SvgWhatsApp,
+} from "@/assets/icons/svgs";
 import { headers } from "next/headers";
 import { ContactsT, ServiceT, SettingsT } from "@/types/types";
 import { getStoreUrl } from "@/services/base";
 import { getServices } from "@/services/ServicesService";
+import { formatPhone } from "@/utils/helper";
 
 const FooterClient = ({
   host,
@@ -109,7 +115,9 @@ const FooterClient = ({
                 )}
                 {contacts?.social_links.whatsapp && (
                   <Link
-                    href={`https://wa.me/${contacts?.social_links.whatsapp}`}
+                    href={`https://wa.me/${formatPhone(
+                      contacts?.social_links.whatsapp
+                    )}`}
                     className={styles.socialItem}
                     aria-label="WhatsApp"
                   >
@@ -123,6 +131,17 @@ const FooterClient = ({
                     aria-label="Instagram"
                   >
                     <SvgInstagram />
+                  </Link>
+                )}
+                {contacts?.social_links.viber && (
+                  <Link
+                    href={`viber://chat?number=%2B${formatPhone(
+                      contacts?.social_links.viber
+                    )}`}
+                    className={styles.socialItem}
+                    aria-label="Viber"
+                  >
+                    <SvgViber />
                   </Link>
                 )}
               </div>

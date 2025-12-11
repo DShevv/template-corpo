@@ -8,6 +8,7 @@ import {
   SvgMail,
   SvgPhone,
   SvgTelegram,
+  SvgViber,
   SvgWhatsApp,
 } from "@/assets/icons/svgs";
 import Link from "next/link";
@@ -16,6 +17,7 @@ import { ContactsT, SettingsT } from "@/types/types";
 import { observer } from "mobx-react-lite";
 import globalStore from "@/stores/global-store";
 import { use } from "react";
+import { formatPhone } from "@/utils/helper";
 
 const ContactsBlock = observer(
   ({
@@ -100,7 +102,9 @@ const ContactsBlock = observer(
             )}
             {contactsData?.social_links.whatsapp && (
               <Link
-                href={`https://wa.me/${contactsData?.social_links.whatsapp}`}
+                href={`https://wa.me/${formatPhone(
+                  contactsData?.social_links.whatsapp
+                )}`}
                 target="_blank"
                 className={styles.social}
               >
@@ -114,6 +118,18 @@ const ContactsBlock = observer(
                 className={styles.social}
               >
                 <SvgInstagram />
+              </Link>
+            )}
+
+            {contactsData?.social_links.viber && (
+              <Link
+                href={`viber://chat?number=%2B${formatPhone(
+                  contactsData?.social_links.viber
+                )}`}
+                target="_blank"
+                className={styles.social}
+              >
+                <SvgViber />
               </Link>
             )}
           </div>

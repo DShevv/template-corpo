@@ -4,6 +4,7 @@ import {
   SvgArrowRight,
   SvgInstagram,
   SvgTelegram,
+  SvgViber,
   SvgWhatsApp,
 } from "@/assets/icons/svgs";
 import styles from "./Header.module.scss";
@@ -18,6 +19,7 @@ import { use, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
+import { formatPhone } from "@/utils/helper";
 
 const Header = observer(
   ({
@@ -130,11 +132,24 @@ const Header = observer(
                 )}
                 {contactsData?.social_links.whatsapp && (
                   <Link
-                    href={`https://wa.me/${contactsData?.social_links.whatsapp}`}
+                    href={`https://wa.me/${formatPhone(
+                      contactsData?.social_links.whatsapp
+                    )}`}
                     target="_blank"
                     aria-label="WhatsApp"
                   >
                     <SvgWhatsApp />
+                  </Link>
+                )}
+                {contactsData?.social_links.viber && (
+                  <Link
+                    href={`viber://chat?number=%2B${formatPhone(
+                      contactsData?.social_links.viber
+                    )}`}
+                    target="_blank"
+                    aria-label="Viber"
+                  >
+                    <SvgViber />
                   </Link>
                 )}
               </div>
