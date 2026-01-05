@@ -10,6 +10,7 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import heroImage from "@/assets/images/hero.png";
 import { BannerT, ContactsT, ServiceT, SettingsT } from "@/types/types";
 import OpenPopupButton from "@/components/Buttons/OpenPopupButton/OpenPopupButton";
+import { NewsResponse } from "@/types/api";
 
 const Hero = ({
   items,
@@ -24,6 +25,7 @@ const Hero = ({
   products,
   companyServices,
   banners,
+  news,
 }: {
   items?: { title: string; href: string }[];
   image?: StaticImageData | string;
@@ -37,6 +39,7 @@ const Hero = ({
   products: Promise<ServiceT[] | null>;
   companyServices: Promise<ServiceT[] | null>;
   banners?: Promise<BannerT[] | null>;
+  news: Promise<NewsResponse | null>;
 }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
@@ -77,6 +80,7 @@ const Hero = ({
         services={services}
         products={products}
         companyServices={companyServices}
+        news={news}
       />
       <div className="wrapper">
         <section className={styles.container}>

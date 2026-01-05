@@ -1,7 +1,6 @@
 import styles from "./page.module.scss";
 import Feedback from "@/blocks/Feedback/Feedback";
 import OurAdvantages from "@/blocks/OurAdvantages/OurAdvantages";
-import OurEmployees from "@/blocks/OurEmployees/OurEmployees";
 import OurPartners from "@/blocks/OurPartners/OurPartners";
 import OurReviews from "@/blocks/OurReviews/OurReviews";
 import OtherServices from "@/blocks/OtherServices/OtherServices";
@@ -35,7 +34,7 @@ import {
   ImageTextBlockT,
 } from "@/types/types";
 import ImageTextBlock from "@/blocks/ImageTextBlock/ImageTextBlock";
-import { getEmployees } from "@/services/EmployeesService";
+import { getNews } from "@/services/NewsService";
 
 export async function generateMetadata({
   params,
@@ -74,9 +73,9 @@ export default async function ServicePage({
   const gallery = getGallery();
   const storeUrl = getStoreUrl();
   const services = getServices();
-  const employees = getEmployees();
   const products = getProducts();
   const companyServices = getCompanyServices();
+  const news = getNews();
   const servicesData = await getProductBySlug({ slug });
 
   if (!servicesData) {
@@ -104,6 +103,7 @@ export default async function ServicePage({
         services={products}
         products={products}
         companyServices={companyServices}
+        news={news}
       />
 
       <div className={styles.wrapper}>
@@ -115,12 +115,12 @@ export default async function ServicePage({
           products={products}
           companyServices={companyServices}
           isInverted={true}
+          news={news}
         />
         <div className="wrapper">
           <ServiceContent servicesData={servicesData.blocks} />
 
           <OurAdvantages advantages={advantages} />
-          <OurEmployees employees={employees} storeUrl={storeUrl} />
           <OurPartners partners={partners} />
           <GalleryBlock gallery={gallery} storeUrl={storeUrl} />
           <OurReviews reviews={reviews} storeUrl={storeUrl} />

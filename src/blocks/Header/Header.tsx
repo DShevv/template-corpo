@@ -20,6 +20,9 @@ import { ContactsT, ServiceT, SettingsT } from "@/types/types";
 import { use } from "react";
 import Image from "next/image";
 import nanImage from "@/assets/images/nan.svg";
+import { NewsResponse } from "@/types/api";
+import flag from "@/assets/images/flag.jpg";
+import sign from "@/assets/images/sign.png";
 
 const Header = observer(
   ({
@@ -31,6 +34,7 @@ const Header = observer(
     services,
     products,
     companyServices,
+    news,
     isInverted = false,
   }: {
     isTransparent?: boolean;
@@ -41,6 +45,7 @@ const Header = observer(
     services: Promise<ServiceT[] | null>;
     products: Promise<ServiceT[] | null>;
     companyServices: Promise<ServiceT[] | null>;
+    news: Promise<NewsResponse | null>;
     isInverted?: boolean;
   }) => {
     const { popupStore } = globalStore;
@@ -50,6 +55,7 @@ const Header = observer(
     const servicesData = use(services);
     const productsData = use(products);
     const companyServicesData = use(companyServices);
+    const newsData = use(news);
     return (
       <header
         className={clsx(styles.container, {
@@ -120,11 +126,13 @@ const Header = observer(
                 ))}
               </ul>
             </li>
-            <li>
-              <Link className={clsx(styles.link, "body-2")} href="/news">
-                Новости
-              </Link>
-            </li>
+            {newsData && newsData.data.length > 0 && (
+              <li>
+                <Link className={clsx(styles.link, "body-2")} href="/news">
+                  Новости
+                </Link>
+              </li>
+            )}
             <li>
               <Link className={clsx(styles.link, "body-2")} href="/contacts">
                 Контакты
@@ -183,6 +191,11 @@ const Header = observer(
             height={58}
             className={clsx(styles.nan, { [styles.inverted]: isInverted })}
           />
+
+          <div className={styles.flags}>
+            <Image src={flag} alt="flag" width={256} height={58} />
+            <Image src={sign} alt="sign" width={256} height={58} />
+          </div>
 
           <div className={styles.socials}>
             {contactsData?.social_links.telegram && (

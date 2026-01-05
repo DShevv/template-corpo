@@ -63,6 +63,7 @@ export default function Home() {
         products={products}
         companyServices={companyServices}
         banners={banners}
+        news={news}
       />
 
       <div className={styles.wrapper}>
@@ -72,10 +73,19 @@ export default function Home() {
           storeUrl={storeUrl}
           services={services}
           products={products}
+          news={news}
           companyServices={companyServices}
           isInverted={true}
         />
         <div className="wrapper">
+          <Suspense fallback={<div>Loading...</div>}>
+            <OurServicesSlider
+              title="Наша продукция"
+              services={products || []}
+              storeUrl={storeUrl}
+              href="products"
+            />
+          </Suspense>
           <Suspense fallback={<div>Loading...</div>}>
             <OurServicesSlider
               title="Наши услуги"

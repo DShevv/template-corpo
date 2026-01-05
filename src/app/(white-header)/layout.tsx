@@ -13,6 +13,7 @@ import {
   getProducts,
   getServices,
 } from "@/services/ServicesService";
+import { getNews } from "@/services/NewsService";
 
 const FloatingCallButton = dynamic(
   () => import("@/components/FloatingCallButton/FloatingCallButton")
@@ -29,7 +30,7 @@ export default function RootLayout({
   const services = getServices();
   const products = getProducts();
   const companyServices = getCompanyServices();
-
+  const news = getNews();
   return (
     <>
       <Header
@@ -40,6 +41,7 @@ export default function RootLayout({
         products={products}
         companyServices={companyServices}
         isInverted={true}
+        news={news}
       />
       <HeaderMobile
         contacts={contacts}
@@ -59,6 +61,7 @@ export default function RootLayout({
         services={services}
         companyServices={companyServices}
         products={products}
+        news={news}
       />
     </>
   );

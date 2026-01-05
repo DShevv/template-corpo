@@ -21,6 +21,7 @@ import MainButton from "@/components/Buttons/MainButton/MainButton";
 import { ContactsT, ServiceT } from "@/types/types";
 import Image from "next/image";
 import nanImage from "@/assets/images/nan.svg";
+import { NewsResponse } from "@/types/api";
 
 const MobileMenu = observer(
   ({
@@ -28,11 +29,13 @@ const MobileMenu = observer(
     services,
     companyServices,
     products,
+    news,
   }: {
     contacts: Promise<ContactsT | null>;
     services: Promise<ServiceT[] | null>;
     companyServices: Promise<ServiceT[] | null>;
     products: Promise<ServiceT[] | null>;
+    news: Promise<NewsResponse | null>;
   }) => {
     const { popupStore } = globalStore;
     const { menu, closePopup, openPopup } = popupStore;
@@ -43,6 +46,7 @@ const MobileMenu = observer(
     const servicesData = use(services);
     const companyServicesData = use(companyServices);
     const productsData = use(products);
+    const newsData = use(news);
     useEffect(() => {
       if (menu) {
         const scrollPosition = window.scrollY;
@@ -213,15 +217,17 @@ const MobileMenu = observer(
                 )}
               </AnimatePresence>
             </li>
-            <li>
-              <Link
-                href="/news"
-                className={clsx(styles.link, "h5")}
-                onClick={() => closePopup("menu")}
-              >
-                Новости
-              </Link>
-            </li>
+            {newsData && newsData.data.length > 0 && (
+              <li>
+                <Link
+                  href="/news"
+                  className={clsx(styles.link, "h5")}
+                  onClick={() => closePopup("menu")}
+                >
+                  Новости
+                </Link>
+              </li>
+            )}
             <li>
               <Link
                 href="/contacts"

@@ -8,6 +8,7 @@ import Image from "next/image";
 import Header from "../Header/Header";
 import { useEffect, useRef, useState } from "react";
 import { ContactsT, ServiceT, SettingsT } from "@/types/types";
+import { NewsResponse } from "@/types/api";
 
 const NotFoundBlock = ({
   settings,
@@ -16,6 +17,7 @@ const NotFoundBlock = ({
   storeUrl,
   products,
   companyServices,
+  news,
 }: {
   settings: Promise<SettingsT | null>;
   contacts: Promise<ContactsT | null>;
@@ -23,6 +25,7 @@ const NotFoundBlock = ({
   products: Promise<ServiceT[] | null>;
   companyServices: Promise<ServiceT[] | null>;
   storeUrl: string;
+  news: Promise<NewsResponse | null>;
 }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
@@ -55,6 +58,7 @@ const NotFoundBlock = ({
         storeUrl={storeUrl}
         products={products}
         companyServices={companyServices}
+        news={news}
       />
       <div className="wrapper">
         <section className={styles.container}>

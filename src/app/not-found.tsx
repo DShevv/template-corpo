@@ -16,6 +16,7 @@ import {
   getProducts,
   getServices,
 } from "@/services/ServicesService";
+import { getNews } from "@/services/NewsService";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("404");
@@ -37,6 +38,7 @@ export default function NotFound() {
   const services = getServices();
   const products = getProducts();
   const companyServices = getCompanyServices();
+  const news = getNews();
   return (
     <>
       <HeaderMobile
@@ -53,6 +55,7 @@ export default function NotFound() {
           products={products}
           companyServices={companyServices}
           storeUrl={storeUrl}
+          news={news}
         />
 
         <div className={styles.wrapper}>

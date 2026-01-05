@@ -18,12 +18,28 @@
   transition:
     opacity 0.3s ease,
     visibility 0.3s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   @media (max-width: 768px) {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     display: none;
+  }
+
+  &::-webkit-scrollbar {
+    width: vw-1920(4);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: hsl(from var(--color-accent-1) h s l / 0.2);
+    border-radius: vw-1920(4);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: vw-1920(4);
   }
 
   &.hidden {
@@ -51,7 +67,7 @@
   }
 
   .menu {
-    margin-top: vw-1920(48);
+    margin-top: vw-1920(24);
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -121,6 +137,17 @@
 
   .bottom {
     padding: 0 vw-1920(48);
+
+    .flags {
+      display: flex;
+      gap: vw-1920(16);
+      justify-content: center;
+
+      img {
+        height: vw-1920(36);
+        width: auto;
+      }
+    }
   }
 
   .info {

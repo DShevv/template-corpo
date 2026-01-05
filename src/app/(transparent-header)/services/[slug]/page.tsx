@@ -36,6 +36,7 @@ import {
 } from "@/types/types";
 import ImageTextBlock from "@/blocks/ImageTextBlock/ImageTextBlock";
 import { getEmployees } from "@/services/EmployeesService";
+import { getNews } from "@/services/NewsService";
 
 export async function generateMetadata({
   params,
@@ -78,7 +79,7 @@ export default async function ServicePage({
   const products = getProducts();
   const companyServices = getCompanyServices();
   const servicesData = await getServiceBySlug({ slug });
-
+  const news = getNews();
   if (!servicesData) {
     notFound();
   }
@@ -104,6 +105,7 @@ export default async function ServicePage({
         services={services}
         products={products}
         companyServices={companyServices}
+        news={news}
       />
 
       <div className={styles.wrapper}>
@@ -115,6 +117,7 @@ export default async function ServicePage({
           products={products}
           companyServices={companyServices}
           isInverted={true}
+          news={news}
         />
         <div className="wrapper">
           <ServiceContent servicesData={servicesData.blocks} />
