@@ -19,6 +19,7 @@ import { getNews } from "@/services/NewsService";
 import OurServicesSlider from "@/blocks/OurServicesSlider/OurServicesSlider";
 import { Suspense } from "react";
 import { getStoreUrl } from "@/services/base";
+import { VideosBlockWrapper } from "@/blocks/VideoBlock";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("main");
@@ -75,6 +76,9 @@ export default function Home() {
             settings={settings}
             storeUrl={storeUrl}
           />
+          <Suspense fallback={<div>Loading...</div>}>
+            <VideosBlockWrapper />
+          </Suspense>
           <Suspense fallback={<div>Loading...</div>}>
             <NewsBlock
               title="Последние статьи"

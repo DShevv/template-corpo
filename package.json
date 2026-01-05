@@ -23,6 +23,7 @@
     "next-runtime-env": "^3.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-lite-youtube-embed": "^3.3.3",
     "slugify": "^1.6.6",
     "swiper": "^11.2.6",
     "yup": "^1.6.1"
