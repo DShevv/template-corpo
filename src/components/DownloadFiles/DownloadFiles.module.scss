@@ -1,0 +1,44 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  margin-top: vw-1920(60);
+
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
+
+  .list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: vw-1920(12);
+
+    @media (max-width: 768px) {
+      gap: 12px;
+    }
+  }
+
+  .item {
+    display: flex;
+  }
+
+  .link {
+    display: inline-flex;
+    color: var(--text);
+
+    &:hover {
+      color: var(--accent-1);
+    }
+  }
+
+  .icon {
+    flex-shrink: 0;
+    width: vw-1920(20);
+    height: vw-1920(20);
+
+    @media (max-width: 768px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

@@ -37,6 +37,23 @@
           margin-top: 12px;
         }
       }
+
+      .nationalSymbols {
+        margin-top: vw-1920(14);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: vw-1920(12);
+
+        @media (max-width: 768px) {
+          gap: 12px;
+        }
+
+        img {
+          height: auto;
+          align-self: center;
+          justify-self: center;
+        }
+      }
     }
 
     .wrapper {

@@ -61,7 +61,17 @@ export type SettingsT = {
     image: string | StaticImageData;
     content_blocks: (TextBlockT | ImageTextBlockT | FeaturesImagesBlockT)[] | null;
   };
-}
+  department_contacts: {
+    position: string;
+    full_name: string;
+    phones: string[];
+    emails: string[];
+  }[];
+  national_symbols: {
+    title: string | null;
+    image_path: string;
+  }[]
+};
 
 export type ContactsT = {
   address: string;
@@ -110,6 +120,10 @@ export type ServiceT = {
   slug: string;
   photo_path: string;
   blocks: (TextImageBlockT | TextT | ImageT)[] | null;
+  documents: {
+    title: string;
+    file_path: string;
+  }[];
 };
 
 export type TextImageBlockT = {

@@ -1,14 +1,9 @@
 @use "../../assets/sass/functions" as *;
 
 .container {
-  padding: vw-1920(48) 0 vw-1920(40);
   flex: 0 0 vw-1920(352);
   width: vw-1920(352);
   border-right: 1px solid var(--accent-2);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: vw-1920(24);
   height: 100dvh;
   position: fixed;
   background-color: var(--white);
@@ -18,8 +13,6 @@
   transition:
     opacity 0.3s ease,
     visibility 0.3s ease;
-  overflow-y: auto;
-  overflow-x: hidden;
 
   @media (max-width: 768px) {
     opacity: 0;
@@ -28,18 +21,29 @@
     display: none;
   }
 
-  &::-webkit-scrollbar {
-    width: vw-1920(4);
-  }
+  .scrollWrapper {
+    padding: vw-1920(32) 0 vw-1920(30);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: vw-1920(24);
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 
-  &::-webkit-scrollbar-thumb {
-    background: hsl(from var(--color-accent-1) h s l / 0.2);
-    border-radius: vw-1920(4);
-  }
+    &::-webkit-scrollbar {
+      width: vw-1920(4);
+    }
 
-  &::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: vw-1920(4);
+    &::-webkit-scrollbar-thumb {
+      background: hsl(from var(--color-accent-1) h s l / 0.2);
+      border-radius: vw-1920(4);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: vw-1920(4);
+    }
   }
 
   &.hidden {
@@ -97,21 +101,11 @@
   }
 
   .menuItem {
-    position: relative;
-
-    &:hover {
-      .subMenu {
-        opacity: 1;
-        visibility: visible;
-      }
-    }
+    position: static;
 
     .subMenu {
-      position: absolute;
-      top: 0;
-      right: 0;
-      transform: translateX(100%);
-      max-width: 100%;
+      position: fixed;
+      left: vw-1920(352);
       background-color: var(--white);
       list-style: none;
       padding: vw-1920(16);
@@ -119,8 +113,16 @@
       flex-direction: column;
       gap: vw-1920(12);
       opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
+      z-index: -1;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      box-shadow: 0 vw-1920(4) vw-1920(16) rgba(0, 0, 0, 0.1);
+
+      &.visible {
+        opacity: 1;
+        z-index: 102;
+        pointer-events: auto;
+      }
 
       .link {
         font-weight: 500;

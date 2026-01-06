@@ -7,6 +7,7 @@ import { headers } from "next/headers";
 import { ContactsT, ServiceT, SettingsT } from "@/types/types";
 import { getStoreUrl } from "@/services/base";
 import { getServices } from "@/services/ServicesService";
+import Image from "next/image";
 
 const FooterClient = ({
   host,
@@ -31,6 +32,17 @@ const FooterClient = ({
           <p className={clsx("body-2", styles.description)}>
             {contacts?.company_description}
           </p>
+          <div className={styles.nationalSymbols}>
+            {settings?.national_symbols.map((symbol, index) => (
+              <Image
+                key={index}
+                src={`${storeUrl}/${symbol.image_path}`}
+                alt={symbol.title || ""}
+                width={100}
+                height={100}
+              />
+            ))}
+          </div>
         </div>
 
         <div className={styles.wrapper}>

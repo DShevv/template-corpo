@@ -1,11 +1,13 @@
 import FirstBlock from "@/blocks/FirstBlock/FirstBlock";
 import firstBlockImage from "@/assets/images/contacts.jpg";
 import ContactsBlock from "@/blocks/ContactsBlock/ContactsBlock";
+import DepartmentContactsBlock from "@/blocks/DepartmentContactsBlock/DepartmentContactsBlock";
 import styles from "./page.module.scss";
 import Feedback from "@/blocks/Feedback/Feedback";
 import { getContacts, getSeoTag } from "@/services/SettingsService";
 import { getSettings } from "@/services/SettingsService";
 import { getStoreUrl } from "@/services/base";
+import { Suspense } from "react";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("contacts");
@@ -44,6 +46,10 @@ export default function Contacts() {
           settings={settings || undefined}
           storeUrl={storeUrl}
         />
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <DepartmentContactsBlock />
+        </Suspense>
 
         <Feedback settings={settings || undefined} storeUrl={storeUrl} />
       </div>

@@ -1,0 +1,140 @@
+@use "../../assets/sass/functions" as *;
+
+.container {
+  margin-top: vw-1920(80);
+
+  @media (max-width: 768px) {
+    margin-top: 48px;
+  }
+
+  .title {
+    margin-bottom: vw-1920(32);
+    color: var(--text);
+
+    @media (max-width: 768px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: vw-1920(24);
+
+    @media (max-width: 768px) {
+      gap: 16px;
+    }
+  }
+
+  .department {
+    background-color: var(--card-bg);
+    padding: vw-1920(24) vw-1920(32);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: vw-1920(24);
+    border: 1px solid var(--accent-2);
+    transition: border-color 0.3s ease;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+
+      padding: 20px;
+      gap: 16px;
+    }
+
+    &:hover {
+      border-color: hsl(from var(--color-accent-1) h s l / 0.3);
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: vw-1920(4);
+
+      @media (max-width: 768px) {
+        gap: 4px;
+      }
+
+      .position {
+        color: var(--accent-1);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .name {
+        color: var(--text);
+        font-weight: 600;
+      }
+    }
+
+    .contacts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: vw-1920(32);
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .contactItem {
+        display: flex;
+        align-items: center;
+        gap: vw-1920(8);
+
+        @media (max-width: 768px) {
+          gap: 8px;
+        }
+
+        .icon {
+          flex-shrink: 0;
+          width: vw-1920(40);
+          height: vw-1920(40);
+          color: var(--accent-1);
+          background-color: var(--accent-2);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            width: vw-1920(18);
+            height: vw-1920(18);
+          }
+
+          @media (max-width: 768px) {
+            width: 40px;
+            height: 40px;
+
+            svg {
+              width: 18px;
+              height: 18px;
+            }
+          }
+        }
+
+        .contactLinks {
+          display: flex;
+          flex-direction: column;
+          gap: vw-1920(4) vw-1920(16);
+
+          @media (max-width: 768px) {
+            gap: 4px 12px;
+          }
+
+          .link {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s ease;
+
+            &:hover {
+              color: var(--accent-1);
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}

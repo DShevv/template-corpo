@@ -37,6 +37,7 @@ import {
 import ImageTextBlock from "@/blocks/ImageTextBlock/ImageTextBlock";
 import { getEmployees } from "@/services/EmployeesService";
 import { getNews } from "@/services/NewsService";
+import DownloadFiles from "@/components/DownloadFiles/DownloadFiles";
 
 export async function generateMetadata({
   params,
@@ -121,6 +122,7 @@ export default async function ServicePage({
         />
         <div className="wrapper">
           <ServiceContent servicesData={servicesData.blocks} />
+          <DownloadFiles files={servicesData.documents} storeUrl={storeUrl} />
 
           <OurAdvantages advantages={advantages} />
           <OurEmployees employees={employees} storeUrl={storeUrl} />
