@@ -8,7 +8,7 @@ import { getSettings } from "@/services/SettingsService";
 import { getStoreUrl } from "@/services/base";
 
 export async function generateMetadata() {
-  const seoTag = await getSeoTag("contacts");
+  const seoTag = await getSeoTag("/contacts");
   return {
     title: seoTag?.title,
     description: seoTag?.description,

@@ -2,7 +2,7 @@ import { Onest } from "next/font/google";
 import "./globals.scss";
 import Script from "next/script";
 import SmoothScroll from "@/components/SmoothScroll/SmoothScroll";
-import { getSettings } from "@/services/SettingsService";
+import { getSeoSettings, getSettings } from "@/services/SettingsService";
 import Notification from "@/components/Notification/Notification";
 import { getStoreUrl } from "@/services/base";
 import {
@@ -21,10 +21,18 @@ const onest = Onest({
 
 export async function generateMetadata() {
   const settings = await getSettings();
+  const seoSettings = await getSeoSettings();
+
   const storageUrl = getStoreUrl();
   return {
     icons: {
       icon: `${storageUrl}/${settings?.favicon}`,
+    },
+    verification: {
+      google: seoSettings?.google_search_console,
+    },
+    other: {
+      'yandex-verification': seoSettings?.yandex_webmaster ?? '',
     },
   };
 }

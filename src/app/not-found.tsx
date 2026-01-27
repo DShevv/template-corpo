@@ -13,7 +13,7 @@ import {
 import { getStoreUrl } from "@/services/base";
 
 export async function generateMetadata() {
-  const seoTag = await getSeoTag("404");
+  const seoTag = await getSeoTag("/404");
   return {
     title: seoTag?.title,
     description: seoTag?.description,

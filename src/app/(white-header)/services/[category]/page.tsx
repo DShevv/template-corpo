@@ -14,7 +14,7 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }) {
   const { category } = await params;
-  const seoTag = await getSeoTag("services");
+  const seoTag = await getSeoTag(`/services/${category}`);
   return {
     title: seoTag?.title,
     description: seoTag?.description,

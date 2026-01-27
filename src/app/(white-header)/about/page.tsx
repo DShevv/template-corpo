@@ -15,7 +15,8 @@ import FeatureBlock from "@/blocks/FeatureBlock/FeatureBlock";
 import { getEmployees } from "@/services/EmployeesService";
 
 export async function generateMetadata() {
-  const seoTag = await getSeoTag("about");
+  const seoTag = await getSeoTag("/about");
+  
   return {
     title: seoTag?.title,
     description: seoTag?.description,

@@ -38,10 +38,10 @@ import ImageBlock from "@/blocks/ImageBlock/ImageBlock";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; category: string }>;
 }) {
-  const { slug } = await params;
-  const seoTag = await getSeoTag(slug);
+  const { slug, category } = await params;
+  const seoTag = await getSeoTag(`/services/${category}/${slug}`);
 
   if (!seoTag) {
     return {};

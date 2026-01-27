@@ -11,14 +11,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: process.env.SITE_NAME || process.env.NEXT_PUBLIC_SITE_NAME || 'webspaceteam.site',
+        hostname: '**',
         pathname: '/**',
       },
-      {
-        protocol: 'https',
-        hostname: `**.${process.env.SITE_NAME || process.env.NEXT_PUBLIC_SITE_NAME}`,
-        pathname: '/**',
-      },
+
     ],
   },
 
@@ -150,7 +146,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       { source: "/robots.txt", destination: "/api/robots" },
-      { source: "/sitemap.xml", destination: "/api/sitemap" },
+      { source: "/sitemap.xml", destination: "/api/sitemap.xml" },
       { source: "/feed.xml", destination: "/api/feed" },
     ];
   },

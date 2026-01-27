@@ -1,8 +1,6 @@
 import FirstBlock from "@/blocks/FirstBlock/FirstBlock";
 import styles from "./page.module.scss";
 import Feedback from "@/blocks/Feedback/Feedback";
-import newsItemImage from "@/assets/images/news-item.jpg";
-import Image from "next/image";
 import InlineButton from "@/components/Buttons/InlineButton/InlineButton";
 import NewsBlock from "@/blocks/NewsBlock/NewsBlock";
 import { getSeoTag, getSettings } from "@/services/SettingsService";
@@ -17,7 +15,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const seoTag = await getSeoTag(slug);
+  const seoTag = await getSeoTag(`/news/${slug}`);
 
   if (!seoTag) {
     const news = await getNewsBySlug(slug);
@@ -76,62 +74,7 @@ export default async function NewsPage({
       />
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <p>
-            С 1 июня по 11 июня 2025 года в Минске прошла Международная
-            конференция. Мероприятие объединило около 600 участников
-            из политических, экспертных и аналитических кругов 45 государств.
-          </p>
-          <p>
-            Организаторы обозначили ключевую задачу: создать пространство для
-            нефильтрованного диалога в условиях, когда традиционные институты
-            глобального управления (ООН, ОБСЕ, ШОС) демонстрируют растущую
-            неэффективность. Акцент был сделан на поиске альтернативных форматов
-            взаимодействия, способных преодолеть:
-          </p>
-          <ol>
-            <li>
-              Системный кризис миропорядка — распад биполярной модели и
-              отсутствие новых устойчивых договорённостей;
-            </li>
-            <li>
-              Накопившиеся военно-политические противоречия — от конфликта в
-              Украинском регионе до территориальных споров в Южно-Китайском
-              море;
-            </li>
-            <li>
-              Коммуникационный коллапс — сокращение дипломатических каналов
-              между РФ, США, КНР и ЕС до минимального уровня с 1991 года.
-            </li>
-          </ol>
-
-          <div className={styles.images}>
-            <Image src={newsItemImage} alt="news item" />
-            <Image src={newsItemImage} alt="news item" />
-          </div>
-
-          <p>
-            Организаторы обозначили ключевую задачу: создать пространство для
-            нефильтрованного диалога в условиях, когда традиционные институты
-            глобального управления (ООН, ОБСЕ, ШОС) демонстрируют растущую
-            неэффективность. Акцент был сделан на поиске альтернативных форматов
-            взаимодействия, способных преодолеть:
-          </p>
-
-          <ol>
-            <li>
-              Системный кризис миропорядка — распад биполярной модели и
-              отсутствие новых устойчивых договорённостей;
-            </li>
-            <li>
-              Накопившиеся военно-политические противоречия — от конфликта в
-              Украинском регионе до территориальных споров в Южно-Китайском
-              море;
-            </li>
-            <li>
-              Коммуникационный коллапс — сокращение дипломатических каналов
-              между РФ, США, КНР и ЕС до минимального уровня с 1991 года.
-            </li>
-          </ol>
+          <div dangerouslySetInnerHTML={{ __html: news.content }} />
           <InlineButton
             type="link"
             backIcon

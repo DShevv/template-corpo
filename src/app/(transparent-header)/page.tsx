@@ -11,6 +11,7 @@ import { getPartners } from "@/services/PartnersService";
 import { getAdvantages } from "@/services/AdvantagesService";
 import {
   getContacts,
+  getSeoSettings,
   getSeoTag,
   getSettings,
 } from "@/services/SettingsService";
@@ -22,7 +23,11 @@ import { getStoreUrl } from "@/services/base";
 import { VideosBlockWrapper } from "@/blocks/VideoBlock";
 
 export async function generateMetadata() {
-  const seoTag = await getSeoTag("main");
+  const seoTag = await getSeoTag("/home");
+  const settings = await getSettings();
+  const seoSettings = await getSeoSettings();
+
+  const storageUrl = getStoreUrl();
   return {
     title: seoTag?.title,
     description: seoTag?.description,
@@ -30,6 +35,18 @@ export async function generateMetadata() {
     openGraph: {
       title: seoTag?.title,
       description: seoTag?.description,
+    },
+    alternates: {
+      canonical: "/",
+    },
+    icons: {
+      icon: `${storageUrl}/${settings?.favicon}`,
+    },
+    verification: {
+      google: seoSettings?.google_search_console,
+    },
+    other: {
+      'yandex-verification': seoSettings?.yandex_webmaster ?? '',
     },
   };
 }

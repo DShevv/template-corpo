@@ -4,7 +4,7 @@ import styles from "./page.module.scss";
 import { getSeoTag, getSettings } from "@/services/SettingsService";
 
 export async function generateMetadata() {
-  const seoTag = await getSeoTag("policy");
+  const seoTag = await getSeoTag("/policy");
   return {
     title: seoTag?.title,
     description: seoTag?.description,

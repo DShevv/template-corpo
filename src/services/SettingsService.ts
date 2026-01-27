@@ -42,10 +42,10 @@ export const getSeoTag = async (name: string): Promise<SeoTagT | null> => {
   try {
     const apiUrl = getApiUrl();
     const response = await fetch(`${apiUrl}/v1/seo/tag?name=${name}`, { next: { revalidate: 60 } });
-    const data: ApiResponse<SeoTagT> = await response.json();
+    const data: SeoTagT = await response.json();
 
-    if (data && "success" in data && data.success) {
-      return data.data;
+    if (data) {
+      return data;
     }
 
     return null;
