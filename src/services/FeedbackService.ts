@@ -8,6 +8,9 @@ export const sendFeedback = async (data: FeedbackT): Promise<boolean> => {
     const response = await fetch(`${apiUrl}/v1/feedback`, {
       method: "POST",
       body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     const responseData: ApiResponse<boolean> = await response.json();
 
