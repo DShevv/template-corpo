@@ -9,9 +9,8 @@ import {
   SvgWhatsApp,
 } from "@/assets/icons/svgs";
 import { headers } from "next/headers";
-import { ContactsT, ServiceT, SettingsT } from "@/types/types";
+import { ContactsT, SettingsT } from "@/types/types";
 import { getStoreUrl } from "@/services/base";
-import { getServices } from "@/services/ServicesService";
 import { formatPhone } from "@/utils/helper";
 
 const FooterClient = ({
@@ -20,14 +19,12 @@ const FooterClient = ({
   settings,
   contacts,
   storeUrl,
-  services,
 }: {
   host: string;
   className?: string;
   settings: SettingsT | null;
   contacts: ContactsT | null;
   storeUrl?: string;
-  services: ServiceT[] | null;
 }) => {
   return (
     <footer className={clsx(styles.footer, className)}>
@@ -72,16 +69,22 @@ const FooterClient = ({
             <div className={styles.col}>
               <div className={clsx("body-2", styles.title)}>Услуги</div>
               <ul className={styles.list}>
-                {services?.map((service, index) => (
-                  <li className={styles.item} key={index}>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className={clsx("body-3", styles.link)}
-                    >
-                      {service.title}
-                    </Link>
-                  </li>
-                ))}
+                <li className={styles.item}>
+                  <Link
+                    href={`/services/special-effects`}
+                    className={clsx("body-3", styles.link)}
+                  >
+                    Спецэффекты
+                  </Link>
+                </li>
+                <li className={styles.item}>
+                  <Link
+                    href={`/services/events`}
+                    className={clsx("body-3", styles.link)}
+                  >
+                    Мероприятия
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -187,11 +190,7 @@ async function Footer({
   contacts: Promise<ContactsT | null>;
   settings: Promise<SettingsT | null>;
 }) {
-  const [headersList, storeUrl, services] = await Promise.all([
-    headers(),
-    getStoreUrl(),
-    getServices(),
-  ]);
+  const [headersList, storeUrl] = await Promise.all([headers(), getStoreUrl()]);
   const host = headersList.get("host") || "site.com";
 
   const domain = host.split(":")[0];
@@ -204,7 +203,6 @@ async function Footer({
       contacts={contactsData}
       settings={settingsData}
       storeUrl={storeUrl}
-      services={services}
     />
   );
 }
