@@ -2,12 +2,20 @@
 
 .container {
   margin-top: vw-1920(140);
+  display: flex;
+  align-items: center;
+  gap: vw-1920(24);
+  flex-wrap: wrap;
 
   @media (max-width: 768px) {
     margin-top: 72px;
+    flex-direction: column;
+    gap: 24px;
   }
 
   .image {
+    flex: 1 1 33%;
+
     width: 100%;
     height: vw-1920(586);
     object-fit: cover;

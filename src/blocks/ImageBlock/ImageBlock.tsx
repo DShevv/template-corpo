@@ -8,20 +8,23 @@ const ImageBlock = ({
   content,
   className,
 }: {
-  content: ImageBlockT["content"];
+  content: ImageBlockT["content"][];
   className?: string;
 }) => {
   const storeUrl = getStoreUrl();
 
   return (
     <section className={clsx(styles.container, className)}>
-      <Image
-        src={`${storeUrl}/${content.image_path}`}
-        alt={"Изображение"}
-        className={styles.image}
-        width={1920}
-        height={1080}
-      />
+      {content.map((item, index) => (
+        <Image
+          key={index}
+          src={`${storeUrl}/${item.image_path}`}
+          alt={"Изображение"}
+          className={styles.image}
+          width={1920}
+          height={1080}
+        />
+      ))}
     </section>
   );
 };

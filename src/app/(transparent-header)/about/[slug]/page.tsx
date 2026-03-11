@@ -174,15 +174,22 @@ const ServiceContent = async ({
               key={index}
               className={index === 0 ? "mt-0" : ""}
               content={
-                {
-                  image_path: block.image_path,
-                } as ImageBlockT["content"]
+                [
+                  {
+                    image_path: block.image_path,
+                  },
+                ] as ImageBlockT["content"][]
               }
             />
           );
         }
 
         if (block.type === "text_image") {
+          const imagesData = JSON.parse(
+            block.images_data as string,
+          )?.images?.map((item: { image_path: string }) => ({
+            image_path: item.image_path,
+          }));
           return (
             <ImageTextBlock
               key={index}
@@ -190,8 +197,8 @@ const ServiceContent = async ({
               content={
                 {
                   text: block.text,
-                  image_path: block.image_path,
                   image_position: block.image_position,
+                  images_data: { images: imagesData },
                 } as ImageTextBlockT["content"]
               }
             />

@@ -34,6 +34,7 @@ export const getServiceBySlug = async ({
     });
 
     const { data } = await res.json();
+    console.log(data);
 
     data.blocks = data.blocks?.map((block: TextImageBlockT | TextGridBlockT | FeaturesImages | TextT | ImageT) => {
       if (block.type == 'features4') {

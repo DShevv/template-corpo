@@ -101,7 +101,7 @@ export default async function ServicePage({
         description={servicesData.subtitle || ""}
         popup={"feedback"}
         storeUrl={storeUrl}
-        services={products}
+        services={services}
         products={products}
         companyServices={companyServices}
         news={news}
@@ -166,20 +166,27 @@ const ServiceContent = ({
         }
 
         if (block.type === "image") {
+          const blockContent = JSON.parse(block.images_data).images.map(
+            (item: { image_path: string }) => ({
+              image_path: item.image_path,
+            }),
+          );
+
           return (
             <ImageBlock
               key={index}
               className={index === 0 ? "mt-0" : ""}
-              content={
-                {
-                  image_path: block.image_path,
-                } as ImageBlockT["content"]
-              }
+              content={blockContent as ImageBlockT["content"][]}
             />
           );
         }
 
         if (block.type === "text_image") {
+          const imagesData = JSON.parse(
+            block.images_data as string,
+          )?.images?.map((item: { image_path: string }) => ({
+            image_path: item.image_path,
+          }));
           return (
             <ImageTextBlock
               key={index}
@@ -187,8 +194,8 @@ const ServiceContent = ({
               content={
                 {
                   text: block.text,
-                  image_path: block.image_path,
                   image_position: block.image_position,
+                  images_data: { images: imagesData },
                 } as ImageTextBlockT["content"]
               }
             />

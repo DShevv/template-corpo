@@ -18,7 +18,7 @@ const ImageTextBlock = ({
       className={clsx(
         styles.container,
         styles[content.image_position],
-        className
+        className,
       )}
     >
       <div className={styles.caption}>
@@ -27,13 +27,15 @@ const ImageTextBlock = ({
           dangerouslySetInnerHTML={{ __html: content.text }}
         />
       </div>
-      <Image
-        src={`${storeUrl}/${content.image_path}`}
-        alt={content.text.split(" ").slice(0, 10).join(" ")}
-        className={styles.image}
-        width={1920}
-        height={1080}
-      />
+      {content.images_data.images?.[0]?.image_path && (
+        <Image
+          src={`${storeUrl}/${content.images_data.images[0].image_path}`}
+          alt={content.text.split(" ").slice(0, 10).join(" ")}
+          className={styles.image}
+          width={1920}
+          height={1080}
+        />
+      )}
     </section>
   );
 };
