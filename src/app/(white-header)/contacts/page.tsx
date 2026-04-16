@@ -10,7 +10,7 @@ import { getStoreUrl } from "@/services/base";
 import { Suspense } from "react";
 
 export async function generateMetadata() {
-  const seoTag = await getSeoTag("contacts");
+  const seoTag = await getSeoTag("/contacts");
   return {
     title: seoTag?.title,
     description: seoTag?.description,

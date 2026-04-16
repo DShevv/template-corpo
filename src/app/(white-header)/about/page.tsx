@@ -8,7 +8,7 @@ import ServicesList from "@/components/ServicesList/ServicesList";
 import { getCompanyServices } from "@/services/ServicesService";
 
 export async function generateMetadata() {
-  const seoTag = await getSeoTag("about");
+  const seoTag = await getSeoTag("/about");
   return {
     title: seoTag?.title,
     description: seoTag?.description,

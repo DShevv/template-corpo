@@ -9,7 +9,7 @@ import { getStoreUrl } from "@/services/base";
 import { getServices } from "@/services/ServicesService";
 
 export async function generateMetadata() {
-  const seoTag = await getSeoTag("services");
+  const seoTag = await getSeoTag("/services");
   return {
     title: seoTag?.title,
     description: seoTag?.description,

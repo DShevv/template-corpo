@@ -29,7 +29,7 @@ import { getStoreUrl } from "@/services/base";
 import { getBanners } from "@/services/BannersService";
 
 export async function generateMetadata() {
-  const seoTag = await getSeoTag("main");
+  const seoTag = await getSeoTag("home");
   return {
     title: seoTag?.title,
     description: seoTag?.description,
