@@ -44,12 +44,12 @@ const ContactsBlock = observer(
         className={clsx(
           styles.container,
           { [styles.standalone]: isStandalone },
-          className
+          className,
         )}
       >
-        <h2 className={clsx(isStandalone ? "h4" : "h2", styles.title)}>
+        <div className={clsx(isStandalone ? "h4" : "h2", styles.title)}>
           {isStandalone ? contactsData?.address : "Адрес компании"}
-        </h2>
+        </div>
 
         <div className={styles.info}>
           {!isStandalone && (
@@ -103,7 +103,7 @@ const ContactsBlock = observer(
             {contactsData?.social_links.whatsapp && (
               <Link
                 href={`https://wa.me/${formatPhone(
-                  contactsData?.social_links.whatsapp
+                  contactsData?.social_links.whatsapp,
                 )}`}
                 target="_blank"
                 className={styles.social}
@@ -124,7 +124,7 @@ const ContactsBlock = observer(
             {contactsData?.social_links.viber && (
               <Link
                 href={`viber://chat?number=%2B${formatPhone(
-                  contactsData?.social_links.viber
+                  contactsData?.social_links.viber,
                 )}`}
                 target="_blank"
                 className={styles.social}
@@ -146,7 +146,7 @@ const ContactsBlock = observer(
         />
       </section>
     );
-  }
+  },
 );
 
 export default ContactsBlock;

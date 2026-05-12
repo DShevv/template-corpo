@@ -37,9 +37,9 @@ const OurServicesSlider = ({
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-        <h2 className={clsx("h2", styles.title)}>
+        <div className={clsx("h2", styles.title)}>
           {title || "Услуги компании"}
-        </h2>
+        </div>
 
         {servicesData?.length > 4 && (
           <div className={styles.navigation}>

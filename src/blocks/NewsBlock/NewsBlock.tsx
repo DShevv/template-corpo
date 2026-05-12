@@ -38,9 +38,9 @@ const NewsBlock = ({
   return (
     <section className={clsx(styles.container, className)}>
       <header className={styles.header}>
-        <h2 className={clsx("h2", styles.title)}>
+        <div className={clsx("h2", styles.title)}>
           {title || "Новости компании"}
-        </h2>
+        </div>
         {isArrows ? (
           <div className={styles.navigation}>
             <ArrowButton
@@ -83,7 +83,7 @@ const NewsBlock = ({
                 storeUrl={storeUrl}
               />
             </SwiperSlide>
-          )
+          ),
         )}
       </Swiper>
 

@@ -9,9 +9,9 @@ import InlineButton from "@/components/Buttons/InlineButton/InlineButton";
 const OtherCities = () => {
   return (
     <section className={styles.container}>
-      <h2 className={clsx("h2", styles.title)}>
+      <div className={clsx("h2", styles.title)}>
         Представительства в других городах
-      </h2>
+      </div>
 
       <div className={styles.list}>
         <div className={styles.item}>

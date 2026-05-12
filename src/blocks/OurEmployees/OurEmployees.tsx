@@ -25,7 +25,7 @@ const OurEmployees = ({
   return (
     <div className={s.container}>
       <div className={s.header}>
-        <h2 className="h2">Сотрудники</h2>
+        <div className="h2">Сотрудники</div>
         <p className="body-2">
           Наши специалисты обладают многолетним опытом и профессиональной
           экспертизой. Под руководством признанных экспертов в отрасли команда

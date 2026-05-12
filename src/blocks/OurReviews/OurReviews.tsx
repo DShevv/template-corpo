@@ -31,7 +31,7 @@ const OurReviews = ({ reviews, storeUrl }: OurReviewsProps) => {
   return (
     <section className={styles.container}>
       <div className={styles.header}>
-        <h2 className={clsx("h2", styles.title)}>Отзывы на нашу работу</h2>
+        <div className={clsx("h2", styles.title)}>Отзывы на нашу работу</div>
         <p className={clsx("body-2", styles.description)}>
           Наши специалисты обладают многолетним опытом и профессиональной
           экспертизой. Под руководством признанных экспертов в отрасли команда

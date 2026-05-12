@@ -25,7 +25,7 @@ const GalleryBlock = ({
 
   return (
     <section className={styles.container}>
-      <h2 className={clsx("h2", styles.title)}>Фотогалерея проектов</h2>
+      <div className={clsx("h2", styles.title)}>Фотогалерея проектов</div>
 
       <Swiper
         className={styles.swiper}

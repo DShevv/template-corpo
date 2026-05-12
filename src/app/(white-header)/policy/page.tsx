@@ -13,6 +13,9 @@ export async function generateMetadata() {
       title: seoTag?.title,
       description: seoTag?.description,
     },
+    alternates: {
+      canonical: `/policy`,
+    },
   };
 }
 

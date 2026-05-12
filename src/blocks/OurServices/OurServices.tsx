@@ -9,7 +9,7 @@ const OurServices = async () => {
   const services = await getServices();
   return (
     <section className={styles.container}>
-      <h2 className={clsx("h2", styles.title)}>Наши услуги</h2>
+      <div className={clsx("h2", styles.title)}>Наши услуги</div>
 
       <div className={styles.services}>
         {services &&

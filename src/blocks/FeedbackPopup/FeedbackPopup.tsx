@@ -91,7 +91,7 @@ const FeedbackPopup = observer(
           >
             {({ values, setFieldValue }) => (
               <Form className={styles.form}>
-                <h2 className={clsx("h3", styles.title)}>Обратный звонок</h2>
+                <div className={clsx("h3", styles.title)}>Обратный звонок</div>
                 <p className={clsx("body-2", styles.description)}>
                   Для связи заполните форму ниже, и наш специалист позвонит вам
                   в ближайшее время
@@ -148,7 +148,7 @@ const FeedbackPopup = observer(
                     checked={values.isAgree}
                     onChange={() => setFieldValue("isAgree", !values.isAgree)}
                   >
-                    <Link href="/privacy-policy" className={styles.link}>
+                    <Link href="/policy" className={styles.link}>
                       Согласие на обработку персональных данных
                     </Link>
                   </Checkbox>
@@ -159,7 +159,7 @@ const FeedbackPopup = observer(
         </div>
       </div>
     );
-  }
+  },
 );
 
 export default FeedbackPopup;

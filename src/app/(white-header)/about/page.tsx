@@ -16,7 +16,7 @@ import { getEmployees } from "@/services/EmployeesService";
 
 export async function generateMetadata() {
   const seoTag = await getSeoTag("/about");
-  
+
   return {
     title: seoTag?.title,
     description: seoTag?.description,
@@ -24,6 +24,9 @@ export async function generateMetadata() {
     openGraph: {
       title: seoTag?.title,
       description: seoTag?.description,
+    },
+    alternates: {
+      canonical: `/about`,
     },
   };
 }

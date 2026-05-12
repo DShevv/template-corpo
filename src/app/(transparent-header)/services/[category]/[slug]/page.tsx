@@ -55,6 +55,9 @@ export async function generateMetadata({
       title: seoTag?.title,
       description: seoTag?.description,
     },
+    alternates: {
+      canonical: `/services/${category}/${slug}`,
+    },
   };
 }
 
@@ -64,6 +67,11 @@ export default async function ServicePage({
   params: Promise<{ slug: string; category: string }>;
 }) {
   const { slug, category } = await params;
+
+  if (category !== "events" && category !== "special-effects") {
+    notFound();
+  }
+
   const advantages = getAdvantages();
   const partners = getPartners();
   const settings = getSettings();

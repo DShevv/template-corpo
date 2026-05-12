@@ -18,7 +18,9 @@ const AboutBlock = async ({ isHeader = true }: { isHeader?: boolean }) => {
     <section className={clsx(styles.container)}>
       <div className={styles.caption}>
         <div className={styles.text}>
-          {isHeader && <h2 className={clsx("h2", styles.title)}>О компании</h2>}
+          {isHeader && (
+            <div className={clsx("h2", styles.title)}>О компании</div>
+          )}
           <div
             dangerouslySetInnerHTML={{ __html: settings?.about?.text || "" }}
           />

@@ -23,7 +23,7 @@ const OurPartners = ({ partners }: OurPartnersProps) => {
 
   return (
     <section className={styles.container}>
-      <h2 className={clsx("h2", styles.title)}>Наши партнеры</h2>
+      <div className={clsx("h2", styles.title)}>Наши партнеры</div>
 
       <Swiper
         className={styles.swiper}

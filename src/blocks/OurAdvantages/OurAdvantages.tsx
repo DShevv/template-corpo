@@ -47,7 +47,7 @@ const OurAdvantages = ({ advantages }: OurAdvantagesProps) => {
 
   return (
     <section className={styles.container}>
-      <h2 className={clsx("h2", styles.title)}>Наши преимущества</h2>
+      <div className={clsx("h2", styles.title)}>Наши преимущества</div>
 
       <div className={styles.advantages}>
         {advantagesData &&

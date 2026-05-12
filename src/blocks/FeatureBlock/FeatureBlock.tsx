@@ -14,7 +14,7 @@ const FeatureBlock = ({
   return (
     <section className={clsx(styles.container)}>
       <div className={styles.caption}>
-        <h2 className={clsx("h2", styles.title)}>{content.title}</h2>
+        <div className={clsx("h2", styles.title)}>{content.title}</div>
         <div className={styles.inner}>
           <div
             className={clsx("body-1", styles.text)}

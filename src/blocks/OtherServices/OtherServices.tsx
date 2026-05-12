@@ -12,7 +12,7 @@ const OtherServices = async () => {
   return (
     <div className={s.container}>
       <div className={s.header}>
-        <h2 className="h2">Другие услуги</h2>
+        <div className="h2">Другие услуги</div>
         <MainButton type="link" href="/services">
           Все услуги
         </MainButton>

@@ -22,7 +22,7 @@ export const VideosBlock = ({ className, videos }: VideosBlockProps) => {
 
   return (
     <div className={clsx(s.container, className)}>
-      <h2 className={clsx(s.title, "h2")}>Видео проектов</h2>
+      <div className={clsx(s.title, "h2")}>Видео проектов</div>
 
       <div className={s.videos}>
         {Object.values(videos?.fields || {}).map((video, index) => {

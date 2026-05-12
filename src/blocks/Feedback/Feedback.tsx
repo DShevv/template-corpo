@@ -68,7 +68,7 @@ const Feedback = observer(
         >
           {({ values, setFieldValue, errors, touched }) => (
             <Form className={styles.form}>
-              <h2 className={clsx("h3", styles.title)}>Свяжитесь с нами</h2>
+              <div className={clsx("h3", styles.title)}>Свяжитесь с нами</div>
               <p className={clsx("body-2", styles.description)}>
                 Для связи заполните форму ниже, и наш специалист позвонит вам в
                 ближайшее время
@@ -133,7 +133,7 @@ const Feedback = observer(
                   checked={values.isAgree}
                   onChange={() => setFieldValue("isAgree", !values.isAgree)}
                 >
-                  <Link href="/privacy-policy" className={styles.link}>
+                  <Link href="/policy" className={styles.link}>
                     Согласие на обработку персональных данных
                   </Link>
                 </Checkbox>
@@ -143,7 +143,7 @@ const Feedback = observer(
         </Formik>
       </section>
     );
-  }
+  },
 );
 
 export default Feedback;

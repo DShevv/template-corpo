@@ -28,6 +28,9 @@ export async function generateMetadata({
         title: news?.title,
         description: news?.subtitle,
       },
+      alternates: {
+        canonical: `/news/${slug}`,
+      },
     };
   }
 
