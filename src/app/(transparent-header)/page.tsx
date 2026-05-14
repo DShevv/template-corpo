@@ -37,7 +37,7 @@ export async function generateMetadata() {
       description: seoTag?.description,
     },
     alternates: {
-      canonical: "/",
+      canonical: process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL,
     },
     icons: {
       icon: `${storageUrl}/${settings?.favicon}`,
@@ -46,7 +46,7 @@ export async function generateMetadata() {
       google: seoSettings?.google_search_console,
     },
     other: {
-      'yandex-verification': seoSettings?.yandex_webmaster ?? '',
+      "yandex-verification": seoSettings?.yandex_webmaster ?? "",
     },
   };
 }

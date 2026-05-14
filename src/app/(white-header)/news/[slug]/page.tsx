@@ -29,7 +29,7 @@ export async function generateMetadata({
         description: news?.subtitle,
       },
       alternates: {
-        canonical: `/news/${slug}`,
+        canonical: `${process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL}news/${slug}`,
       },
     };
   }

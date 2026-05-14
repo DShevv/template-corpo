@@ -56,7 +56,7 @@ export async function generateMetadata({
       description: seoTag?.description,
     },
     alternates: {
-      canonical: `/services/${category}/${slug}`,
+      canonical: `${process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL}services/${category}/${slug}`,
     },
   };
 }

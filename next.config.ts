@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      { source: "/privacy-policy", destination: "/policy", statusCode: 301 },
       { source: "/uslugi", destination: "/services", statusCode: 301 },
       { source: "/organizaciya-provedeniye", destination: "/services/events", statusCode: 301 },
       { source: "/chastnye_meropriyatiya", destination: "/services/events", statusCode: 301 },
